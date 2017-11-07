@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Item 2-->
+        <!--Week-->
         <scene sceneID="q3c-eI-Gsh">
             <objects>
                 <viewController id="p9F-rJ-13s" sceneMemberID="viewController">
@@ -19,13 +19,29 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <viewLayoutGuide key="safeArea" id="I8X-g7-RmZ"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 2" id="zeZ-f8-XGO"/>
+                    <tabBarItem key="tabBarItem" title="Week" id="zeZ-f8-XGO"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="88H-jm-jmV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="678" y="386"/>
+            <point key="canvasLocation" x="1172" y="-596"/>
         </scene>
-        <!--Item 1-->
+        <!--City-->
+        <scene sceneID="9NO-n0-Ajw">
+            <objects>
+                <viewController id="itA-U7-YCp" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Pqi-db-rm3">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <viewLayoutGuide key="safeArea" id="q5X-sA-V0h"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="City" id="zf4-vv-4bo"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IjE-NW-NEF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1866" y="-597"/>
+        </scene>
+        <!--Today-->
         <scene sceneID="dhR-c0-toG">
             <objects>
                 <viewController id="z5Q-Gg-0AH" sceneMemberID="viewController">
@@ -35,11 +51,11 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <viewLayoutGuide key="safeArea" id="Oub-Ze-crG"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 1" id="WJd-IO-YPj"/>
+                    <tabBarItem key="tabBarItem" title="Today" id="WJd-IO-YPj"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AdX-ZT-jIr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="678" y="-279"/>
+            <point key="canvasLocation" x="447" y="-596"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="pcm-Q7-jwD">
@@ -53,6 +69,7 @@
                     <connections>
                         <segue destination="z5Q-Gg-0AH" kind="relationship" relationship="viewControllers" id="wds-fo-SAA"/>
                         <segue destination="p9F-rJ-13s" kind="relationship" relationship="viewControllers" id="n1I-Kf-d03"/>
+                        <segue destination="itA-U7-YCp" kind="relationship" relationship="viewControllers" id="STN-4Z-b11"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cG7-kS-KRf" userLabel="First Responder" sceneMemberID="firstResponder"/>
