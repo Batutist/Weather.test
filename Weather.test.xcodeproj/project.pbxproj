@@ -11,6 +11,8 @@
 		7DCD7F191FB247B200B05E56 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DCD7F171FB247B200B05E56 /* Main.storyboard */; };
 		7DCD7F1B1FB247B200B05E56 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7DCD7F1A1FB247B200B05E56 /* Assets.xcassets */; };
 		7DCD7F1E1FB247B200B05E56 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DCD7F1C1FB247B200B05E56 /* LaunchScreen.storyboard */; };
+		7DCD7F281FB24C4800B05E56 /* TodayWeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCD7F271FB24C4800B05E56 /* TodayWeatherView.swift */; };
+		7DCD7F2C1FB24E4D00B05E56 /* ColorsConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCD7F2B1FB24E4D00B05E56 /* ColorsConstants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +22,8 @@
 		7DCD7F1A1FB247B200B05E56 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7DCD7F1D1FB247B200B05E56 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7DCD7F1F1FB247B200B05E56 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7DCD7F271FB24C4800B05E56 /* TodayWeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayWeatherView.swift; sourceTree = "<group>"; };
+		7DCD7F2B1FB24E4D00B05E56 /* ColorsConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorsConstants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +58,8 @@
 			children = (
 				7DCD7F131FB247B200B05E56 /* AppDelegate.swift */,
 				7DCD7F171FB247B200B05E56 /* Main.storyboard */,
+				7DCD7F271FB24C4800B05E56 /* TodayWeatherView.swift */,
+				7DCD7F2B1FB24E4D00B05E56 /* ColorsConstants.swift */,
 				7DCD7F1A1FB247B200B05E56 /* Assets.xcassets */,
 				7DCD7F1C1FB247B200B05E56 /* LaunchScreen.storyboard */,
 				7DCD7F1F1FB247B200B05E56 /* Info.plist */,
@@ -134,6 +140,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				7DCD7F141FB247B200B05E56 /* AppDelegate.swift in Sources */,
+				7DCD7F281FB24C4800B05E56 /* TodayWeatherView.swift in Sources */,
+				7DCD7F2C1FB24E4D00B05E56 /* ColorsConstants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
