@@ -19,12 +19,13 @@ class TodayWeatherViewController: UIViewController {
     @IBOutlet weak var pressureLabel: UILabel!
     @IBOutlet weak var humidityLabel: UILabel!
     
-    
+    let manager = ManagerData()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = Colors.skyBlue
+        manager.loadJSON()
         
         
         
