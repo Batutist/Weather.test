@@ -36,7 +36,7 @@
         <!--Today-->
         <scene sceneID="dhR-c0-toG">
             <objects>
-                <viewController id="z5Q-Gg-0AH" customClass="TodayWeatherView" customModule="Weather_test" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="z5Q-Gg-0AH" customClass="TodayWeatherViewController" customModule="Weather_test" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8AR-mo-xu5">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -205,7 +205,7 @@
         <!--City-->
         <scene sceneID="AXe-km-EQk">
             <objects>
-                <viewController id="uxG-QP-6ok" customClass="CityWeatherView" customModule="Weather_test" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="uxG-QP-6ok" customClass="CityWeatherViewController" customModule="Weather_test" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="qfl-7h-GFP">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -319,6 +319,9 @@
                                 <state key="normal" backgroundImage="search">
                                     <attributedString key="attributedTitle"/>
                                 </state>
+                                <connections>
+                                    <action selector="citySearchButtonPressed:" destination="uxG-QP-6ok" eventType="touchUpInside" id="nnz-30-SQk"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.79080500379999996" green="0.98061922999999995" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -351,6 +354,17 @@
                         <viewLayoutGuide key="safeArea" id="9pV-zY-Tvd"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="City" id="aYq-T9-jBK"/>
+                    <connections>
+                        <outlet property="cityHumidityLabel" destination="6dN-TW-fPz" id="9na-aG-rr7"/>
+                        <outlet property="cityMaxTemperatureLabel" destination="M71-h6-H6y" id="umi-XB-1fL"/>
+                        <outlet property="cityMinTemperatureLabel" destination="y9o-mF-wDE" id="QLV-rX-4QB"/>
+                        <outlet property="cityPressureLabel" destination="2ic-O3-H09" id="T0p-Pt-eqs"/>
+                        <outlet property="citySearchTextField" destination="Dnx-zB-FhS" id="Psm-Mu-he0"/>
+                        <outlet property="cityTemperatureLabel" destination="EXh-0U-K9Z" id="zPf-RT-CQm"/>
+                        <outlet property="cityWeatherDescriptionLabel" destination="MSF-8E-VPa" id="SGu-QI-bhj"/>
+                        <outlet property="cityWeatherIcon" destination="0eK-L7-6aT" id="y6H-tL-qrV"/>
+                        <outlet property="cityWindSpeedLabel" destination="DV4-Cs-gql" id="za1-wO-qfr"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bC0-O5-ee2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

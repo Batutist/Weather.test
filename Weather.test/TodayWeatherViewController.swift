@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class TodayWeatherView: UIViewController {
+class TodayWeatherViewController: UIViewController {
     @IBOutlet var myView: UIView!
     
     override func viewDidLoad() {
