@@ -14,12 +14,12 @@ let realm = try! Realm()
 
 var cityName = ""
 var cityCountry = ""
-var cityTemperature = ""
-var cityWindSpeed = ""
-var cityPressure = ""
-var cityHumidity = ""
-var cityTemperatureMin = ""
-var cityTemperatureMax = ""
+var cityTemperature = 0
+var cityWindSpeed = 0.0
+var cityPressure = 0.0
+var cityHumidity = 0
+var cityTemperatureMin = 0
+var cityTemperatureMax = 0
 var cityWeatherDiscription = ""
 var cityWeatherIcon = ""
 
@@ -47,15 +47,30 @@ class TodayWeatherViewController: UIViewController {
         for value in todayWeather {
             cityName.append(value.cityName)
             cityCountry.append(value.cityCountry)
-            cityTemperature.append(value.cityTemperature)
-            cityWindSpeed.append(value.cityWindSpeed)
-            cityPressure.append(value.cityPressure)
-            cityHumidity.append(value.cityHumidity)
-            cityTemperatureMin.append(value.cityTemperatureMin)
-            cityTemperatureMax.append(value.cityTemperatureMax)
-            cityWeatherDiscription.append(value.city)
-            cityWeatherIcon.append(value)
+            cityTemperature = value.cityTemperature
+            cityWindSpeed = value.cityWindSpeed
+            cityPressure = value.cityPressure
+            cityHumidity = value.cityHumidity
+            cityTemperatureMin = value.cityTemperatureMin
+            cityTemperatureMax = value.cityTemperatureMax
+            cityWeatherDiscription.append(value.cityWeatherDiscription)
+            cityWeatherIcon.append(value.cityWeatherIcon)
         }
+        
+        if cityTemperature > 0 {
+            temperatureValueLabel.text = ("+\(cityTemperature)˚")
+        } else {
+            temperatureValueLabel.text = ("\(cityTemperature)˚")
+        }
+        windSpeedLabel.text = ("\(cityWindSpeed) m/s")
+        
+        pressureLabel.text = ("\(cityPressure) mb")
+        humidityLabel.text = ("\(cityHumidity) %")
+        minTemperatureLabel.text = ("\(cityTemperatureMin)˚")
+        maxTemperatureLabel.text = ("\(cityTemperatureMax)˚")
+        weatherDescriptionLabel.text = cityWeatherDiscription
+        weatherIcon.image = UIImage(named: cityWeatherIcon)
+        print(cityWeatherIcon)
     }
     
 }

@@ -31,8 +31,8 @@ class ManagerData {
                 todayWeather.cityName = json["name"].stringValue
                 todayWeather.cityCountry = json["sys"]["country"].stringValue
                 todayWeather.cityTemperature = json["main"]["temp"].intValue
-                todayWeather.cityWindSpeed = json["wind"]["speed"].intValue
-                todayWeather.cityPressure = json["main"]["pressure"].intValue
+                todayWeather.cityWindSpeed = json["wind"]["speed"].doubleValue
+                todayWeather.cityPressure = json["main"]["pressure"].doubleValue
                 todayWeather.cityHumidity = json["main"]["humidity"].intValue
                 todayWeather.cityTemperatureMin = json["main"]["temp_min"].intValue
                 todayWeather.cityTemperatureMax = json["main"]["temp_max"].intValue

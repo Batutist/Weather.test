@@ -14,8 +14,8 @@ class TodayWeather: Object {
     @objc dynamic var cityName = ""
     @objc dynamic var cityCountry = ""
     @objc dynamic var cityTemperature = 0
-    @objc dynamic var cityWindSpeed = 0
-    @objc dynamic var cityPressure = 0
+    @objc dynamic var cityWindSpeed = 0.0
+    @objc dynamic var cityPressure = 0.0
     @objc dynamic var cityHumidity = 0
     @objc dynamic var cityTemperatureMin = 0
     @objc dynamic var cityTemperatureMax = 0
