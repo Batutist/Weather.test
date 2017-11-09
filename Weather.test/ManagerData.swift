@@ -19,6 +19,8 @@ class ManagerData {
         let realm = try! Realm()
         let todayWeather = TodayWeather()
         
+        print(Realm.Configuration.defaultConfiguration.fileURL)
+        
         let url = "https://api.openweathermap.org/data/2.5/weather"
         let param =  ["q": loadCity, "units": "metric", "appid": "a541dc378e4c7a2a6008385e46920d75"]
         
