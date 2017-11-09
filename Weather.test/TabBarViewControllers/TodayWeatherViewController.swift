@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import RealmSwift
 
-let manager = ManagerData()
+
 let realm = try! Realm()
 
 var cityName = ""
@@ -39,11 +39,12 @@ class TodayWeatherViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        manager.loadJSON(loadCity: city)
-        
+
         view.backgroundColor = Colors.skyBlue
         
+        let manager = ManagerData()
+        manager.loadJSON(loadCity: city)
+     
         let todayWeather = manager.getTodayWeatherFromDB()
         
         for value in todayWeather {
@@ -72,7 +73,6 @@ class TodayWeatherViewController: UIViewController {
         maxTemperatureLabel.text = ("\(cityTemperatureMax)˚")
         weatherDescriptionLabel.text = cityWeatherDiscription
         weatherIcon.image = UIImage(named: cityWeatherIcon)
-        print(cityWeatherIcon)
+        
     }
-    
 }

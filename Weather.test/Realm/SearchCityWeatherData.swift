@@ -7,3 +7,23 @@
 //
 
 import Foundation
+import  RealmSwift
+
+class SearchCityWeather: Object {
+    
+    @objc dynamic var searchCityName = ""
+    @objc dynamic var searchCityCountry = ""
+    @objc dynamic var searchCityTemperature = 0
+    @objc dynamic var searchCityWindSpeed = 0.0
+    @objc dynamic var searchCityPressure = 0.0
+    @objc dynamic var searchCityHumidity = 0
+    @objc dynamic var searchCityTemperatureMin = 0
+    @objc dynamic var searchCityTemperatureMax = 0
+    @objc dynamic var searchCityWeatherDiscription = ""
+    @objc dynamic var searchCityWeatherIcon = ""
+    
+    
+    override static func primaryKey() -> String {
+        return "searchCityName"
+    }
+}
