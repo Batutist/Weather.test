@@ -15,13 +15,13 @@ let  userDefaults  =  UserDefaults.standard
 
 class ManagerData {
     
-    func loadJSONSearch(city: String) {
+    func loadJSONSearch(city: String) -> SearchCityWeather {
         let realm = try! Realm()
         print(Realm.Configuration.defaultConfiguration.fileURL)
         
         
         let url = "https://api.openweathermap.org/data/2.5/weather"
-        let param =  ["q": city, "units": "metric", "appid": "a541dc378e4c7a2a6008385e46920d75"]
+        let param =  ["q": city, "units": "metric", "appid": "0d56898a0da8944be0e2dff08367ac8c"]
         let searchCityWeather = SearchCityWeather()
         
         Alamofire.request(url, method: .get, parameters: param).validate().responseJSON { response in
@@ -45,13 +45,14 @@ class ManagerData {
                 try! realm.write {
                     realm.add(searchCityWeather, update: true)
                 }
-                
+                print("load JSON Search: \(searchCityWeather)")
                 userDefaults.set( "ok",  forKey:  "load")
                 
             case .failure(let error):
                 print(error)
             }
         }
+        return searchCityWeather
     }
     
     
@@ -66,7 +67,7 @@ class ManagerData {
         let todayUrl = "https://api.openweathermap.org/data/2.5/weather"
         let weekUrl = "https://api.openweathermap.org/data/2.5/forecast"
         
-        let param =  ["q": loadCity, "units": "metric", "appid": "a541dc378e4c7a2a6008385e46920d75"]
+        let param =  ["q": loadCity, "units": "metric", "appid": "0d56898a0da8944be0e2dff08367ac8c"]
         
         let urlArray = [todayUrl, weekUrl]
         
@@ -123,6 +124,7 @@ class ManagerData {
     func getSearchCityWeatherFromDB() -> Results<SearchCityWeather> {
         let realm = try! Realm()
         let searchCityWeather = realm.objects(SearchCityWeather.self)
+        print("get from DB: \(searchCityWeather)")
         return searchCityWeather
     }
 }
