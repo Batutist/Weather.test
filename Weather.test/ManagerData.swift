@@ -19,12 +19,16 @@ class ManagerData {
         let realm = try! Realm()
         print(Realm.Configuration.defaultConfiguration.fileURL)
         
-        
-        let url = "https://api.openweathermap.org/data/2.5/weather"
-        let param =  ["q": city, "units": "metric", "appid": "a541dc378e4c7a2a6008385e46920d75"]
+//        http://samples.openweathermap.org/data/2.5/weather?q=London,uk&appid=b1b15e88fa797225412429c1c50c122a1
+        let url = "https://http://api.openweathermap.org/data/2.5/weather"
+//        let url = "https://api.openweathermap.org/data/2.5/weather"
+        let param =  ["q": "London", "units": "metric", "appid": "9a7e5a2ca062e11c56d5b0752a62b747"]
         let searchCityWeather = SearchCityWeather()
         
         Alamofire.request(url, method: .get, parameters: param).validate().responseJSON { response in
+            print("Request: \(response.request)")
+            print("Response: \(response.response)")
+            print("Error: \(response.error)")
             switch response.result {
             case .success(let value):
                 let json = JSON(value)
@@ -45,8 +49,8 @@ class ManagerData {
                 try! realm.write {
                     realm.add(searchCityWeather, update: true)
                 }
-                
-                userDefaults.set( "ok",  forKey:  "load")
+                print("load JSONS search: \(searchCityWeather.searchCityName), \(searchCityWeather.searchCityCountry)")
+                userDefaults.set( "ok",  forKey:  "loadSearchCity")
                 
             case .failure(let error):
                 print(error)
@@ -102,7 +106,18 @@ class ManagerData {
                         
                         userDefaults.set( "ok",  forKey:  "load")
                         
-                        print("hey city\(todayWeather.cityName). country \(todayWeather.cityCountry), temp \(todayWeather.cityTemperature), wind \(todayWeather.cityWindSpeed), press \(todayWeather.cityPressure), humid \(todayWeather.cityHumidity), tempMin \(todayWeather.cityTemperatureMin), temp max \(todayWeather.cityTemperatureMax), desc \(todayWeather.cityWeatherDiscription), icon \(todayWeather.cityWeatherIcon)")
+                        print("""
+                            hey city\(todayWeather.cityName).
+                            country \(todayWeather.cityCountry),
+                            temp \(todayWeather.cityTemperature),
+                            wind \(todayWeather.cityWindSpeed),
+                            press \(todayWeather.cityPressure),
+                            humid \(todayWeather.cityHumidity),
+                            tempMin \(todayWeather.cityTemperatureMin),
+                            temp max \(todayWeather.cityTemperatureMax),
+                            desc \(todayWeather.cityWeatherDiscription),
+                            icon \(todayWeather.cityWeatherIcon)
+                            """)
                         
                     case .failure(let error):
                         print(error)
@@ -123,6 +138,10 @@ class ManagerData {
     func getSearchCityWeatherFromDB() -> Results<SearchCityWeather> {
         let realm = try! Realm()
         let searchCityWeather = realm.objects(SearchCityWeather.self)
+        for value in searchCityWeather {
+            print("Get city from db \(value.searchCityName)")
+        }
+        print(searchCityWeather)
         return searchCityWeather
     }
 }

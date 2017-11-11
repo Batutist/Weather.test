@@ -39,12 +39,12 @@ class TodayWeatherViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         view.backgroundColor = Colors.skyBlue
         
         let manager = ManagerData()
         manager.loadJSON(loadCity: city)
-     
+        
         let todayWeather = manager.getTodayWeatherFromDB()
         
         for value in todayWeather {
@@ -58,6 +58,8 @@ class TodayWeatherViewController: UIViewController {
             cityTemperatureMax = value.cityTemperatureMax
             cityWeatherDiscription.append(value.cityWeatherDiscription)
             cityWeatherIcon.append(value.cityWeatherIcon)
+            
+            print("today view: \(cityName), \(cityTemperature), \(cityWeatherDiscription)")
         }
         
         if cityTemperature > 0 {
