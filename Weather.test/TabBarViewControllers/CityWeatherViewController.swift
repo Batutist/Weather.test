@@ -24,9 +24,9 @@ var searchCityWeatherDiscription = ""
 var searchCityWeatherIcon = ""
 
 class CityWeatherViewController: UIViewController {
-    
+    let manager = ManagerData()
     var notificationToken: NotificationToken? = nil
-    var city = "Birmingham,GB"
+    var city = "Tomsk"
     
     @IBOutlet weak var citySearchTextField: UITextField!
     @IBOutlet weak var citySearchNameLabel: UILabel!
@@ -40,16 +40,11 @@ class CityWeatherViewController: UIViewController {
     @IBOutlet weak var cityHumidityLabel: UILabel!
     
     @IBAction func citySearchButtonPressed(_ sender: UIButton) {
-//        if citySearchTextField.text == "" || citySearchTextField.text == nil {
-//            dontEnterCityName()             /* func with alertController */
-//        } else {
-//            manager.loadJSONSearch(city: citySearchTextField.text!)
-//            searchCityName = citySearchTextField.text!
-//            citySearchNameLabel.text = citySearchTextField.text!
-//            let searchCityWeather = manager.getSearchCityWeatherFromDB()
-//            updateUIWith(searchCityWeather: searchCityWeather)
-//
-//        }
+        //        if citySearchTextField.text == "" || citySearchTextField.text == nil {
+        //            dontEnterCityName()             /* func with alertController */
+        //        } else {
+        //            manager.loadJSONSearch(city: citySearchTextField.text!)
+        //        }
     }
     let manager = ManagerData()
     
@@ -63,10 +58,37 @@ class CityWeatherViewController: UIViewController {
         view.backgroundColor = Colors.skyBlue
         
         
-
+        manager.loadJSONSearch(city: city)
+        
         updateUI()
-//        updateUIWith(searchCityWeather: searchCityWeather)
-//        print("Look here \(searchCityName)")
+    }
+    
+    func updateUI() {
+        let realm = try! Realm()
+        let results = realm.objects(SearchCityWeather.self)
+        
+        // Observe Results Notifications
+        notificationToken = results.observe { [weak self] (changes: RealmCollectionChange) in
+            guard let view = self?.view else { return }
+            switch changes {
+            case .initial:
+                // Results are now populated and can be accessed without blocking the UI
+                self?.updateLabelsAndImages()
+                
+                print("new")
+            //                tableView.reloadData()
+            case .update(_, let deletions, let insertions, let modifications):
+                // Query results have changed, so apply them to the UITableView
+                
+                self?.updateLabelsAndImages()
+                print("update")
+                
+            case .error(let error):
+                print("error")
+                // An error occurred while opening the Realm file on the background worker thread
+                fatalError("\(error)")
+            }
+        }
     }
     
     
@@ -75,38 +97,6 @@ class CityWeatherViewController: UIViewController {
         let OK = UIAlertAction(title: "OK", style: .default, handler: nil)
         alertController.addAction(OK)
         present(alertController, animated: true, completion: nil)
-    }
-    
-    func updateUIWith(searchCityWeather: Results<SearchCityWeather>) {
-        searchCityName = ""
-        
-        for value in searchCityWeather {
-            searchCityName = value.searchCityName
-            searchCityCountry = value.searchCityCountry
-            searchCityTemperature  = value.searchCityTemperature
-            searchCityWindSpeed = value.searchCityWindSpeed
-            searchCityPressure = value.searchCityPressure
-            searchCityHumidity = value.searchCityHumidity
-            searchCityTemperatureMin = value.searchCityTemperatureMin
-            searchCityTemperatureMax = value.searchCityTemperatureMax
-            searchCityWeatherDiscription = value.searchCityWeatherDiscription
-            searchCityWeatherIcon = value.searchCityWeatherIcon
-            
-            print("update UI with: \(searchCityName), \(searchCityCountry)")
-        }
-        
-        self.citySearchNameLabel.text = ("\(searchCityName), \(searchCityCountry)")
-        self.citySearchTextField.placeholder = searchCityName
-        self.cityTemperatureLabel.text = ("\(searchCityTemperature)")
-        self.cityWeatherIcon.image = UIImage(named: searchCityWeatherIcon)
-        self.cityWeatherDescriptionLabel.text = searchCityWeatherDiscription
-        self.cityMaxTemperatureLabel.text = "\(searchCityTemperatureMax)"
-        self.cityMinTemperatureLabel.text = "\(searchCityTemperatureMin)"
-        self.cityWindSpeedLabel.text = "\(searchCityWindSpeed)"
-        self.cityPressureLabel.text = "\(searchCityPressure)"
-        self.cityHumidityLabel.text = "\(searchCityHumidity)"
-        
-        print("values of labels: \(String(describing: citySearchNameLabel.text)), \(String(describing: cityTemperatureLabel.text))")
     }
     
 
@@ -140,6 +130,39 @@ class CityWeatherViewController: UIViewController {
     deinit {
         notificationToken?.invalidate()
     }
+    deinit {
+        notificationToken?.invalidate()
+    }
+    
+    func updateLabelsAndImages() {
+                let searchCityWeather = manager.getSearchCityWeatherFromDB()
+        
+                for value in searchCityWeather {
+                    searchCityName = value.searchCityName
+                    searchCityCountry = value.searchCityCountry
+                    searchCityTemperature = value.searchCityTemperature
+                    searchCityWindSpeed = value.searchCityWindSpeed
+                    searchCityPressure = value.searchCityPressure
+                    searchCityHumidity = value.searchCityHumidity
+                    searchCityTemperatureMin = value.searchCityTemperatureMin
+                    searchCityTemperatureMax = value.searchCityTemperatureMax
+                    searchCityWeatherDiscription = value.searchCityWeatherDiscription
+                    searchCityWeatherIcon = value.searchCityWeatherIcon
+        
+                    print("for value in: \(searchCityName)")
+                }
+        
+                cityTemperatureLabel.text = ("\(searchCityTemperature)")
+                cityWeatherIcon.image = UIImage(named: searchCityWeatherIcon)
+                cityWeatherDescriptionLabel.text = searchCityWeatherDiscription
+                cityMaxTemperatureLabel.text = ("\(searchCityTemperatureMax)")
+                cityMinTemperatureLabel.text = ("\(searchCityTemperatureMin)")
+                cityWindSpeedLabel.text = ("\(searchCityWindSpeed)")
+                cityPressureLabel.text = ("\(searchCityPressure)")
+                cityHumidityLabel.text = ("\(searchCityHumidity)")
+    }
+    
+    
 }
 
 
