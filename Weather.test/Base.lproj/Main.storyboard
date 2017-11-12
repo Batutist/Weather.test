@@ -435,7 +435,7 @@
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="m3m-sJ-U5X">
-                                <rect key="frame" x="0.0" y="20" width="375" height="448"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="441.5"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleAspectFit" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="3Ym-Xq-hUb" userLabel="CityName">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
@@ -736,34 +736,34 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="RmA-07-4Fo" userLabel="nightWeatherDescriotion">
-                                        <rect key="frame" x="0.0" y="427" width="375" height="21"/>
+                                        <rect key="frame" x="0.0" y="427" width="375" height="14.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cloudy" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iQw-TN-y8d">
-                                                <rect key="frame" x="0.0" y="0.0" width="67" height="16"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="67" height="14.5"/>
                                                 <fontDescription key="fontDescription" name="AppleSDGothicNeo-SemiBold" family="Apple SD Gothic Neo" pointSize="13"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cloudy" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qzZ-gY-1X4">
-                                                <rect key="frame" x="77" y="0.0" width="67" height="16"/>
+                                                <rect key="frame" x="77" y="0.0" width="67" height="14.5"/>
                                                 <fontDescription key="fontDescription" name="AppleSDGothicNeo-SemiBold" family="Apple SD Gothic Neo" pointSize="13"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cloudy" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zfb-0G-Adp">
-                                                <rect key="frame" x="154" y="0.0" width="67" height="16"/>
+                                                <rect key="frame" x="154" y="0.0" width="67" height="14.5"/>
                                                 <fontDescription key="fontDescription" name="AppleSDGothicNeo-SemiBold" family="Apple SD Gothic Neo" pointSize="13"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cloudy" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lA3-Fm-caA">
-                                                <rect key="frame" x="231" y="0.0" width="67" height="16"/>
+                                                <rect key="frame" x="231" y="0.0" width="67" height="14.5"/>
                                                 <fontDescription key="fontDescription" name="AppleSDGothicNeo-SemiBold" family="Apple SD Gothic Neo" pointSize="13"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cloudy" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Owd-pF-i4j">
-                                                <rect key="frame" x="308" y="0.0" width="67" height="16"/>
+                                                <rect key="frame" x="308" y="0.0" width="67" height="14.5"/>
                                                 <fontDescription key="fontDescription" name="AppleSDGothicNeo-SemiBold" family="Apple SD Gothic Neo" pointSize="13"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
@@ -776,16 +776,49 @@
                                     <constraint firstItem="Mjy-Rd-F2n" firstAttribute="leading" secondItem="m3m-sJ-U5X" secondAttribute="leading" id="qwm-aP-5Lo"/>
                                 </constraints>
                             </stackView>
+                            <stackView opaque="NO" contentMode="scaleAspectFit" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="IxX-fy-USz" userLabel="windDirection">
+                                <rect key="frame" x="5" y="491.5" width="365" height="46.5"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JvN-lZ-Tqr" userLabel="View 1">
+                                        <rect key="frame" x="0.0" y="0.0" width="57" height="46.5"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pTI-9I-R7z" userLabel="View 2">
+                                        <rect key="frame" x="77" y="0.0" width="57" height="46.5"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <viewLayoutGuide key="safeArea" id="LgI-cv-3S3"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eLE-La-r6F" userLabel="View 3">
+                                        <rect key="frame" x="154" y="0.0" width="57" height="46.5"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <viewLayoutGuide key="safeArea" id="OaG-6j-f2K"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qdu-s9-gep" userLabel="View 4">
+                                        <rect key="frame" x="231" y="0.0" width="57" height="46.5"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <viewLayoutGuide key="safeArea" id="5J0-jK-uPf"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HMg-Wc-bY7" userLabel="View 5">
+                                        <rect key="frame" x="308" y="0.0" width="57" height="46.5"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <viewLayoutGuide key="safeArea" id="glu-Yk-3He"/>
+                                    </view>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" red="0.79080500379999996" green="0.98061922999999995" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="IxX-fy-USz" firstAttribute="top" secondItem="m3m-sJ-U5X" secondAttribute="bottom" constant="30" id="66v-h4-yds"/>
                             <constraint firstItem="rnG-Dd-HZA" firstAttribute="trailing" secondItem="m3m-sJ-U5X" secondAttribute="trailing" id="A0i-6X-Mga"/>
+                            <constraint firstItem="IxX-fy-USz" firstAttribute="leading" secondItem="rnG-Dd-HZA" secondAttribute="leading" constant="5" id="Al7-cV-6rN"/>
                             <constraint firstItem="m3m-sJ-U5X" firstAttribute="leading" secondItem="IFb-Tj-kR9" secondAttribute="leading" id="BZR-iH-md4"/>
+                            <constraint firstItem="rnG-Dd-HZA" firstAttribute="bottom" secondItem="IxX-fy-USz" secondAttribute="bottom" constant="80" id="Lzh-ny-AM7"/>
                             <constraint firstItem="m3m-sJ-U5X" firstAttribute="top" secondItem="rnG-Dd-HZA" secondAttribute="top" id="aKK-aF-Mr4"/>
-                            <constraint firstItem="rnG-Dd-HZA" firstAttribute="bottom" secondItem="m3m-sJ-U5X" secondAttribute="bottom" constant="150" id="b1h-b6-nFC"/>
+                            <constraint firstItem="rnG-Dd-HZA" firstAttribute="bottom" relation="lessThanOrEqual" secondItem="m3m-sJ-U5X" secondAttribute="bottom" constant="170" id="b1h-b6-nFC"/>
                             <constraint firstItem="3ci-mU-g8d" firstAttribute="leading" secondItem="IFb-Tj-kR9" secondAttribute="leading" id="cEt-cp-Ogi"/>
                             <constraint firstItem="3ci-mU-g8d" firstAttribute="top" secondItem="Mjy-Rd-F2n" secondAttribute="bottom" constant="4" id="j42-LN-ZFC"/>
                             <constraint firstAttribute="trailing" secondItem="3ci-mU-g8d" secondAttribute="trailing" id="mYQ-zN-xYE"/>
+                            <constraint firstItem="rnG-Dd-HZA" firstAttribute="trailing" secondItem="IxX-fy-USz" secondAttribute="trailing" constant="5" id="pSk-sE-gDl"/>
                             <constraint firstItem="3ci-mU-g8d" firstAttribute="width" secondItem="IFb-Tj-kR9" secondAttribute="width" id="qQw-ou-CzE"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="rnG-Dd-HZA"/>
