@@ -29,6 +29,7 @@ class CityWeatherViewController: UIViewController {
     var city = "Tomsk"
     
     @IBOutlet weak var citySearchTextField: UITextField!
+    @IBOutlet weak var citySearchNameLabel: UILabel!
     @IBOutlet weak var cityTemperatureLabel: UILabel!
     @IBOutlet weak var cityWeatherIcon: UIImageView!
     @IBOutlet weak var cityWeatherDescriptionLabel: UILabel!
@@ -45,11 +46,17 @@ class CityWeatherViewController: UIViewController {
         //            manager.loadJSONSearch(city: citySearchTextField.text!)
         //        }
     }
+    let manager = ManagerData()
+    
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        manager.loadJSONSearch(city: city)
+        let searchCityWeather = manager.getSearchCityWeatherFromDB()
         
         view.backgroundColor = Colors.skyBlue
+        
         
         manager.loadJSONSearch(city: city)
         
@@ -91,6 +98,38 @@ class CityWeatherViewController: UIViewController {
         alertController.addAction(OK)
         present(alertController, animated: true, completion: nil)
     }
+    
+
+
+    func updateUI() {
+        let realm = try! Realm()
+        let searchCityWeather = realm.objects(SearchCityWeather.self)
+        
+        // Observe Results Notifications
+        notificationToken = searchCityWeather.observe { [weak self] (changes: RealmCollectionChange) in
+            guard let view = self?.view else { return }
+            switch changes {
+            case .initial:
+                // Results are now populated and can be accessed without blocking the UI
+                print("new")
+//                tableView.reloadData()
+            case .update(_, let deletions, let insertions, let modifications):
+                // Query results have changed, so apply them to the UITableView
+                print("update")
+//                self?.weatherList = (self?.manager.getWeatherDataFromDB())!
+//                tableView.reloadData()
+                
+            case .error(let error):
+                print("error")
+                // An error occurred while opening the Realm file on the background worker thread
+                fatalError("look on the error \(error)")
+            }
+        }
+    }
+
+    deinit {
+        notificationToken?.invalidate()
+    }
     deinit {
         notificationToken?.invalidate()
     }
@@ -125,3 +164,6 @@ class CityWeatherViewController: UIViewController {
     
     
 }
+
+
+

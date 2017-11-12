@@ -25,6 +25,9 @@ class ManagerData {
         let searchCityWeather = SearchCityWeather()
         
         Alamofire.request(url, method: .get, parameters: param).validate().responseJSON { response in
+            print("Request: \(response.request)")
+            print("Response: \(response.response)")
+            print("Error: \(response.error)")
             switch response.result {
             case .success(let value):
                 let json = JSON(value)
@@ -45,8 +48,8 @@ class ManagerData {
                 try! realm.write {
                     realm.add(searchCityWeather, update: true)
                 }
-                print("load JSON Search: \(searchCityWeather)")
-                userDefaults.set( "ok",  forKey:  "load")
+                print("load JSONS search: \(searchCityWeather.searchCityName), \(searchCityWeather.searchCityCountry)")
+                userDefaults.set( "ok",  forKey:  "loadSearchCity")
                 
             case .failure(let error):
                 print(error)
@@ -103,7 +106,18 @@ class ManagerData {
                         
                         userDefaults.set( "ok",  forKey:  "load")
                         
-                        print("hey city\(todayWeather.cityName). country \(todayWeather.cityCountry), temp \(todayWeather.cityTemperature), wind \(todayWeather.cityWindSpeed), press \(todayWeather.cityPressure), humid \(todayWeather.cityHumidity), tempMin \(todayWeather.cityTemperatureMin), temp max \(todayWeather.cityTemperatureMax), desc \(todayWeather.cityWeatherDiscription), icon \(todayWeather.cityWeatherIcon)")
+                        print("""
+                            hey city\(todayWeather.cityName).
+                            country \(todayWeather.cityCountry),
+                            temp \(todayWeather.cityTemperature),
+                            wind \(todayWeather.cityWindSpeed),
+                            press \(todayWeather.cityPressure),
+                            humid \(todayWeather.cityHumidity),
+                            tempMin \(todayWeather.cityTemperatureMin),
+                            temp max \(todayWeather.cityTemperatureMax),
+                            desc \(todayWeather.cityWeatherDiscription),
+                            icon \(todayWeather.cityWeatherIcon)
+                            """)
                         
                     case .failure(let error):
                         print(error)
