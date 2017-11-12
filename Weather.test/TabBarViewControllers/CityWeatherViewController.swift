@@ -11,7 +11,8 @@ import UIKit
 import RealmSwift
 
 
-
+// create variables to work with
+// создаем переменные для дальнейшего использования
 var searchCityName = ""
 var searchCityCountry = ""
 var searchCityTemperature = 0
@@ -24,10 +25,15 @@ var searchCityWeatherDiscription = ""
 var searchCityWeatherIcon = ""
 
 class CityWeatherViewController: UIViewController {
+    //create object of ManagerData
+    // создаем объекс класса ManagerData
     let manager = ManagerData()
+    // create notification token
+    // создаем токен нотификации
     var notificationToken: NotificationToken? = nil
     let city = "Astana"
-    
+    // outlets from interface main.Storyboard
+    // ссылки на объекты в UI
     @IBOutlet weak var citySearchTextField: UITextField!
     @IBOutlet weak var citySearchNameLabel: UILabel!
     @IBOutlet weak var cityTemperatureLabel: UILabel!
@@ -38,13 +44,20 @@ class CityWeatherViewController: UIViewController {
     @IBOutlet weak var cityWindSpeedLabel: UILabel!
     @IBOutlet weak var cityPressureLabel: UILabel!
     @IBOutlet weak var cityHumidityLabel: UILabel!
-    
+    // func for search button
+    // функция для кнопки поиска
     @IBAction func citySearchButtonPressed(_ sender: UIButton) {
+        // check citySearchTextField on validation
+        // проверяем валидность введеной информации в citySearchTextField
                 if citySearchTextField.text == "" || citySearchTextField.text == nil {
                     dontEnterCityName()             /* func with alertController */
                 } else {
+                    // if everything is ok transfer city name from citySearchTextField to func loadJSONSearch
+                    // если все ок, то передаем название города из citySearchTextField в loadJSONSearch функцию
                     let searchCity = citySearchTextField.text!
                     manager.loadJSONSearch(city: searchCity)
+                    // call func to update user interface
+                    // вызываем функцию для обновления отображаемых данных
                     updateUI()
                 }
     }
@@ -52,16 +65,21 @@ class CityWeatherViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // change background color
+        // меняем цвет фона
         view.backgroundColor = Colors.skyBlue
-        
+        // set defaults values for labels while waiting load data
+        // устанавливаем дефолтные значения для ярлыков пока идел процесс загрузки данных
         defaultValues()
-        
+        // load data of city
+        // загружаем данные по городу
         manager.loadJSONSearch(city: city)
-//        let searchCityWeather = manager.getSearchCityWeatherFromDB()
-        
+        // call func to update user interface
+        // вызываем функцию для обновления отображаемых данных
         updateUI()
     }
-    
+    // func use notificationToken to search changes in DB and display them in UI
+    // функция использует нотификацию для обнаружения изменений в БД и отображения их в пользовательском интерфейсе
     func updateUI() {
         let realm = try! Realm()
         let results = realm.objects(SearchCityWeather.self)
@@ -72,13 +90,16 @@ class CityWeatherViewController: UIViewController {
             switch changes {
             case .initial:
                 // Results are now populated and can be accessed without blocking the UI
+                // func to update labels and images values
+                // функция обновления значений ярлыков и картинок
                 self?.updateLabelsAndImages()
                 
                 print("new")
             //                tableView.reloadData()
             case .update(_, let deletions, let insertions, let modifications):
                 // Query results have changed, so apply them to the UITableView
-                
+                // func to update labels and images values
+                // функция обновления значений ярлыков и картинок
                 self?.updateLabelsAndImages()
                 print("update")
                 
@@ -90,7 +111,8 @@ class CityWeatherViewController: UIViewController {
         }
     }
     
-    
+    // func with alert controller to display if citySearchTextField is empty
+    // функция с всплывающей ошибкой в случае пустого citySearchTextField
     func dontEnterCityName() {
         let alertController = UIAlertController(title: "Ошибка", message: "Вы не ввели имя города.", preferredStyle: .alert)
         let OK = UIAlertAction(title: "OK", style: .default, handler: nil)
@@ -101,7 +123,8 @@ class CityWeatherViewController: UIViewController {
     deinit {
         notificationToken?.invalidate()
     }
-    
+    // func takes values from DB and change IBOtlets in UI
+    // функция берет значения из БД и устанавливает их в элементы пользовательского интерфейса
     func updateLabelsAndImages() {
         let searchCityWeather = manager.getSearchCityWeatherFromDB()
         
@@ -134,7 +157,8 @@ class CityWeatherViewController: UIViewController {
         cityPressureLabel.text = ("\(searchCityPressure) mb")
         cityHumidityLabel.text = ("\(searchCityHumidity) %")
     }
-    
+    // func with default values to display while data is loading
+    // функция для отображения дефолтных данных пока не прошла загрузка
     func defaultValues() {
         cityTemperatureLabel.text = "--"
         //        cityWeatherIcon.image = UIImage(named: searchCityWeatherIcon)
@@ -145,8 +169,6 @@ class CityWeatherViewController: UIViewController {
         cityPressureLabel.text = "--"
         cityHumidityLabel.text = "--"
     }
-    
-    
 }
 
 
