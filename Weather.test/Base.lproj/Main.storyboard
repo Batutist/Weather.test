@@ -850,6 +850,11 @@
                         <outletCollection property="temperatureMinLabels" destination="1KZ-hU-BxV" collectionClass="NSMutableArray" id="vQk-rN-hLx"/>
                         <outletCollection property="temperatureMinLabels" destination="mFV-IS-hoh" collectionClass="NSMutableArray" id="pjw-B2-rSL"/>
                         <outletCollection property="temperatureMinLabels" destination="hzf-8Q-Ky5" collectionClass="NSMutableArray" id="lTk-0D-CjL"/>
+                        <outletCollection property="windInfoViews" destination="JvN-lZ-Tqr" collectionClass="NSMutableArray" id="x77-Jj-DgS"/>
+                        <outletCollection property="windInfoViews" destination="pTI-9I-R7z" collectionClass="NSMutableArray" id="2UE-jH-lwO"/>
+                        <outletCollection property="windInfoViews" destination="eLE-La-r6F" collectionClass="NSMutableArray" id="ItW-w3-ofx"/>
+                        <outletCollection property="windInfoViews" destination="qdu-s9-gep" collectionClass="NSMutableArray" id="J3Y-JC-xNL"/>
+                        <outletCollection property="windInfoViews" destination="HMg-Wc-bY7" collectionClass="NSMutableArray" id="YRJ-tC-BDL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mRU-pB-a32" userLabel="First Responder" sceneMemberID="firstResponder"/>
