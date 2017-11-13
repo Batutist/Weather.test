@@ -10,7 +10,10 @@ import Foundation
 import UIKit
 import RealmSwift
 
+let weekWeather = WeekWeather()
+
 class WeekWeatherClass: WeekWeatherCityViewController {
+    
     var cityName = ""
     var cityCountry = ""
     
@@ -107,13 +110,66 @@ class WeekWeatherClass: WeekWeatherCityViewController {
         let weekWeather = manager.getWeekWeatherFromDB()
         
         for value in weekWeather {
-//            weekWeatherStruct.cityName = value.cityName
-//            weekWeatherStruct.cityCountry = value.cityCountry
+            cityName = value.cityName
+            cityCountry = value.cityCountry
             
+            firstDayDate = value.firstDayDate
+            firstDayTemperature = value.firstDayTemperature
+            firstDayTemperatureMin = value.firstDayTemperatureMin
+            firstDayTemperatureMax = value.firstDayTemperatureMax
+            firstDayPressure = value.firstDayPressure
+            firstDayHumidity = value.firstDayHumidity
+            firstDayWindSpeed = value.firstDayWindSpeed
+            firstDayWindDegrees = value.fifthDayWindDegrees
+            firstDayWeatherDescription = value.firstDayWeatherDescription
+            firstDayWeatherIcon = value.firstDayWeatherIcon
             
+            secondDayDate = value.secondDayDate
+            secondDayTemperature = value.secondDayTemperature
+            secondDayTemperatureMin = value.secondDayTemperatureMin
+            secondDayTemperatureMax = value.secondDayTemperatureMax
+            secondDayPressure = value.secondDayPressure
+            secondDayHumidity = value.secondDayHumidity
+            secondDayWindSpeed = value.secondDayWindSpeed
+            secondDayWindDegrees = value.secondDayWindDegrees
+            secondDayWeatherDescription = value.secondDayWeatherDescription
+            secondDayWeatherIcon = value.secondDayWeatherIcon
             
+            thirdDayDate = value.thirdDayDate
+            thirdDayTemperature = value.thirdDayTemperature
+            thirdDayTemperatureMin = value.thirdDayTemperatureMin
+            thirdDayTemperatureMax = value.thirdDayTemperatureMax
+            thirdDayPressure = value.thirdDayPressure
+            thirdDayHumidity = value.thirdDayHumidity
+            thirdDayWindSpeed = value.thirdDayWindSpeed
+            thirdDayWindDegrees = value.thirdDayWindDegrees
+            thirdDayWeatherDescription = value.thirdDayWeatherDescription
+            thirdDayWeatherIcon = value.thirdDayWeatherIcon
             
+            fourthDayDate = value.fourthDayDate
+            fourthDayTemperature = value.fourthDayTemperature
+            fourthDayTemperatureMin = value.fourthDayTemperatureMin
+            fourthDayTemperatureMax = value.fourthDayTemperatureMax
+            fourthDayPressure = value.fourthDayPressure
+            fourthDayHumidity = value.fourthDayHumidity
+            fourthDayWindSpeed = value.fourthDayWindSpeed
+            fourthDayWindDegrees = value.fourthDayWindDegrees
+            fourthDayWeatherDescription = value.fourthDayWeatherDescription
+            fourthDayWeatherIcon = value.fourthDayWeatherIcon
+            
+            fifthDayDate = value.fifthDayDate
+            fifthDayTemperature = value.fifthDayTemperature
+            fifthDayTemperatureMin = value.fifthDayTemperatureMin
+            fifthDayTemperatureMax = value.fifthDayTemperatureMax
+            fifthDayPressure = value.fifthDayPressure
+            fifthDayHumidity = value.fifthDayHumidity
+            fifthDayWindSpeed = value.fifthDayWindSpeed
+            fifthDayWindDegrees = value.fifthDayWindDegrees
+            fifthDayWeatherDescription = value.fifthDayWeatherDescription
+            fifthDayWeatherIcon = value.fifthDayWeatherIcon
         }
+
+        
         
 //        if cityTemperature > 0 {
 //            temperatureValueLabel.text = ("+\(cityTemperature)˚")
