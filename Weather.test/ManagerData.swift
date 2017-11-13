@@ -78,6 +78,7 @@ class ManagerData {
             let url = url
             
             let todayWeather = TodayWeather()
+            let weekWeather = WeekWeather()
             
             
             if url == todayUrl {
@@ -124,7 +125,65 @@ class ManagerData {
                     }
                 }
             } else if url == weekUrl {
-                
+                Alamofire.request(url, method: .get, parameters: param).validate().responseJSON { response in
+                    switch response.result {
+                    case .success(let value):
+                        let json = JSON(value)
+                        
+                        
+                        weekWeather.cityName = json["city"]["name"].stringValue
+                        weekWeather.cityCountry = json["city"]["country"].stringValue
+                        weekWeather.firstDayDate = json["list"][0]["dt_txt"].stringValue
+                        weekWeather.firstDayTemperature = json["list"][0]["main"]["temp"].intValue
+                        weekWeather.firstDayTemperatureMax = json["list"][0]["main"]["temp_max"].intValue
+                        weekWeather.firstDayTemperatureMin = json["list"][0]["main"]["temp_min"].intValue
+                        weekWeather.firstDayPressure = json["list"][0]["main"]["pressure"].doubleValue
+                        weekWeather.firstDayHumidity = json["list"][0]["main"]["humidity"].intValue
+                        weekWeather.firstDayWeatherDescription = json["list"][0]["weather"][0]["main"].stringValue
+                        weekWeather.firstDayWeatherDescription = json["list"][0]["weather"][0]["icon"].stringValue
+                        
+                        weekWeather.secondDayDate = json["list"][8]["dt_txt"].stringValue
+                        weekWeather.thirdDayDate = json["list"][16]["dt_txt"].stringValue
+                        weekWeather.fourthDayDate = json["list"][24]["dt_txt"].stringValue
+                        weekWeather.fivesDayDate = json["list"][32]["dt_txt"].stringValue
+                        
+                        print("Look week weather date: \(weekWeather.firstDayDate), \(weekWeather.secondDayDate), \(weekWeather.thirdDayDate), \(weekWeather.fourthDayDate), \(weekWeather.fivesDayDate)")
+                        
+//                        weekWeather.cityTemperature = json["main"]["temp"].intValue
+//                        weekWeather.cityWindSpeed = json["wind"]["speed"].doubleValue
+//                        weekWeather.cityPressure = json["main"]["pressure"].doubleValue
+//                        weekWeather.cityHumidity = json["main"]["humidity"].intValue
+//                        weekWeather.cityTemperatureMin = json["main"]["temp_min"].intValue
+//                        weekWeather.cityTemperatureMax = json["main"]["temp_max"].intValue
+//                        weekWeather.cityWeatherDiscription = json["weather"][0]["main"].stringValue
+//                        weekWeather.cityWeatherIcon = json["weather"][0]["icon"].stringValue
+                        
+                        
+                        try! realm.write {
+                            realm.add(weekWeather, update: true)
+                        }
+                        
+                        userDefaults.set( "ok",  forKey:  "load")
+                        
+//                        print("""
+//                            hey city\(weekWeather.cityName).
+//                            country \(weekWeather.cityCountry),
+//
+//                            temp \(weekWeather.cityTemperature),
+//                            wind \(weekWeather.cityWindSpeed),
+//                            press \(weekWeather.cityPressure),
+//                            humid \(weekWeather.cityHumidity),
+//                            tempMin \(weekWeather.cityTemperatureMin),
+//                            temp max \(weekWeather.cityTemperatureMax),
+//                            desc \(weekWeather.cityWeatherDiscription),
+//                            icon \(weekWeather.cityWeatherIcon)
+//
+//                            """)
+                        
+                    case .failure(let error):
+                        print(error)
+                    }
+                }
             }
         }
     }
