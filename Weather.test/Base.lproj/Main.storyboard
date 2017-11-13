@@ -428,7 +428,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="3ci-mU-g8d">
-                                <rect key="frame" x="0.0" y="176.5" width="375" height="1"/>
+                                <rect key="frame" x="0.0" y="177" width="375" height="1"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="pEs-q2-5xN"/>
@@ -492,7 +492,7 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="top" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="DT8-JZ-O7d" userLabel="Dates">
                                                 <rect key="frame" x="16" y="18" width="343" height="25"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="13/11" textAlignment="center" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lZh-92-jIy">
+                                                    <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="13/11" textAlignment="center" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lZh-92-jIy">
                                                         <rect key="frame" x="0.0" y="0.0" width="36.5" height="15"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="15" id="E3l-bE-8Xa"/>
@@ -501,7 +501,7 @@
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="14/11" textAlignment="center" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dRy-U1-ZOV">
+                                                    <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="14/11" textAlignment="center" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dRy-U1-ZOV">
                                                         <rect key="frame" x="76.5" y="0.0" width="36.5" height="15"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="15" id="ITs-ti-Etj"/>
@@ -510,7 +510,7 @@
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="15/11" textAlignment="center" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wbv-P6-fJU">
+                                                    <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="15/11" textAlignment="center" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wbv-P6-fJU">
                                                         <rect key="frame" x="153" y="0.0" width="37" height="15"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="15" id="rim-3z-jaX"/>
@@ -519,7 +519,7 @@
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="16/11" textAlignment="center" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hrk-8v-KFO">
+                                                    <label opaque="NO" userInteractionEnabled="NO" tag="4" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="16/11" textAlignment="center" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hrk-8v-KFO">
                                                         <rect key="frame" x="230" y="0.0" width="36.5" height="15"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="15" id="kPC-jf-KsA"/>
@@ -528,7 +528,7 @@
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="17/11" textAlignment="center" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yb4-qb-I9p">
+                                                    <label opaque="NO" userInteractionEnabled="NO" tag="5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="17/11" textAlignment="center" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yb4-qb-I9p">
                                                         <rect key="frame" x="306.5" y="0.0" width="36.5" height="15"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="15" id="7XV-o8-bES"/>
@@ -623,7 +623,7 @@
                                             </label>
                                         </subviews>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Z2p-mR-a5h" userLabel="dayWeatherTemperature">
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Z2p-mR-a5h" userLabel="WeatherTemperatureMax">
                                         <rect key="frame" x="0.0" y="242" width="375" height="60"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+1˚" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B2Z-Vi-9Dn">
@@ -661,7 +661,7 @@
                                             <constraint firstAttribute="height" constant="60" id="AwE-iD-zsV"/>
                                         </constraints>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="bottom" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="vPp-Zq-yXh" userLabel="nightWeatherTemperature">
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="bottom" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="vPp-Zq-yXh" userLabel="WeatherTemperatureMin">
                                         <rect key="frame" x="0.0" y="312" width="375" height="60"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+1˚" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O8V-Ja-ATS">
@@ -824,6 +824,33 @@
                         <viewLayoutGuide key="safeArea" id="rnG-Dd-HZA"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Week" id="fFE-Pu-Q3j"/>
+                    <connections>
+                        <outletCollection property="datesLabels" destination="lZh-92-jIy" collectionClass="NSMutableArray" id="mFe-lb-R6J"/>
+                        <outletCollection property="datesLabels" destination="dRy-U1-ZOV" collectionClass="NSMutableArray" id="kFy-AV-FcC"/>
+                        <outletCollection property="datesLabels" destination="Wbv-P6-fJU" collectionClass="NSMutableArray" id="Emx-8d-D20"/>
+                        <outletCollection property="datesLabels" destination="Hrk-8v-KFO" collectionClass="NSMutableArray" id="gue-Ws-IVt"/>
+                        <outletCollection property="datesLabels" destination="yb4-qb-I9p" collectionClass="NSMutableArray" id="Lw8-Tt-M5U"/>
+                        <outletCollection property="weatherDayIcons" destination="UuG-1C-hJ9" collectionClass="NSMutableArray" id="tHM-8m-JjE"/>
+                        <outletCollection property="weatherDayIcons" destination="JaI-yL-rij" collectionClass="NSMutableArray" id="xj8-wb-QrA"/>
+                        <outletCollection property="weatherDayIcons" destination="0c7-Hz-ecQ" collectionClass="NSMutableArray" id="Hx8-hL-f9T"/>
+                        <outletCollection property="weatherDayIcons" destination="MId-Dz-yli" collectionClass="NSMutableArray" id="zdf-At-BkB"/>
+                        <outletCollection property="weatherDayIcons" destination="vFx-Mp-fi5" collectionClass="NSMutableArray" id="sKI-sm-zd7"/>
+                        <outletCollection property="weatherDayDescriptionLabels" destination="v1O-Ck-rHV" collectionClass="NSMutableArray" id="Vhe-83-V9Q"/>
+                        <outletCollection property="weatherDayDescriptionLabels" destination="bTv-OS-KVQ" collectionClass="NSMutableArray" id="8J7-zV-PSp"/>
+                        <outletCollection property="weatherDayDescriptionLabels" destination="JsC-DS-4Gm" collectionClass="NSMutableArray" id="r44-Q4-owf"/>
+                        <outletCollection property="weatherDayDescriptionLabels" destination="73I-Fl-KFd" collectionClass="NSMutableArray" id="Jyu-Qh-NXZ"/>
+                        <outletCollection property="weatherDayDescriptionLabels" destination="haM-sI-w0z" collectionClass="NSMutableArray" id="NTn-vV-Ltm"/>
+                        <outletCollection property="temperatureMaxLabels" destination="B2Z-Vi-9Dn" collectionClass="NSMutableArray" id="deX-9g-rwb"/>
+                        <outletCollection property="temperatureMaxLabels" destination="85k-Gd-mzU" collectionClass="NSMutableArray" id="JTA-oP-A0F"/>
+                        <outletCollection property="temperatureMaxLabels" destination="TJK-xn-0Nz" collectionClass="NSMutableArray" id="wxA-pW-88u"/>
+                        <outletCollection property="temperatureMaxLabels" destination="vij-EW-RgC" collectionClass="NSMutableArray" id="xrn-Ku-Y36"/>
+                        <outletCollection property="temperatureMaxLabels" destination="XXa-xa-Quo" collectionClass="NSMutableArray" id="7OL-52-LtN"/>
+                        <outletCollection property="temperatureMinLabels" destination="O8V-Ja-ATS" collectionClass="NSMutableArray" id="lLg-II-WXg"/>
+                        <outletCollection property="temperatureMinLabels" destination="Jdn-k5-FPk" collectionClass="NSMutableArray" id="Ifu-t3-s3I"/>
+                        <outletCollection property="temperatureMinLabels" destination="1KZ-hU-BxV" collectionClass="NSMutableArray" id="vQk-rN-hLx"/>
+                        <outletCollection property="temperatureMinLabels" destination="mFV-IS-hoh" collectionClass="NSMutableArray" id="pjw-B2-rSL"/>
+                        <outletCollection property="temperatureMinLabels" destination="hzf-8Q-Ky5" collectionClass="NSMutableArray" id="lTk-0D-CjL"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mRU-pB-a32" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
