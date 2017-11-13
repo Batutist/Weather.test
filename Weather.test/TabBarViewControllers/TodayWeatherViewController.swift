@@ -25,6 +25,8 @@ var cityWeatherDiscription = ""
 var cityWeatherIcon = ""
 
 class TodayWeatherViewController: UIViewController {
+    let manager = ManagerData()
+    var notificationToken: NotificationToken? = nil
     var city = "Taganrog"
     
     @IBOutlet weak var temperatureValueLabel: UILabel!
@@ -42,22 +44,62 @@ class TodayWeatherViewController: UIViewController {
         
         view.backgroundColor = Colors.skyBlue
         
-        let manager = ManagerData()
         manager.loadJSON(loadCity: city)
         
+        updateUI()
+    }
+    
+    deinit {
+        notificationToken?.invalidate()
+    }
+    
+    func updateUI() {
+        let realm = try! Realm()
+        let results = realm.objects(TodayWeather.self)
+        
+        // Observe Results Notifications
+        notificationToken = results.observe { [weak self] (changes: RealmCollectionChange) in
+            //            guard let view = self?.view else { return }
+            switch changes {
+            case .initial:
+                // Results are now populated and can be accessed without blocking the UI
+                // func to update labels and images values
+                // функция обновления значений ярлыков и картинок
+                self?.updateLabelsAndImages()
+                
+                print("new")
+            //                tableView.reloadData()
+            case .update(_, let deletions, let insertions, let modifications):
+                // Query results have changed, so apply them to the UITableView
+                
+                // func to update labels and images values
+                // функция обновления значений ярлыков и картинок
+                self?.updateLabelsAndImages()
+                print("update")
+                
+            case .error(let error):
+                print("error")
+                // An error occurred while opening the Realm file on the background worker thread
+                fatalError("\(error)")
+            }
+        }
+    }
+    
+    
+    func updateLabelsAndImages() {
         let todayWeather = manager.getTodayWeatherFromDB()
         
         for value in todayWeather {
-            cityName.append(value.cityName)
-            cityCountry.append(value.cityCountry)
+            cityName = value.cityName
+            cityCountry = value.cityCountry
             cityTemperature = value.cityTemperature
             cityWindSpeed = value.cityWindSpeed
             cityPressure = value.cityPressure
             cityHumidity = value.cityHumidity
             cityTemperatureMin = value.cityTemperatureMin
             cityTemperatureMax = value.cityTemperatureMax
-            cityWeatherDiscription.append(value.cityWeatherDiscription)
-            cityWeatherIcon.append(value.cityWeatherIcon)
+            cityWeatherDiscription = value.cityWeatherDiscription
+            cityWeatherIcon = value.cityWeatherIcon
             
             print("today view: \(cityName), \(cityTemperature), \(cityWeatherDiscription)")
         }
@@ -75,6 +117,5 @@ class TodayWeatherViewController: UIViewController {
         maxTemperatureLabel.text = ("\(cityTemperatureMax)˚")
         weatherDescriptionLabel.text = cityWeatherDiscription
         weatherIcon.image = UIImage(named: cityWeatherIcon)
-        
     }
 }

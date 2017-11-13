@@ -68,12 +68,15 @@ class CityWeatherViewController: UIViewController {
         // change background color
         // меняем цвет фона
         view.backgroundColor = Colors.skyBlue
+        
         // set defaults values for labels while waiting load data
         // устанавливаем дефолтные значения для ярлыков пока идел процесс загрузки данных
         defaultValues()
+        
         // load data of city
         // загружаем данные по городу
         manager.loadJSONSearch(city: city)
+        
         // call func to update user interface
         // вызываем функцию для обновления отображаемых данных
         updateUI()
@@ -86,7 +89,7 @@ class CityWeatherViewController: UIViewController {
         
         // Observe Results Notifications
         notificationToken = results.observe { [weak self] (changes: RealmCollectionChange) in
-            guard let view = self?.view else { return }
+//            guard let view = self?.view else { return }
             switch changes {
             case .initial:
                 // Results are now populated and can be accessed without blocking the UI
@@ -98,6 +101,7 @@ class CityWeatherViewController: UIViewController {
             //                tableView.reloadData()
             case .update(_, let deletions, let insertions, let modifications):
                 // Query results have changed, so apply them to the UITableView
+                
                 // func to update labels and images values
                 // функция обновления значений ярлыков и картинок
                 self?.updateLabelsAndImages()
@@ -110,6 +114,9 @@ class CityWeatherViewController: UIViewController {
             }
         }
     }
+    deinit {
+        notificationToken?.invalidate()
+    }
     
     // func with alert controller to display if citySearchTextField is empty
     // функция с всплывающей ошибкой в случае пустого citySearchTextField
@@ -120,9 +127,6 @@ class CityWeatherViewController: UIViewController {
         present(alertController, animated: true, completion: nil)
     }
     
-    deinit {
-        notificationToken?.invalidate()
-    }
     // func takes values from DB and change IBOtlets in UI
     // функция берет значения из БД и устанавливает их в элементы пользовательского интерфейса
     func updateLabelsAndImages() {
