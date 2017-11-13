@@ -223,6 +223,12 @@ class ManagerData {
         return todayWeather
     }
     
+    func getWeekWeatherFromDB() -> Results<WeekWeather> {
+        let realm = try! Realm()
+        let weekWeather = realm.objects(WeekWeather.self)
+        return weekWeather
+    }
+    
     func getSearchCityWeatherFromDB() -> Results<SearchCityWeather> {
         let realm = try! Realm()
         let searchCityWeather = realm.objects(SearchCityWeather.self)

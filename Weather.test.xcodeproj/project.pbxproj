@@ -15,6 +15,7 @@
 		7D9E8B321FB2F11000419588 /* CityWeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9E8B311FB2F11000419588 /* CityWeatherViewController.swift */; };
 		7D9E8B361FB31BB500419588 /* WeekWeatherCityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9E8B351FB31BB500419588 /* WeekWeatherCityViewController.swift */; };
 		7D9E8B381FB32AEA00419588 /* ManagerData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9E8B371FB32AEA00419588 /* ManagerData.swift */; };
+		7DB4E2CA1FBA26170078F34A /* WeekWeatherClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB4E2C91FBA26170078F34A /* WeekWeatherClass.swift */; };
 		7DCD7F141FB247B200B05E56 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCD7F131FB247B200B05E56 /* AppDelegate.swift */; };
 		7DCD7F191FB247B200B05E56 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DCD7F171FB247B200B05E56 /* Main.storyboard */; };
 		7DCD7F1E1FB247B200B05E56 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DCD7F1C1FB247B200B05E56 /* LaunchScreen.storyboard */; };
@@ -32,6 +33,7 @@
 		7D9E8B311FB2F11000419588 /* CityWeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityWeatherViewController.swift; sourceTree = "<group>"; };
 		7D9E8B351FB31BB500419588 /* WeekWeatherCityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekWeatherCityViewController.swift; sourceTree = "<group>"; };
 		7D9E8B371FB32AEA00419588 /* ManagerData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerData.swift; sourceTree = "<group>"; };
+		7DB4E2C91FBA26170078F34A /* WeekWeatherClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekWeatherClass.swift; sourceTree = "<group>"; };
 		7DCD7F101FB247B200B05E56 /* Weather.test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weather.test.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7DCD7F131FB247B200B05E56 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7DCD7F181FB247B200B05E56 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -117,6 +119,7 @@
 				7D39198B1FB3B36C004D1EBA /* TabBarViewControllers */,
 				7D39198A1FB3B35B004D1EBA /* Realm */,
 				7D9E8B371FB32AEA00419588 /* ManagerData.swift */,
+				7DB4E2C91FBA26170078F34A /* WeekWeatherClass.swift */,
 				7DCD7F2B1FB24E4D00B05E56 /* ColorsConstants.swift */,
 				7DCD7F1C1FB247B200B05E56 /* LaunchScreen.storyboard */,
 				7DCD7F1F1FB247B200B05E56 /* Info.plist */,
@@ -265,6 +268,7 @@
 				7D9E8B361FB31BB500419588 /* WeekWeatherCityViewController.swift in Sources */,
 				7DCD7F141FB247B200B05E56 /* AppDelegate.swift in Sources */,
 				7DCD7F281FB24C4800B05E56 /* TodayWeatherViewController.swift in Sources */,
+				7DB4E2CA1FBA26170078F34A /* WeekWeatherClass.swift in Sources */,
 				7DCD7F2C1FB24E4D00B05E56 /* ColorsConstants.swift in Sources */,
 				7D9E8B381FB32AEA00419588 /* ManagerData.swift in Sources */,
 				7D882D5B1FB38F1A00223675 /* TodayWeatherData.swift in Sources */,
