@@ -133,6 +133,7 @@ class ManagerData {
                         
                         weekWeather.cityName = json["city"]["name"].stringValue
                         weekWeather.cityCountry = json["city"]["country"].stringValue
+                        
                         weekWeather.firstDayDate = json["list"][0]["dt_txt"].stringValue
                         weekWeather.firstDayTemperature = json["list"][0]["main"]["temp"].intValue
                         weekWeather.firstDayTemperatureMax = json["list"][0]["main"]["temp_max"].intValue
@@ -140,45 +141,73 @@ class ManagerData {
                         weekWeather.firstDayPressure = json["list"][0]["main"]["pressure"].doubleValue
                         weekWeather.firstDayHumidity = json["list"][0]["main"]["humidity"].intValue
                         weekWeather.firstDayWeatherDescription = json["list"][0]["weather"][0]["main"].stringValue
-                        weekWeather.firstDayWeatherDescription = json["list"][0]["weather"][0]["icon"].stringValue
+                        weekWeather.firstDayWeatherIcon = json["list"][0]["weather"][0]["icon"].stringValue
+                        weekWeather.firstDayWindSpeed = json["list"][0]["wind"]["speed"].doubleValue
+                        weekWeather.firstDayWindDegrees = json["list"][0]["wind"]["deg"].doubleValue
+                        
                         
                         weekWeather.secondDayDate = json["list"][8]["dt_txt"].stringValue
+                        weekWeather.secondDayDate = json["list"][8]["dt_txt"].stringValue
+                        weekWeather.secondDayTemperature = json["list"][8]["main"]["temp"].intValue
+                        weekWeather.secondDayTemperatureMax = json["list"][8]["main"]["temp_max"].intValue
+                        weekWeather.secondDayTemperatureMin = json["list"][8]["main"]["temp_min"].intValue
+                        weekWeather.secondDayPressure = json["list"][8]["main"]["pressure"].doubleValue
+                        weekWeather.secondDayHumidity = json["list"][8]["main"]["humidity"].intValue
+                        weekWeather.secondDayWeatherDescription = json["list"][8]["weather"][0]["main"].stringValue
+                        weekWeather.secondDayWeatherIcon = json["list"][8]["weather"][0]["icon"].stringValue
+                        weekWeather.secondDayWindSpeed = json["list"][8]["wind"]["speed"].doubleValue
+                        weekWeather.secondDayWindDegrees = json["list"][8]["wind"]["deg"].doubleValue
+                        
                         weekWeather.thirdDayDate = json["list"][16]["dt_txt"].stringValue
+                        weekWeather.thirdDayDate = json["list"][16]["dt_txt"].stringValue
+                        weekWeather.thirdDayDate = json["list"][16]["dt_txt"].stringValue
+                        weekWeather.thirdDayTemperature = json["list"][16]["main"]["temp"].intValue
+                        weekWeather.thirdDayTemperatureMax = json["list"][16]["main"]["temp_max"].intValue
+                        weekWeather.thirdDayTemperatureMin = json["list"][16]["main"]["temp_min"].intValue
+                        weekWeather.thirdDayPressure = json["list"][16]["main"]["pressure"].doubleValue
+                        weekWeather.thirdDayHumidity = json["list"][16]["main"]["humidity"].intValue
+                        weekWeather.thirdDayWeatherDescription = json["list"][16]["weather"][0]["main"].stringValue
+                        weekWeather.thirdDayWeatherIcon = json["list"][16]["weather"][0]["icon"].stringValue
+                        weekWeather.thirdDayWindSpeed = json["list"][16]["wind"]["speed"].doubleValue
+                        weekWeather.thirdDayWindDegrees = json["list"][16]["wind"]["deg"].doubleValue
+                        
                         weekWeather.fourthDayDate = json["list"][24]["dt_txt"].stringValue
-                        weekWeather.fivesDayDate = json["list"][32]["dt_txt"].stringValue
+                        weekWeather.fourthDayDate = json["list"][24]["dt_txt"].stringValue
+                        weekWeather.fourthDayDate = json["list"][24]["dt_txt"].stringValue
+                        weekWeather.fourthDayDate = json["list"][24]["dt_txt"].stringValue
+                        weekWeather.fourthDayTemperature = json["list"][24]["main"]["temp"].intValue
+                        weekWeather.fourthDayTemperatureMax = json["list"][24]["main"]["temp_max"].intValue
+                        weekWeather.fourthDayTemperatureMin = json["list"][24]["main"]["temp_min"].intValue
+                        weekWeather.fourthDayPressure = json["list"][24]["main"]["pressure"].doubleValue
+                        weekWeather.fourthDayHumidity = json["list"][24]["main"]["humidity"].intValue
+                        weekWeather.fourthDayWeatherDescription = json["list"][24]["weather"][0]["main"].stringValue
+                        weekWeather.fourthDayWeatherIcon = json["list"][24]["weather"][0]["icon"].stringValue
+                        weekWeather.fourthDayWindSpeed = json["list"][24]["wind"]["speed"].doubleValue
+                        weekWeather.fourthDayWindDegrees = json["list"][24]["wind"]["deg"].doubleValue
                         
-                        print("Look week weather date: \(weekWeather.firstDayDate), \(weekWeather.secondDayDate), \(weekWeather.thirdDayDate), \(weekWeather.fourthDayDate), \(weekWeather.fivesDayDate)")
+                        weekWeather.fifthDayDate = json["list"][32]["dt_txt"].stringValue
+                        weekWeather.fifthDayDate = json["list"][32]["dt_txt"].stringValue
+                        weekWeather.fifthDayDate = json["list"][32]["dt_txt"].stringValue
+                        weekWeather.fifthDayDate = json["list"][32]["dt_txt"].stringValue
+                        weekWeather.fifthDayDate = json["list"][32]["dt_txt"].stringValue
+                        weekWeather.fifthDayTemperature = json["list"][32]["main"]["temp"].intValue
+                        weekWeather.fifthDayTemperatureMax = json["list"][32]["main"]["temp_max"].intValue
+                        weekWeather.fifthDayTemperatureMin = json["list"][32]["main"]["temp_min"].intValue
+                        weekWeather.fifthDayPressure = json["list"][32]["main"]["pressure"].doubleValue
+                        weekWeather.fifthDayHumidity = json["list"][32]["main"]["humidity"].intValue
+                        weekWeather.fifthDayWeatherDescription = json["list"][32]["weather"][0]["main"].stringValue
+                        weekWeather.fifthDayWeatherIcon = json["list"][32]["weather"][0]["icon"].stringValue
+                        weekWeather.fifthDayWindSpeed = json["list"][32]["wind"]["speed"].doubleValue
+                        weekWeather.fifthDayWindDegrees = json["list"][32]["wind"]["deg"].doubleValue
                         
-//                        weekWeather.cityTemperature = json["main"]["temp"].intValue
-//                        weekWeather.cityWindSpeed = json["wind"]["speed"].doubleValue
-//                        weekWeather.cityPressure = json["main"]["pressure"].doubleValue
-//                        weekWeather.cityHumidity = json["main"]["humidity"].intValue
-//                        weekWeather.cityTemperatureMin = json["main"]["temp_min"].intValue
-//                        weekWeather.cityTemperatureMax = json["main"]["temp_max"].intValue
-//                        weekWeather.cityWeatherDiscription = json["weather"][0]["main"].stringValue
-//                        weekWeather.cityWeatherIcon = json["weather"][0]["icon"].stringValue
                         
+                        print("Look week weather date: \(weekWeather.firstDayDate), \(weekWeather.secondDayDate), \(weekWeather.thirdDayDate), \(weekWeather.fourthDayDate), \(weekWeather.fifthDayDate)")
                         
                         try! realm.write {
                             realm.add(weekWeather, update: true)
                         }
                         
                         userDefaults.set( "ok",  forKey:  "load")
-                        
-//                        print("""
-//                            hey city\(weekWeather.cityName).
-//                            country \(weekWeather.cityCountry),
-//
-//                            temp \(weekWeather.cityTemperature),
-//                            wind \(weekWeather.cityWindSpeed),
-//                            press \(weekWeather.cityPressure),
-//                            humid \(weekWeather.cityHumidity),
-//                            tempMin \(weekWeather.cityTemperatureMin),
-//                            temp max \(weekWeather.cityTemperatureMax),
-//                            desc \(weekWeather.cityWeatherDiscription),
-//                            icon \(weekWeather.cityWeatherIcon)
-//
-//                            """)
                         
                     case .failure(let error):
                         print(error)

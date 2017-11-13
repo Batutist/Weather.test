@@ -21,7 +21,7 @@ class WeekWeather: Object {
     @objc dynamic var firstDayPressure = 0.0
     @objc dynamic var firstDayHumidity = 0
     @objc dynamic var firstDayWindSpeed = 0.0
-    @objc dynamic var firstDayWindDirection = 0.0
+    @objc dynamic var firstDayWindDegrees = 0.0
     @objc dynamic var firstDayWeatherDescription = ""
     @objc dynamic var firstDayWeatherIcon = ""
     
@@ -33,7 +33,7 @@ class WeekWeather: Object {
     @objc dynamic var secondDayPressure = 0.0
     @objc dynamic var secondDayHumidity = 0
     @objc dynamic var secondDayWindSpeed = 0.0
-    @objc dynamic var secondDayWindDirection = 0.0
+    @objc dynamic var secondDayWindDegrees = 0.0
     @objc dynamic var secondDayWeatherDescription = ""
     @objc dynamic var secondDayWeatherIcon = ""
     
@@ -44,7 +44,7 @@ class WeekWeather: Object {
     @objc dynamic var thirdDayPressure = 0.0
     @objc dynamic var thirdDayHumidity = 0
     @objc dynamic var thirdDayWindSpeed = 0.0
-    @objc dynamic var thirdDayWindDirection = 0.0
+    @objc dynamic var thirdDayWindDegrees = 0.0
     @objc dynamic var thirdDayWeatherDescription = ""
     @objc dynamic var thirdDayWeatherIcon = ""
     
@@ -55,20 +55,20 @@ class WeekWeather: Object {
     @objc dynamic var fourthDayPressure = 0.0
     @objc dynamic var fourthDayHumidity = 0
     @objc dynamic var fourthDayWindSpeed = 0.0
-    @objc dynamic var fourthDayWindDirection = 0.0
+    @objc dynamic var fourthDayWindDegrees = 0.0
     @objc dynamic var fourthDayWeatherDescription = ""
     @objc dynamic var fourthDayWeatherIcon = ""
     
-    @objc dynamic var fivesDayDate = ""
-    @objc dynamic var fivesDayTemperature = 0
-    @objc dynamic var fivesDayTemperatureMin = 0
-    @objc dynamic var fivesDayTemperatureMax = 0
-    @objc dynamic var fivesDayPressure = 0.0
-    @objc dynamic var fivesDayHumidity = 0
-    @objc dynamic var fivesDayWindSpeed = 0.0
-    @objc dynamic var fivesDayWindDirection = 0.0
-    @objc dynamic var fivesDayWeatherDescription = ""
-    @objc dynamic var fivesDayWeatherIcon = ""
+    @objc dynamic var fifthDayDate = ""
+    @objc dynamic var fifthDayTemperature = 0
+    @objc dynamic var fifthDayTemperatureMin = 0
+    @objc dynamic var fifthDayTemperatureMax = 0
+    @objc dynamic var fifthDayPressure = 0.0
+    @objc dynamic var fifthDayHumidity = 0
+    @objc dynamic var fifthDayWindSpeed = 0.0
+    @objc dynamic var fifthDayWindDegrees = 0.0
+    @objc dynamic var fifthDayWeatherDescription = ""
+    @objc dynamic var fifthDayWeatherIcon = ""
     
     
     override static func primaryKey() -> String {
