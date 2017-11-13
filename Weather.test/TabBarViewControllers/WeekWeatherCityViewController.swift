@@ -11,9 +11,14 @@ import UIKit
 import RealmSwift
 
 class WeekWeatherCityViewController: UIViewController {
+    // object of ManagerData class
+    // создаем объект класса ManagerData
     let manager = ManagerData()
+    // create notification Token to watch for changes
+    // токен для отслеживания изменений
     var notificationToken: NotificationToken? = nil
     
+    // variables to work with
     var cityName = ""
     var cityCountry = ""
     
@@ -73,7 +78,8 @@ class WeekWeatherCityViewController: UIViewController {
     var fifthDayWeatherDescription = ""
     var fifthDayWeatherIcon = ""
     
-    
+    // outlets collections from UI
+    // коллекции оутлетов пользовательского интерфейса
     @IBOutlet var datesLabels: [UILabel]!
     @IBOutlet var weatherDayIcons: [UIImageView]!
     @IBOutlet var weatherDayDescriptionLabels: [UILabel]!
@@ -81,25 +87,28 @@ class WeekWeatherCityViewController: UIViewController {
     @IBOutlet var temperatureMinLabels: [UILabel]!
     
     
-    
-    
-    
     let city = "Taganrog"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        // set default values for labels before load data finished
+        // устанавливает значения по умолчанию на время загрузки данных
         defaultValues()
-        
+        // set background color
+        // устанавливаем цвет фона
         view.backgroundColor = Colors.skyBlue
-        
+        // load data of city
+        // загружаем данные по городу
         manager.loadJSON(loadCity: city)
-        
+        // call func to update user interface
+        // вызываем функцию для обновления отображаемых данных
         updateUI()
     }
     
     deinit {
         notificationToken?.invalidate()
     }
-    
+    // func set default values for labels
     func defaultValues() {
         var firstDayDateLabel = datesLabels[0].text
         var secondDayDateLabel = datesLabels[1].text
@@ -156,7 +165,8 @@ class WeekWeatherCityViewController: UIViewController {
         fourthDayTemperatureMinLabel = "--"
         fifthDayTemperatureMinLabel = "--"
     }
-    
+    // func use notificationToken to search changes in DB and display them in UI
+    // функция использует нотификацию для обнаружения изменений в БД и отображения их в пользовательском интерфейсе
     func updateUI() {
         let realm = try! Realm()
         let results = realm.objects(WeekWeather.self)
@@ -188,8 +198,10 @@ class WeekWeatherCityViewController: UIViewController {
         }
     }
     
-    
+    // func takes values from DB and change IBOtlets in UI
+    // функция берет значения из БД и устанавливает их в элементы пользовательского интерфейса
     func updateLabelsAndImages() {
+        // get values from DB
         let weekWeather = manager.getWeekWeatherFromDB()
         
         for value in weekWeather {
@@ -258,32 +270,32 @@ class WeekWeatherCityViewController: UIViewController {
         datesLabels[2].text = thirdDayDate
         datesLabels[3].text = fourthDayDate
         datesLabels[4].text = fifthDayDate
-
+        
         
         weatherDayIcons[0].image = UIImage(named: firstDayWeatherIcon)
         weatherDayIcons[1].image = UIImage(named: secondDayWeatherIcon)
         weatherDayIcons[2].image = UIImage(named: thirdDayWeatherIcon)
         weatherDayIcons[3].image = UIImage(named: fourthDayWeatherIcon)
         weatherDayIcons[4].image = UIImage(named: fifthDayWeatherIcon)
-
+        
         weatherDayDescriptionLabels[0].text = firstDayWeatherDescription
         weatherDayDescriptionLabels[1].text = secondDayWeatherDescription
         weatherDayDescriptionLabels[2].text = thirdDayWeatherDescription
         weatherDayDescriptionLabels[3].text = fourthDayWeatherDescription
         weatherDayDescriptionLabels[4].text = fifthDayWeatherDescription
-
+        
         temperatureMaxLabels[0].text = ("\(firstDayTemperatureMax)˚")
         temperatureMaxLabels[1].text = ("\(secondDayTemperatureMax)˚")
         temperatureMaxLabels[2].text = ("\(thirdDayTemperatureMax)˚")
         temperatureMaxLabels[3].text = ("\(fourthDayTemperatureMax)˚")
         temperatureMaxLabels[4].text = ("\(fifthDayTemperatureMax)˚")
-     
+        
         temperatureMinLabels[0].text = ("\(firstDayTemperatureMin)˚")
         temperatureMinLabels[1].text = ("\(secondDayTemperatureMin)˚")
         temperatureMinLabels[2].text = ("\(thirdDayTemperatureMin)˚")
         temperatureMinLabels[3].text = ("\(fourthDayTemperatureMin)˚")
         temperatureMinLabels[4].text = ("\(fifthDayTemperatureMin)˚")
-
+        
     }
     
     

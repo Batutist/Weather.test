@@ -9,6 +9,8 @@
 import Foundation
 import  RealmSwift
 
+// Realm DB class for week city weather
+
 class WeekWeather: Object {
     
     @objc dynamic var cityName = ""

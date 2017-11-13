@@ -9,6 +9,8 @@
 import Foundation
 import  RealmSwift
 
+// Realm DB class for current weather in the search city
+
 class SearchCityWeather: Object {
     
     @objc dynamic var searchCityName = ""

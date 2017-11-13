@@ -10,29 +10,39 @@ import Foundation
 import Alamofire
 import SwiftyJSON
 import RealmSwift
-
+// user defaults don't use in my app
 let  userDefaults  =  UserDefaults.standard
 
 class ManagerData {
-    
+    // func get JSON responce by URL and then try to save to DB file WeekWeatherData
     func loadJSONSearch(city: String) -> SearchCityWeather {
         let realm = try! Realm()
+        
+        // path to the DB file
+        //путь к файлу БД
         print(Realm.Configuration.defaultConfiguration.fileURL)
         
-        
+        // basic url for get request
+        // базовый url для get запроса
         let url = "https://api.openweathermap.org/data/2.5/weather"
+        // additional parameters in url request
+        // дополнительные параметры в url запросе
         let param =  ["q": city, "units": "metric", "appid": "0d56898a0da8944be0e2dff08367ac8c"]
+        // create object of SearchCityWeather class
+        // создаем объкт класса SearchCityWeather для дальнейшей записи значений в него
         let searchCityWeather = SearchCityWeather()
-        
+        // alamofire request
         Alamofire.request(url, method: .get, parameters: param).validate().responseJSON { response in
             print("Request: \(response.request)")
             print("Response: \(response.response)")
             print("Error: \(response.error)")
             switch response.result {
             case .success(let value):
+                // get JSON value
+                // получаем данные JSON
                 let json = JSON(value)
-                
-                
+                // and save them to searchCityWeather
+                // и сохраняем полученные значения в searchCityWeather
                 searchCityWeather.searchCityName = json["name"].stringValue
                 searchCityWeather.searchCityCountry = json["sys"]["country"].stringValue
                 searchCityWeather.searchCityTemperature = json["main"]["temp"].intValue
@@ -44,7 +54,8 @@ class ManagerData {
                 searchCityWeather.searchCityWeatherDiscription = json["weather"][0]["main"].stringValue
                 searchCityWeather.searchCityWeatherIcon = json["weather"][0]["icon"].stringValue
                 
-                
+                // try to write values to Realm DB
+                // пробуем записать полученные значения в БД
                 try! realm.write {
                     realm.add(searchCityWeather, update: true)
                 }
@@ -60,35 +71,46 @@ class ManagerData {
     
     
     
-    
+    // func get JSON responce by URL and then try to save to DB file SearchCityWeatherData and TodayWeatherData
+    // функция получения JSON ответа по url и дальнейшей попыткой записи в SearchCityWeatherData and TodayWeatherData
     func loadJSON(loadCity: String) {
         
         let realm = try! Realm()
-        
+        // path to the DB file
+        //путь к файлу БД
         print(Realm.Configuration.defaultConfiguration.fileURL)
-        
+        // base urls
+        // базовые URLs
         let todayUrl = "https://api.openweathermap.org/data/2.5/weather"
         let weekUrl = "https://api.openweathermap.org/data/2.5/forecast"
-        
+        // additional parameters in url request
+        // дополнительные параметры в url запросе
         let param =  ["q": loadCity, "units": "metric", "appid": "0d56898a0da8944be0e2dff08367ac8c"]
-        
+        // array of URLs
+        // массив url
         let urlArray = [todayUrl, weekUrl]
-        
+        // перебираем массивы в цикле
         for url in urlArray {
             let url = url
-            
+            // create objects of class TodayWeather & WeekWeather
+            // создаем объекты классов TodayWeather и WeekWeather
             let todayWeather = TodayWeather()
             let weekWeather = WeekWeather()
             
-            
+            // check if url = todayUrl
+            // проверяем если url = todayUrl
             if url == todayUrl {
-                
+                // made request by todayUrl
+                // делаем запрос по todayUrl
                 Alamofire.request(url, method: .get, parameters: param).validate().responseJSON { response in
                     switch response.result {
                     case .success(let value):
+                        // get JSON value
+                        // получаем данные JSON
                         let json = JSON(value)
                         
-                        
+                        // and save them to todayWeather
+                        // и сохраняем полученные значения в todayWeather
                         todayWeather.cityName = json["name"].stringValue
                         todayWeather.cityCountry = json["sys"]["country"].stringValue
                         todayWeather.cityTemperature = json["main"]["temp"].intValue
@@ -100,12 +122,13 @@ class ManagerData {
                         todayWeather.cityWeatherDiscription = json["weather"][0]["main"].stringValue
                         todayWeather.cityWeatherIcon = json["weather"][0]["icon"].stringValue
                         
-                        
+                        // try to write values to Realm DB
+                        // пробуем записать полученные значения в БД
                         try! realm.write {
                             realm.add(todayWeather, update: true)
                         }
-                        
-                        userDefaults.set( "ok",  forKey:  "load")
+                        // don't use in my app
+//                        userDefaults.set( "ok",  forKey:  "load")
                         
                         print("""
                             hey city\(todayWeather.cityName).
@@ -124,13 +147,20 @@ class ManagerData {
                         print(error)
                     }
                 }
+                // check if url = weekUrl
+                // проверяем если url = weekUrl
             } else if url == weekUrl {
+                // made request by todayUrl
+                // делаем запрос по todayUrl
                 Alamofire.request(url, method: .get, parameters: param).validate().responseJSON { response in
                     switch response.result {
                     case .success(let value):
+                        // get JSON value
+                        // получаем данные JSON
                         let json = JSON(value)
                         
-                        
+                        // and save them to weekWeather
+                        // и сохраняем полученные значения в weekWeather
                         weekWeather.cityName = json["city"]["name"].stringValue
                         weekWeather.cityCountry = json["city"]["country"].stringValue
                         
@@ -202,12 +232,13 @@ class ManagerData {
                         
                         
                         print("Look week weather date: \(weekWeather.firstDayDate), \(weekWeather.secondDayDate), \(weekWeather.thirdDayDate), \(weekWeather.fourthDayDate), \(weekWeather.fifthDayDate)")
-                        
+                        // try to write values to Realm DB
+                        // пробуем записать полученные значения в БД
                         try! realm.write {
                             realm.add(weekWeather, update: true)
                         }
-                        
-                        userDefaults.set( "ok",  forKey:  "load")
+                        // don't use in my app
+//                        userDefaults.set( "ok",  forKey:  "load")
                         
                     case .failure(let error):
                         print(error)
@@ -216,19 +247,19 @@ class ManagerData {
             }
         }
     }
-    
+    // func to get data from DB
     func getTodayWeatherFromDB() -> Results<TodayWeather> {
         let realm = try! Realm()
         let todayWeather = realm.objects(TodayWeather.self)
         return todayWeather
     }
-    
+    // func to get data from DB
     func getWeekWeatherFromDB() -> Results<WeekWeather> {
         let realm = try! Realm()
         let weekWeather = realm.objects(WeekWeather.self)
         return weekWeather
     }
-    
+    // func to get data from DB
     func getSearchCityWeatherFromDB() -> Results<SearchCityWeather> {
         let realm = try! Realm()
         let searchCityWeather = realm.objects(SearchCityWeather.self)
