@@ -60,6 +60,9 @@ class CityWeatherViewController: UIViewController {
                     // вызываем функцию для обновления отображаемых данных
                     updateUI()
                 }
+        // hide keyboard when button is pressed
+        // скрываем клавиатуру по нажатию на кнопку поиск
+        view.endEditing(true)
     }
     
     
@@ -80,6 +83,16 @@ class CityWeatherViewController: UIViewController {
         // call func to update user interface
         // вызываем функцию для обновления отображаемых данных
         updateUI()
+    }
+    deinit {
+        notificationToken?.invalidate()
+    }
+    
+    func touchesBegan(touches: Set<NSObject>,withEvent event: UIEvent) {
+        if let touch = touches.first as? UITouch {
+            view.endEditing(true)
+        }
+        super.touchesBegan(touches as! Set<UITouch>, with: event)
     }
     // func use notificationToken to search changes in DB and display them in UI
     // функция использует нотификацию для обнаружения изменений в БД и отображения их в пользовательском интерфейсе
@@ -113,9 +126,6 @@ class CityWeatherViewController: UIViewController {
                 fatalError("\(error)")
             }
         }
-    }
-    deinit {
-        notificationToken?.invalidate()
     }
     
     // func with alert controller to display if citySearchTextField is empty
