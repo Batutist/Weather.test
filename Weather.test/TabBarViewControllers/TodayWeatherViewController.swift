@@ -14,16 +14,7 @@ import RealmSwift
 
 let realm = try! Realm()
 
-var cityName = ""
-var cityCountry = ""
-var cityTemperature = 0
-var cityWindSpeed = 0.0
-var cityPressure = 0.0
-var cityHumidity = 0
-var cityTemperatureMin = 0
-var cityTemperatureMax = 0
-var cityWeatherDiscription = ""
-var cityWeatherIcon = ""
+
 
 class TodayWeatherViewController: UIViewController {
     // object of ManagerData class
@@ -75,7 +66,8 @@ class TodayWeatherViewController: UIViewController {
                 // Results are now populated and can be accessed without blocking the UI
                 // func to update labels and images values
                 // функция обновления значений ярлыков и картинок
-                self?.updateLabelsAndImages()
+                
+//                self?.updateLabelsAndImages()
                 
                 print("new")
             //                tableView.reloadData()
@@ -84,7 +76,8 @@ class TodayWeatherViewController: UIViewController {
                 
                 // func to update labels and images values
                 // функция обновления значений ярлыков и картинок
-                self?.updateLabelsAndImages()
+                
+//                self?.updateLabelsAndImages()
                 print("update")
                 
             case .error(let error):
@@ -97,37 +90,20 @@ class TodayWeatherViewController: UIViewController {
     
     // func takes values from DB and change IBOtlets in UI
     // функция берет значения из БД и устанавливает их в элементы пользовательского интерфейса
-    func updateLabelsAndImages() {
-        // get values from DB
-        let todayWeatherBD = manager.getTodayWeatherFromDB()
+    
+    func updateUIWith(todayWeather: TodayWeather) {
         
-        for value in todayWeatherBD {
-            cityName = value.cityName
-            cityCountry = value.cityCountry
-            cityTemperature = value.cityTemperature
-            cityWindSpeed = value.cityWindSpeed
-            cityPressure = value.cityPressure
-            cityHumidity = value.cityHumidity
-            cityTemperatureMin = value.cityTemperatureMin
-            cityTemperatureMax = value.cityTemperatureMax
-            cityWeatherDiscription = value.cityWeatherDiscription
-            cityWeatherIcon = value.cityWeatherIcon
-            
-            print("today view: \(cityName), \(cityTemperature), \(cityWeatherDiscription)")
-        }
         
-        if cityTemperature > 0 {
-            temperatureValueLabel.text = ("+\(cityTemperature)˚")
-        } else {
-            temperatureValueLabel.text = ("\(cityTemperature)˚")
-        }
-        windSpeedLabel.text = ("\(cityWindSpeed) m/s")
+        self.temperatureValueLabel.text = todayWeather.cityTemperatureString
+        self.weatherIcon.image = todayWeather.cityWeatherIcon
+        self.weatherDescriptionLabel.text = todayWeather.cityWeatherDescriptionString
+        self.maxTemperatureLabel.text = todayWeather.cityTemperatureMaxString
+        self.minTemperatureLabel.text = todayWeather.cityTemperatureMinString
+        self.windSpeedLabel.text = todayWeather.cityWindSpeedString
+        self.pressureLabel.text = todayWeather.cityPressureString
+        self.humidityLabel.text = todayWeather.cityHumidityString
         
-        pressureLabel.text = ("\(cityPressure) mb")
-        humidityLabel.text = ("\(cityHumidity) %")
-        minTemperatureLabel.text = ("\(cityTemperatureMin)˚")
-        maxTemperatureLabel.text = ("\(cityTemperatureMax)˚")
-        weatherDescriptionLabel.text = cityWeatherDiscription
-        weatherIcon.image = UIImage(named: cityWeatherIcon)
     }
+    
+    
 }

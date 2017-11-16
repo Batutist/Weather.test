@@ -19,7 +19,7 @@ struct TodayWeather {
     var cityHumidity: UILabel
     var cityTemperatureMin: UILabel
     var cityTemperatureMax: UILabel
-    var cityWeatherDiscription: UILabel
+    var cityWeatherDescription: UILabel
     var cityWeatherIcon: UIImage
 }
 
@@ -46,5 +46,9 @@ extension TodayWeather {
     
     var cityTemperatureMaxString: String {
         return "\(cityTemperatureMax)˚"
+    }
+    
+    var cityWeatherDescriptionString: String {
+        return "\(cityWeatherDescription)"
     }
 }

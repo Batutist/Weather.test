@@ -102,7 +102,7 @@ class WeekWeatherCityViewController: UIViewController {
         view.backgroundColor = Colors.skyBlue
         // load data of city
         // загружаем данные по городу
-        manager.loadJSON(loadCity: city)
+        manager.loadJSONWeek(loadCity: city)
         // call func to update user interface
         // вызываем функцию для обновления отображаемых данных
         updateUI()

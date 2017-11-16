@@ -81,13 +81,12 @@ class ManagerData {
         print(Realm.Configuration.defaultConfiguration.fileURL)
         // base urls
         // базовые URLs
-        let todayUrl = "https://api.openweathermap.org/data/2.5/weather"
-        let weekUrl = "https://api.openweathermap.org/data/2.5/forecast"
+        let cityUrl = "https://api.openweathermap.org/data/2.5/weather"
         // additional parameters in url request
         // дополнительные параметры в url запросе
         let param =  ["q": loadCity, "units": "metric", "appid": "0d56898a0da8944be0e2dff08367ac8c"]
         let todayWeather = TodayWeatherDB()
-        Alamofire.request(url, method: .get, parameters: param).validate().responseJSON { response in
+        Alamofire.request(cityUrl, method: .get, parameters: param).validate().responseJSON { response in
             switch response.result {
             case .success(let value):
                 // get JSON value
@@ -147,7 +146,7 @@ class ManagerData {
         // дополнительные параметры в url запросе
         let param =  ["q": loadCity, "units": "metric", "appid": "0d56898a0da8944be0e2dff08367ac8c"]
         let weekWeather = WeekWeather()
-        Alamofire.request(url, method: .get, parameters: param).validate().responseJSON { response in
+        Alamofire.request(weekUrl, method: .get, parameters: param).validate().responseJSON { response in
             switch response.result {
             case .success(let value):
                 // get JSON value
