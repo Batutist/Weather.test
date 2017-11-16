@@ -85,19 +85,12 @@ class WeekWeatherCityViewController: UIViewController {
     @IBOutlet var weatherDayDescriptionLabels: [UILabel]!
     @IBOutlet var temperatureMaxLabels: [UILabel]!
     @IBOutlet var temperatureMinLabels: [UILabel]!
-    @IBOutlet var windInfoViews: [UIView]!
     
     
     let city = "Taganrog"
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        windInfoViews[0].layer.cornerRadius = 10
-        windInfoViews[1].layer.cornerRadius = 10
-        windInfoViews[2].layer.cornerRadius = 10
-        windInfoViews[3].layer.cornerRadius = 10
-        windInfoViews[4].layer.cornerRadius = 10
         
         
         
