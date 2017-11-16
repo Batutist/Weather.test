@@ -52,7 +52,7 @@ class TodayWeatherViewController: UIViewController {
         view.backgroundColor = Colors.skyBlue
         // load data of city
         // загружаем данные по городу
-        manager.loadJSON(loadCity: city)
+        manager.loadJSONCity(loadCity: city)
         // call func to update user interface
         // вызываем функцию для обновления отображаемых данных
         updateUI()
@@ -65,7 +65,7 @@ class TodayWeatherViewController: UIViewController {
     // функция использует нотификацию для обнаружения изменений в БД и отображения их в пользовательском интерфейсе
     func updateUI() {
         let realm = try! Realm()
-        let results = realm.objects(TodayWeather.self)
+        let results = realm.objects(TodayWeatherDB.self)
         
         // Observe Results Notifications
         notificationToken = results.observe { [weak self] (changes: RealmCollectionChange) in
@@ -99,9 +99,9 @@ class TodayWeatherViewController: UIViewController {
     // функция берет значения из БД и устанавливает их в элементы пользовательского интерфейса
     func updateLabelsAndImages() {
         // get values from DB
-        let todayWeather = manager.getTodayWeatherFromDB()
+        let todayWeatherBD = manager.getTodayWeatherFromDB()
         
-        for value in todayWeather {
+        for value in todayWeatherBD {
             cityName = value.cityName
             cityCountry = value.cityCountry
             cityTemperature = value.cityTemperature
