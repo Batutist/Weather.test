@@ -23,7 +23,7 @@ class TodayWeatherViewController: UIViewController {
     // create notification Token to watch for changes
     // токен для отслеживания изменений
     var notificationToken: NotificationToken? = nil
-    var city = "Taganrog"
+    var city = "Eda"
     // outlets from UI
     // оутлеты пользовательского интерфейса
     @IBOutlet weak var temperatureValueLabel: UILabel!

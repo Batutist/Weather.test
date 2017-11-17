@@ -128,7 +128,7 @@ class ManagerData {
                     """)
                 
             case .failure(let error):
-                print(error)
+                print("Ошибка. Не удалось создать\(error)")
             }
         }
     }
@@ -139,13 +139,13 @@ class ManagerData {
         // path to the DB file
         //путь к файлу БД
         print(Realm.Configuration.defaultConfiguration.fileURL)
+        let weekWeather = WeekWeather()
         // base url
         // базовый URL
         let weekUrl = "https://api.openweathermap.org/data/2.5/forecast"
         // additional parameters in url request
         // дополнительные параметры в url запросе
         let param =  ["q": loadCity, "units": "metric", "appid": "0d56898a0da8944be0e2dff08367ac8c"]
-        let weekWeather = WeekWeather()
         Alamofire.request(weekUrl, method: .get, parameters: param).validate().responseJSON { response in
             switch response.result {
             case .success(let value):
@@ -158,27 +158,31 @@ class ManagerData {
                 weekWeather.cityName = json["city"]["name"].stringValue
                 weekWeather.cityCountry = json["city"]["country"].stringValue
                 
-                weekWeather.firstDayDate = json["list"][0]["dt_txt"].stringValue
-                weekWeather.firstDayTemperature = json["list"][0]["main"]["temp"].intValue
-                weekWeather.firstDayTemperatureMax = json["list"][0]["main"]["temp_max"].intValue
-                weekWeather.firstDayTemperatureMin = json["list"][0]["main"]["temp_min"].intValue
-                weekWeather.firstDayPressure = json["list"][0]["main"]["pressure"].doubleValue
-                weekWeather.firstDayHumidity = json["list"][0]["main"]["humidity"].intValue
-                weekWeather.firstDayWeatherDescription = json["list"][0]["weather"][0]["main"].stringValue
-                weekWeather.firstDayWeatherIcon = json["list"][0]["weather"][0]["icon"].stringValue
-                weekWeather.firstDayWindSpeed = json["list"][0]["wind"]["speed"].doubleValue
-                weekWeather.firstDayWindDegrees = json["list"][0]["wind"]["deg"].doubleValue
+                for (_, subJson) in json["list"] {
+                    var tmp: WeekWeatherDetails = WeekWeatherDetails()
+                    
+                    tmp.date = subJson["dt_txt"].stringValue
+                    tmp.humidity = subJson["main"]["humidity"].intValue
+                    tmp.pressure = subJson["main"]["pressure"].doubleValue
+                    tmp.temperature = subJson["main"]["temp"].intValue
+                    tmp.temperatureMax = subJson["main"]["temp_max"].intValue
+                    tmp.temperatureMin = subJson["main"]["temp_min"].intValue
+                    tmp.weatherDescription = subJson["weather"][0]["description"].stringValue
+                    tmp.weatherIcon = subJson["weather"][0]["icon"].stringValue
+                    tmp.windDegrees = subJson["wind"]["deg"].doubleValue
+                    tmp.windSpeed = subJson["wind"]["speed"].doubleValue
+                    
+                    weekWeather.tempList.append(tmp)
+                    
+                    print(tmp)
+                }
                 
                 
-                print("Look week weather date: \(weekWeather.firstDayDate), \(weekWeather.secondDayDate), \(weekWeather.thirdDayDate), \(weekWeather.fourthDayDate), \(weekWeather.fifthDayDate)")
                 // try to write values to Realm DB
                 // пробуем записать полученные значения в БД
                 try! realm.write {
                     realm.add(weekWeather, update: true)
                 }
-                // don't use in my app
-                //                        userDefaults.set( "ok",  forKey:  "load")
-                
             case .failure(let error):
                 print(error)
             }

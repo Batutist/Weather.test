@@ -181,7 +181,7 @@ class WeekWeatherCityViewController: UIViewController {
                 // Results are now populated and can be accessed without blocking the UI
                 // func to update labels and images values
                 // функция обновления значений ярлыков и картинок
-                self?.updateLabelsAndImages()
+                
                 
                 print("new")
             //                tableView.reloadData()
@@ -190,7 +190,7 @@ class WeekWeatherCityViewController: UIViewController {
                 
                 // func to update labels and images values
                 // функция обновления значений ярлыков и картинок
-                self?.updateLabelsAndImages()
+                
                 print("update")
                 
             case .error(let error):
@@ -203,103 +203,7 @@ class WeekWeatherCityViewController: UIViewController {
     
     // func takes values from DB and change IBOtlets in UI
     // функция берет значения из БД и устанавливает их в элементы пользовательского интерфейса
-    func updateLabelsAndImages() {
-        // get values from DB
-        let weekWeather = manager.getWeekWeatherFromDB()
-        
-        for value in weekWeather {
-            cityName = value.cityName
-            cityCountry = value.cityCountry
-            
-            firstDayDate = value.firstDayDate
-            firstDayTemperature = value.firstDayTemperature
-            firstDayTemperatureMin = value.firstDayTemperatureMin
-            firstDayTemperatureMax = value.firstDayTemperatureMax
-            firstDayPressure = value.firstDayPressure
-            firstDayHumidity = value.firstDayHumidity
-            firstDayWindSpeed = value.firstDayWindSpeed
-            firstDayWindDegrees = value.fifthDayWindDegrees
-            firstDayWeatherDescription = value.firstDayWeatherDescription
-            firstDayWeatherIcon = value.firstDayWeatherIcon
-            
-            secondDayDate = value.secondDayDate
-            secondDayTemperature = value.secondDayTemperature
-            secondDayTemperatureMin = value.secondDayTemperatureMin
-            secondDayTemperatureMax = value.secondDayTemperatureMax
-            secondDayPressure = value.secondDayPressure
-            secondDayHumidity = value.secondDayHumidity
-            secondDayWindSpeed = value.secondDayWindSpeed
-            secondDayWindDegrees = value.secondDayWindDegrees
-            secondDayWeatherDescription = value.secondDayWeatherDescription
-            secondDayWeatherIcon = value.secondDayWeatherIcon
-            
-            thirdDayDate = value.thirdDayDate
-            thirdDayTemperature = value.thirdDayTemperature
-            thirdDayTemperatureMin = value.thirdDayTemperatureMin
-            thirdDayTemperatureMax = value.thirdDayTemperatureMax
-            thirdDayPressure = value.thirdDayPressure
-            thirdDayHumidity = value.thirdDayHumidity
-            thirdDayWindSpeed = value.thirdDayWindSpeed
-            thirdDayWindDegrees = value.thirdDayWindDegrees
-            thirdDayWeatherDescription = value.thirdDayWeatherDescription
-            thirdDayWeatherIcon = value.thirdDayWeatherIcon
-            
-            fourthDayDate = value.fourthDayDate
-            fourthDayTemperature = value.fourthDayTemperature
-            fourthDayTemperatureMin = value.fourthDayTemperatureMin
-            fourthDayTemperatureMax = value.fourthDayTemperatureMax
-            fourthDayPressure = value.fourthDayPressure
-            fourthDayHumidity = value.fourthDayHumidity
-            fourthDayWindSpeed = value.fourthDayWindSpeed
-            fourthDayWindDegrees = value.fourthDayWindDegrees
-            fourthDayWeatherDescription = value.fourthDayWeatherDescription
-            fourthDayWeatherIcon = value.fourthDayWeatherIcon
-            
-            fifthDayDate = value.fifthDayDate
-            fifthDayTemperature = value.fifthDayTemperature
-            fifthDayTemperatureMin = value.fifthDayTemperatureMin
-            fifthDayTemperatureMax = value.fifthDayTemperatureMax
-            fifthDayPressure = value.fifthDayPressure
-            fifthDayHumidity = value.fifthDayHumidity
-            fifthDayWindSpeed = value.fifthDayWindSpeed
-            fifthDayWindDegrees = value.fifthDayWindDegrees
-            fifthDayWeatherDescription = value.fifthDayWeatherDescription
-            fifthDayWeatherIcon = value.fifthDayWeatherIcon
-            print("first day date \(firstDayDate)")
-        }
-        
-        datesLabels[0].text = firstDayDate
-        datesLabels[1].text = secondDayDate
-        datesLabels[2].text = thirdDayDate
-        datesLabels[3].text = fourthDayDate
-        datesLabels[4].text = fifthDayDate
-        
-        
-        weatherDayIcons[0].image = UIImage(named: firstDayWeatherIcon)
-        weatherDayIcons[1].image = UIImage(named: secondDayWeatherIcon)
-        weatherDayIcons[2].image = UIImage(named: thirdDayWeatherIcon)
-        weatherDayIcons[3].image = UIImage(named: fourthDayWeatherIcon)
-        weatherDayIcons[4].image = UIImage(named: fifthDayWeatherIcon)
-        
-        weatherDayDescriptionLabels[0].text = firstDayWeatherDescription
-        weatherDayDescriptionLabels[1].text = secondDayWeatherDescription
-        weatherDayDescriptionLabels[2].text = thirdDayWeatherDescription
-        weatherDayDescriptionLabels[3].text = fourthDayWeatherDescription
-        weatherDayDescriptionLabels[4].text = fifthDayWeatherDescription
-        
-        temperatureMaxLabels[0].text = ("\(firstDayTemperatureMax)˚")
-        temperatureMaxLabels[1].text = ("\(secondDayTemperatureMax)˚")
-        temperatureMaxLabels[2].text = ("\(thirdDayTemperatureMax)˚")
-        temperatureMaxLabels[3].text = ("\(fourthDayTemperatureMax)˚")
-        temperatureMaxLabels[4].text = ("\(fifthDayTemperatureMax)˚")
-        
-        temperatureMinLabels[0].text = ("\(firstDayTemperatureMin)˚")
-        temperatureMinLabels[1].text = ("\(secondDayTemperatureMin)˚")
-        temperatureMinLabels[2].text = ("\(thirdDayTemperatureMin)˚")
-        temperatureMinLabels[3].text = ("\(fourthDayTemperatureMin)˚")
-        temperatureMinLabels[4].text = ("\(fifthDayTemperatureMin)˚")
-        
-    }
+    
     
     
     
