@@ -220,7 +220,7 @@
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" returnKeyType="search" textContentType="address-level2"/>
+                                <textInputTraits key="textInputTraits" textContentType="address-level2"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ljo-6i-7Jh">
                                 <rect key="frame" x="329" y="36" width="30" height="30"/>

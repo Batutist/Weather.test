@@ -71,8 +71,8 @@
 			isa = PBXGroup;
 			children = (
 				7D882D5A1FB38F1A00223675 /* TodayWeatherData.swift */,
-				7D9828E21FBF77450041F06E /* weekWeather */,
 				7D6B336F1FB477CA00318A06 /* SearchCityWeatherData.swift */,
+				7D9828E21FBF77450041F06E /* weekWeather */,
 			);
 			path = Realm;
 			sourceTree = "<group>";
@@ -174,7 +174,7 @@
 				TargetAttributes = {
 					7DCD7F0F1FB247B200B05E56 = {
 						CreatedOnToolsVersion = 9.0;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -422,11 +422,12 @@
 			baseConfigurationReference = 49377E95B8EB381B421378B8 /* Pods-Weather.test.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = V6T23KGG3R;
 				INFOPLIST_FILE = Weather.test/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.example.Weather-test";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.lmc.Weather-test";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
@@ -439,11 +440,12 @@
 			baseConfigurationReference = 4995CD2126D22F0F655F3F34 /* Pods-Weather.test.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = V6T23KGG3R;
 				INFOPLIST_FILE = Weather.test/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.example.Weather-test";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.lmc.Weather-test";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;

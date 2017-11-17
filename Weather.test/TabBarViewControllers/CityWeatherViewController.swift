@@ -24,7 +24,7 @@ var searchCityTemperatureMax = 0
 var searchCityWeatherDiscription = ""
 var searchCityWeatherIcon = ""
 
-class CityWeatherViewController: UIViewController {
+class CityWeatherViewController: UIViewController, UITextFieldDelegate {
     //create object of ManagerData
     // создаем объекс класса ManagerData
     let manager = ManagerData()
@@ -68,6 +68,7 @@ class CityWeatherViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.citySearchTextField.delegate = self
         // change background color
         // меняем цвет фона
         view.backgroundColor = Colors.skyBlue
@@ -182,6 +183,20 @@ class CityWeatherViewController: UIViewController {
         cityWindSpeedLabel.text = "--"
         cityPressureLabel.text = "--"
         cityHumidityLabel.text = "--"
+    }
+    
+
+
+    
+    //--- Вызывается, когда пользователь кликает на view (за пределами textField)--
+    // outlets textField и textField2, UITextFieldDelegate
+    // и textField.delegate = ... не нужны
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if let _ = touches.first {
+            view.endEditing(true)
+        }
+        super.touchesBegan(touches , with:event)
     }
 }
 
