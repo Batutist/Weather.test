@@ -22,7 +22,8 @@ class WeekWeatherCityViewController: UIViewController {
     var cityName = ""
     var cityCountry = ""
     
-
+    var dateData: [String] = []
+    
     
     // outlets collections from UI
     // коллекции оутлетов пользовательского интерфейса
@@ -47,7 +48,8 @@ class WeekWeatherCityViewController: UIViewController {
         view.backgroundColor = Colors.skyBlue
         // load data of city
         // загружаем данные по городу
-        manager.loadJSONWeek(loadCity: city)
+        manager.loadJSONWeek(city: city)
+        
         // call func to update user interface
         // вызываем функцию для обновления отображаемых данных
         
@@ -56,7 +58,7 @@ class WeekWeatherCityViewController: UIViewController {
     deinit {
         notificationToken?.invalidate()
     }
-
+    
     // func use notificationToken to search changes in DB and display them in UI
     // функция использует нотификацию для обнаружения изменений в БД и отображения их в пользовательском интерфейсе
     func updateUI() {
@@ -91,12 +93,48 @@ class WeekWeatherCityViewController: UIViewController {
     }
     
     
-
+    
     
     // func takes values from DB and change IBOtlets in UI
     // функция берет значения из БД и устанавливает их в элементы пользовательского интерфейса
+    func changeLabelsAndImages() {
+        let weekWeather = manager.getWeekWeatherFromDB()
+        guard   let weekWeatherNoon = weekWeather.first?.tempList.filter("date contains '12:00:00'"),
+            let weekWeathermidnight = weekWeather.first?.tempList.filter("date contains '21:00:00'")
+            else {return}
+        
+        let dateFormatter = DateFormatter()
+        
+        var weekWeatherNoonDateString: String {
+            let date = Date(timeIntervalSince1970: (weekWeatherNoon.first?.forecastedTime)!)
+            dateFormatter.dateFormat = "dd.MM"
+            return dateFormatter.string(from: date as Date)
+        }
+        var todayString: String {
+            let today = NSDate()
+            dateFormatter.dateFormat = "dd.MM"
+            return dateFormatter.string(from: today as Date)
+        }
+        
+        if weekWeatherNoonDateString == todayString {
+            for value in weekWeatherNoon {
+                dateData.append(value.date)
+                print("Дата: \(dateData)")
+            }
+        } else {
+            print("Tomorrow")
+        }
+        
+        //        let gregorian : NSCalendar = NSCalendar(calendarIdentifier: NSCalendar.Identifier.gregorian)!
+        //        let weekdayComponent : NSDateComponents = gregorian.components(.weekday, from: today as Date) as NSDateComponents
+        //        var currentDay = weekdayComponent.weekday - 1
+        
+        //        let weekWeatherNoonDateString = dateFormatter.string(from: weekWeatherNoon.first?.date as Date)
+        //        weekWeatherNoon.first?.date
+    }
     
-    
-    
-    
+    func dayOfWeek() {
+        
+        
+    }
 }

@@ -23,7 +23,7 @@ class TodayWeatherViewController: UIViewController {
     // create notification Token to watch for changes
     // токен для отслеживания изменений
     var notificationToken: NotificationToken? = nil
-    var city = "Eda"
+    var city = "Taganrog"
     // outlets from UI
     // оутлеты пользовательского интерфейса
     @IBOutlet weak var temperatureValueLabel: UILabel!
@@ -43,7 +43,8 @@ class TodayWeatherViewController: UIViewController {
         view.backgroundColor = Colors.skyBlue
         // load data of city
         // загружаем данные по городу
-        manager.loadJSONCity(loadCity: city)
+        manager.loadJSON(city: city)
+        manager.getTodayWeatherFromDB()
         // call func to update user interface
         // вызываем функцию для обновления отображаемых данных
         updateUI()

@@ -73,7 +73,7 @@ class ManagerData {
     
     // func get JSON responce by URL and then try to save to DB file TodayWeatherData
     // функция получения JSON ответа по url и дальнейшей попыткой записи в TodayWeatherData
-    func loadJSONCity(loadCity: String) {
+    func loadJSON(city: String) {
         
         let realm = try! Realm()
         // path to the DB file
@@ -84,7 +84,7 @@ class ManagerData {
         let cityUrl = "https://api.openweathermap.org/data/2.5/weather"
         // additional parameters in url request
         // дополнительные параметры в url запросе
-        let param =  ["q": loadCity, "units": "metric", "appid": "0d56898a0da8944be0e2dff08367ac8c"]
+        let param =  ["q": city, "units": "metric", "appid": "0d56898a0da8944be0e2dff08367ac8c"]
         let todayWeather = TodayWeatherDB()
         Alamofire.request(cityUrl, method: .get, parameters: param).validate().responseJSON { response in
             switch response.result {
@@ -133,7 +133,7 @@ class ManagerData {
         }
     }
     
-    func loadJSONWeek(loadCity: String) {
+    func loadJSONWeek(city: String) {
         
         let realm = try! Realm()
         // path to the DB file
@@ -145,7 +145,7 @@ class ManagerData {
         let weekUrl = "https://api.openweathermap.org/data/2.5/forecast"
         // additional parameters in url request
         // дополнительные параметры в url запросе
-        let param =  ["q": loadCity, "units": "metric", "appid": "0d56898a0da8944be0e2dff08367ac8c"]
+        let param =  ["q": city, "units": "metric", "appid": "0d56898a0da8944be0e2dff08367ac8c"]
         Alamofire.request(weekUrl, method: .get, parameters: param).validate().responseJSON { response in
             switch response.result {
             case .success(let value):
@@ -174,9 +174,8 @@ class ManagerData {
                     
                     weekWeather.tempList.append(tmp)
                     
-                    print(tmp)
                 }
-                
+                print("weekWeather is ok")
                 
                 // try to write values to Realm DB
                 // пробуем записать полученные значения в БД
@@ -205,7 +204,8 @@ class ManagerData {
     func getWeekWeatherFromDB() -> Results<WeekWeather> {
         do {
             let realm = try Realm()
-            let weekWeather = realm.objects(WeekWeather.self).filter("date contains '12:00:00'")
+            let weekWeather = realm.objects(WeekWeather.self)
+
             print("Here is weekWeather \(weekWeather)")
             return weekWeather
         } catch let error as NSError {

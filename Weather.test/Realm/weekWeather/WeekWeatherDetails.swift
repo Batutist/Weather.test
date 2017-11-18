@@ -10,7 +10,7 @@ import Foundation
 import RealmSwift
 
 class WeekWeatherDetails: Object {
-    @objc dynamic var forecastedTime = 0
+    @objc dynamic var forecastedTime = 0.0
     @objc dynamic var date = ""
     @objc dynamic var temperature = 0
     @objc dynamic var temperatureMin = 0
