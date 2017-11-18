@@ -160,7 +160,7 @@ class ManagerData {
                 
                 for (_, subJson) in json["list"] {
                     var tmp: WeekWeatherDetails = WeekWeatherDetails()
-                    
+                    tmp.forecastedTime = subJson["dt"].doubleValue
                     tmp.date = subJson["dt_txt"].stringValue
                     tmp.humidity = subJson["main"]["humidity"].intValue
                     tmp.pressure = subJson["main"]["pressure"].doubleValue
@@ -169,8 +169,8 @@ class ManagerData {
                     tmp.temperatureMin = subJson["main"]["temp_min"].intValue
                     tmp.weatherDescription = subJson["weather"][0]["description"].stringValue
                     tmp.weatherIcon = subJson["weather"][0]["icon"].stringValue
-                    tmp.windDegrees = subJson["wind"]["deg"].doubleValue
                     tmp.windSpeed = subJson["wind"]["speed"].doubleValue
+                    tmp.windDegrees = subJson["wind"]["deg"].doubleValue
                     
                     weekWeather.tempList.append(tmp)
                     

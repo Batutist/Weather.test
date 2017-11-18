@@ -29,3 +29,5 @@ class SearchCityWeather: Object {
         return "searchCityName"
     }
 }
+
+

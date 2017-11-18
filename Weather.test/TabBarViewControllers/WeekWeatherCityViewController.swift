@@ -22,16 +22,20 @@ class WeekWeatherCityViewController: UIViewController {
     var cityName = ""
     var cityCountry = ""
     
-    var dateData: [String] = []
-    
     
     // outlets collections from UI
     // коллекции оутлетов пользовательского интерфейса
+    
+    @IBOutlet weak var cityNameLabel: UILabel!
     @IBOutlet var datesLabels: [UILabel]!
     @IBOutlet var weatherDayIcons: [UIImageView]!
     @IBOutlet var weatherDayDescriptionLabels: [UILabel]!
     @IBOutlet var temperatureMaxLabels: [UILabel]!
     @IBOutlet var temperatureMinLabels: [UILabel]!
+    @IBOutlet var weatherNightIcons: [UIImageView]!
+    @IBOutlet var weatherNightDescriptionLabels: [UILabel]!
+    @IBOutlet var windDirectionLabels: [UILabel]!
+    @IBOutlet var windSpeedLabels: [UILabel]!
     
     
     let city = "Taganrog"
@@ -99,31 +103,63 @@ class WeekWeatherCityViewController: UIViewController {
     // func takes values from DB and change IBOtlets in UI
     // функция берет значения из БД и устанавливает их в элементы пользовательского интерфейса
     func changeLabelsAndImages() {
+        // получаем все данные на неделю
         let weekWeather = manager.getWeekWeatherFromDB()
+        print("-----------------------------")
+        print(weekWeather)
+        print("-----------------------------")
+        // получаем данные по дням только на 12:00 и 21:00
         guard   let weekWeatherNoon = weekWeather.first?.tempList.filter("date contains '12:00:00'"),
-            let weekWeathermidnight = weekWeather.first?.tempList.filter("date contains '21:00:00'")
+            let weekWeatherMidnight = weekWeather.first?.tempList.filter("date contains '21:00:00'")
             else {return}
         
         let dateFormatter = DateFormatter()
-        
+        // преобразуем формат даты дня в строку
         var weekWeatherNoonDateString: String {
             let date = Date(timeIntervalSince1970: (weekWeatherNoon.first?.forecastedTime)!)
             dateFormatter.dateFormat = "dd.MM"
             return dateFormatter.string(from: date as Date)
         }
+        print(weekWeatherNoonDateString)
+        // преобразуем дату на момент запроса в строку
         var todayString: String {
             let today = NSDate()
             dateFormatter.dateFormat = "dd.MM"
             return dateFormatter.string(from: today as Date)
         }
-        
+        /*
+         если дата в 12:00 совпадает с датой запроса, то
+         выводим данные из weekWeatherNoon и weekWeathermidnight
+         в ярлыки и картинки
+         */
         if weekWeatherNoonDateString == todayString {
+            
+            cityNameLabel.text = ("\(weekWeather.first?.cityName), \(weekWeather.first?.cityCountry)")
+            // в цикле по индексу присваиваем значение всем оутлетам
             for index in 0...4 {
-                
-                temperatureMaxLabels[index].text = "\(weekWeatherNoon[index].temperatureMax)"
-                print(weekWeatherNoon[index].temperatureMax)
+                datesLabels[index].text = weekWeatherNoon[index].dateString
+                weatherDayIcons[index].image = UIImage(named: weekWeatherNoon[index].weatherIcon)
+                weatherDayDescriptionLabels[index].text = weekWeatherNoon[index].weatherDescription
+                temperatureMaxLabels[index].text = weekWeatherNoon[index].temperatureMaxString
+                temperatureMinLabels[index].text = weekWeatherMidnight[index].temperatureMinString
+                weatherNightIcons[index].image = UIImage(named: weekWeatherMidnight[index].weatherIcon)
+                weatherNightDescriptionLabels[index].text = weekWeatherMidnight[index].weatherDescription
+                windSpeedLabels[index].text = weekWeatherMidnight[index].windSpeedString
+                windDirectionLabels[index].text = weekWeatherMidnight[index].windDegreesString
                 
             }
+            
+//            @IBOutlet var windDirectionLabels: [UILabel]!
+//            @IBOutlet var windSpeedLabels: [UILabel]!
+            
+            
+            
+        /*
+             может произойти так, что запрос по погоде будет происходить после 15:00
+             и первый элемент с временем 12:00 будет уже следующим днем, тогда
+             для максимальной температуры мы берем значения погоды из первого
+             элемента массива weekWeatherNoon[0]
+         */
         } else {
 
             
