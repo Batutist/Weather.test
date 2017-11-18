@@ -191,21 +191,40 @@ class ManagerData {
     
     // func to get data from DB
     func getTodayWeatherFromDB() -> Results<TodayWeatherDB> {
-        let realm = try! Realm()
-        let todayWeather = realm.objects(TodayWeatherDB.self)
-        return todayWeather
+        do {
+            let realm = try Realm()
+            let todayWeather = realm.objects(TodayWeatherDB.self)
+            print("Here is todayWeather \(todayWeather)")
+            return todayWeather
+        } catch let error as NSError {
+            fatalError("Error opening realm: \(error)")
+        }
+        
     }
     // func to get data from DB
     func getWeekWeatherFromDB() -> Results<WeekWeather> {
-        let realm = try! Realm()
-        let weekWeather = realm.objects(WeekWeather.self)
-        return weekWeather
+        do {
+            let realm = try Realm()
+            let weekWeather = realm.objects(WeekWeather.self).filter("date contains '12:00:00'")
+            print("Here is weekWeather \(weekWeather)")
+            return weekWeather
+        } catch let error as NSError {
+            fatalError("Error opening realm: \(error)")
+        }
+        
+        
+        
+        
     }
     // func to get data from DB
     func getSearchCityWeatherFromDB() -> Results<SearchCityWeather> {
-        let realm = try! Realm()
-        let searchCityWeather = realm.objects(SearchCityWeather.self)
-        print("get from DB: \(searchCityWeather)")
-        return searchCityWeather
+        do {
+            let realm = try Realm()
+            let searchCityWeather = realm.objects(SearchCityWeather.self)
+            print("get from DB: \(searchCityWeather)")
+            return searchCityWeather
+        } catch let error as NSError {
+            fatalError("Error opening realm: \(error)")
+        }
     }
 }
