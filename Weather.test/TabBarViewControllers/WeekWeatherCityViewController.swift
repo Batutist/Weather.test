@@ -38,6 +38,7 @@ class WeekWeatherCityViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        changeLabelsAndImages()
         
         
         // set default values for labels before load data finished
@@ -117,12 +118,15 @@ class WeekWeatherCityViewController: UIViewController {
         }
         
         if weekWeatherNoonDateString == todayString {
-            for value in weekWeatherNoon {
-                dateData.append(value.date)
-                print("Дата: \(dateData)")
+            for index in 0...4 {
+                
+                temperatureMaxLabels[index].text = "\(weekWeatherNoon[index].temperatureMax)"
+                print(weekWeatherNoon[index].temperatureMax)
+                
             }
         } else {
-            print("Tomorrow")
+
+            
         }
         
         //        let gregorian : NSCalendar = NSCalendar(calendarIdentifier: NSCalendar.Identifier.gregorian)!
