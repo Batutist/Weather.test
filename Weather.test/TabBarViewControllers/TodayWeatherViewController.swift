@@ -56,7 +56,7 @@ class TodayWeatherViewController: UIViewController {
     // func use notificationToken to search changes in DB and display them in UI
     // функция использует нотификацию для обнаружения изменений в БД и отображения их в пользовательском интерфейсе
     func updateUI() {
-        let realm = try! Realm()
+        guard let realm = try? Realm() else { return }
         let results = realm.objects(TodayWeather.self)
         
         // Observe Results Notifications
@@ -68,7 +68,7 @@ class TodayWeatherViewController: UIViewController {
                 // func to update labels and images values
                 // функция обновления значений ярлыков и картинок
                 
-//                self?.updateLabelsAndImages()
+                self?.updateUIWith()
                 
                 print("new")
             //                tableView.reloadData()
@@ -78,7 +78,7 @@ class TodayWeatherViewController: UIViewController {
                 // func to update labels and images values
                 // функция обновления значений ярлыков и картинок
                 
-//                self?.updateLabelsAndImages()
+                self?.updateUIWith()
                 print("update")
                 
             case .error(let error):
