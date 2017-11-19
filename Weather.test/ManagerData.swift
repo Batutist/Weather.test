@@ -90,7 +90,7 @@ class ManagerData {
         // additional parameters in url request
         // дополнительные параметры в url запросе
         let param =  ["q": city, "units": "metric", "appid": "0d56898a0da8944be0e2dff08367ac8c"]
-        let todayWeather = TodayWeatherDB()
+        let todayWeather = TodayWeather()
         Alamofire.request(cityUrl, method: .get, parameters: param).validate().responseJSON { response in
             switch response.result {
             case .success(let value):
@@ -204,10 +204,10 @@ class ManagerData {
     }
     
     // func to get data from DB
-    func getTodayWeatherFromDB() -> Results<TodayWeatherDB> {
+    func getTodayWeatherFromDB() -> Results<TodayWeather> {
         do {
             let realm = try Realm()
-            let todayWeather = realm.objects(TodayWeatherDB.self)
+            let todayWeather = realm.objects(TodayWeather.self)
             print("Here is todayWeather \(todayWeather)")
             return todayWeather
         } catch let error as NSError {

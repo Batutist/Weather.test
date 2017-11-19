@@ -12,7 +12,7 @@ import  RealmSwift
 // Realm DB class for current weather
 
 
-class TodayWeatherDB: Object {
+class TodayWeather: Object {
     
     @objc dynamic var cityName = ""
     @objc dynamic var cityCountry = ""
@@ -28,5 +28,39 @@ class TodayWeatherDB: Object {
     
     override static func primaryKey() -> String {
         return "cityName"
+    }
+}
+
+extension TodayWeather {
+    var cityTemperatureString: String {
+        if cityTemperature > 0 {
+            return "+\(cityTemperature)˚"
+        } else {
+            return "\(cityTemperature)"
+        }
+    }
+    
+    var cityWindSpeedString: String {
+        return "\(cityWindSpeed) m/s"
+    }
+    
+    var cityPressureString: String {
+        return "\(cityPressure) mb"
+    }
+    
+    var cityHumidityString: String {
+        return "\(cityHumidity) %"
+    }
+    
+    var cityTemperatureMinString: String {
+        return "\(cityTemperatureMin)˚"
+    }
+    
+    var cityTemperatureMaxString: String {
+        return "\(cityTemperatureMax)˚"
+    }
+    
+    var cityWeatherDescriptionString: String {
+        return "\(cityWeatherDiscription)"
     }
 }

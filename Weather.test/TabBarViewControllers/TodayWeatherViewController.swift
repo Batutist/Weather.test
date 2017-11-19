@@ -57,7 +57,7 @@ class TodayWeatherViewController: UIViewController {
     // функция использует нотификацию для обнаружения изменений в БД и отображения их в пользовательском интерфейсе
     func updateUI() {
         let realm = try! Realm()
-        let results = realm.objects(TodayWeatherDB.self)
+        let results = realm.objects(TodayWeather.self)
         
         // Observe Results Notifications
         notificationToken = results.observe { [weak self] (changes: RealmCollectionChange) in
@@ -92,17 +92,17 @@ class TodayWeatherViewController: UIViewController {
     // func takes values from DB and change IBOtlets in UI
     // функция берет значения из БД и устанавливает их в элементы пользовательского интерфейса
     
-    func updateUIWith(todayWeather: TodayWeather) {
+    func updateUIWith() {
+        let todayWeather = manager.getTodayWeatherFromDB()
         
-        
-        self.temperatureValueLabel.text = todayWeather.cityTemperatureString
-        self.weatherIcon.image = todayWeather.cityWeatherIcon
-        self.weatherDescriptionLabel.text = todayWeather.cityWeatherDescriptionString
-        self.maxTemperatureLabel.text = todayWeather.cityTemperatureMaxString
-        self.minTemperatureLabel.text = todayWeather.cityTemperatureMinString
-        self.windSpeedLabel.text = todayWeather.cityWindSpeedString
-        self.pressureLabel.text = todayWeather.cityPressureString
-        self.humidityLabel.text = todayWeather.cityHumidityString
+        self.temperatureValueLabel.text = todayWeather.first?.cityTemperatureString
+        self.weatherIcon.image = UIImage(named: (todayWeather.first?.cityWeatherIcon)!)
+        self.weatherDescriptionLabel.text = todayWeather.first?.cityWeatherDescriptionString
+        self.maxTemperatureLabel.text = todayWeather.first?.cityTemperatureMaxString
+        self.minTemperatureLabel.text = todayWeather.first?.cityTemperatureMinString
+        self.windSpeedLabel.text = todayWeather.first?.cityWindSpeedString
+        self.pressureLabel.text = todayWeather.first?.cityPressureString
+        self.humidityLabel.text = todayWeather.first?.cityHumidityString
         
     }
     

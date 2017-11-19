@@ -37,13 +37,11 @@ extension SearchCityWeather {
     }
     
     var searchCityTemperatureString: String {
-        var temperature = ""
         if searchCityTemperature > 0 {
-            temperature = ("+\(searchCityTemperature)˚")
+            return "+\(searchCityTemperature)˚"
         } else {
-            temperature = ("\(searchCityTemperature)˚")
+            return "\(searchCityTemperature)˚"
         }
-        return temperature
     }
     
     var searchCityWindSpeedString: String {
