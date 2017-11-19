@@ -176,7 +176,27 @@ class WeekWeatherCityViewController: UIViewController {
              элемента массива weekWeatherNoon[0]
          */
         } else {
-
+            /* Если даты не совпадают, то тогда для элемнтов первого дня 
+            (макс температура, дата, день недели, описание дневной погоды & иконка погоды) 
+            берем из первого элемента массива Templist в weekWeather. Все остальное без изменений.
+            */
+            for index in 1...4 {
+               datesLabels[index].text = weekWeatherNoon[index].dateString
+               weatherDayIcons[index].image = UIImage(named: weekWeatherNoon[index].weatherIcon)
+               weatherDayDescriptionLabels[index].text = weekWeatherNoon[index].weatherDescription
+               temperatureMaxLabels[index].text = weekWeatherNoon[index].temperatureMaxString
+            }
+            for index in 0...4 {
+                // datesLabels[index].text = weekWeatherNoon[index].dateString
+               // weatherDayIcons[index].image = UIImage(named: weekWeatherNoon[index].weatherIcon)
+               // weatherDayDescriptionLabels[index].text = weekWeatherNoon[index].weatherDescription
+                // temperatureMaxLabels[index].text = weekWeatherNoon[index].temperatureMaxString
+                temperatureMinLabels[index].text = weekWeatherMidnight[index].temperatureMinString
+                weatherNightIcons[index].image = UIImage(named: weekWeatherMidnight[index].weatherIcon)
+                weatherNightDescriptionLabels[index].text = weekWeatherMidnight[index].weatherDescription
+                windSpeedLabels[index].text = weekWeatherMidnight[index].windSpeedString
+                windDirectionLabels[index].text = weekWeatherMidnight[index].windDegreesString
+            }
             
         }
         
