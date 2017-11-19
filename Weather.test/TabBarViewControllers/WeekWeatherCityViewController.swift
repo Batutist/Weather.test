@@ -149,6 +149,21 @@ class WeekWeatherCityViewController: UIViewController {
                 
             }
             
+            /* т.к. сайт предоставляет данные только на 5 дней, то в приложении в эелементах, 
+                которые относятся к 6 и 7 дням, просто отображаем данные за 5 день.
+            */
+            for index in 5...6 {
+                datesLabels[index].text = weekWeatherNoon[4].dateString
+                weatherDayIcons[index].image = UIImage(named: weekWeatherNoon[4].weatherIcon)
+                weatherDayDescriptionLabels[index].text = weekWeatherNoon[4].weatherDescription
+                temperatureMaxLabels[index].text = weekWeatherNoon[4].temperatureMaxString
+                temperatureMinLabels[index].text = weekWeatherMidnight[4].temperatureMinString
+                weatherNightIcons[index].image = UIImage(named: weekWeatherMidnight[4].weatherIcon)
+                weatherNightDescriptionLabels[index].text = weekWeatherMidnight[4].weatherDescription
+                windSpeedLabels[index].text = weekWeatherMidnight[4].windSpeedString
+                windDirectionLabels[index].text = weekWeatherMidnight[4].windDegreesString
+            }
+            
 //            @IBOutlet var windDirectionLabels: [UILabel]!
 //            @IBOutlet var windSpeedLabels: [UILabel]!
             
