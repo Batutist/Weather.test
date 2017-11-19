@@ -14,16 +14,7 @@ import RealmSwift
 
 let realm = try! Realm()
 
-var cityName = ""
-var cityCountry = ""
-var cityTemperature = 0
-var cityWindSpeed = 0.0
-var cityPressure = 0.0
-var cityHumidity = 0
-var cityTemperatureMin = 0
-var cityTemperatureMax = 0
-var cityWeatherDiscription = ""
-var cityWeatherIcon = ""
+
 
 class TodayWeatherViewController: UIViewController {
     // object of ManagerData class
@@ -52,7 +43,8 @@ class TodayWeatherViewController: UIViewController {
         view.backgroundColor = Colors.skyBlue
         // load data of city
         // загружаем данные по городу
-        manager.loadJSON(loadCity: city)
+        manager.loadJSON(city: city)
+        manager.getTodayWeatherFromDB()
         // call func to update user interface
         // вызываем функцию для обновления отображаемых данных
         updateUI()
@@ -75,7 +67,8 @@ class TodayWeatherViewController: UIViewController {
                 // Results are now populated and can be accessed without blocking the UI
                 // func to update labels and images values
                 // функция обновления значений ярлыков и картинок
-                self?.updateLabelsAndImages()
+                
+//                self?.updateLabelsAndImages()
                 
                 print("new")
             //                tableView.reloadData()
@@ -84,7 +77,8 @@ class TodayWeatherViewController: UIViewController {
                 
                 // func to update labels and images values
                 // функция обновления значений ярлыков и картинок
-                self?.updateLabelsAndImages()
+                
+//                self?.updateLabelsAndImages()
                 print("update")
                 
             case .error(let error):
@@ -97,37 +91,20 @@ class TodayWeatherViewController: UIViewController {
     
     // func takes values from DB and change IBOtlets in UI
     // функция берет значения из БД и устанавливает их в элементы пользовательского интерфейса
-    func updateLabelsAndImages() {
-        // get values from DB
+    
+    func updateUIWith() {
         let todayWeather = manager.getTodayWeatherFromDB()
         
-        for value in todayWeather {
-            cityName = value.cityName
-            cityCountry = value.cityCountry
-            cityTemperature = value.cityTemperature
-            cityWindSpeed = value.cityWindSpeed
-            cityPressure = value.cityPressure
-            cityHumidity = value.cityHumidity
-            cityTemperatureMin = value.cityTemperatureMin
-            cityTemperatureMax = value.cityTemperatureMax
-            cityWeatherDiscription = value.cityWeatherDiscription
-            cityWeatherIcon = value.cityWeatherIcon
-            
-            print("today view: \(cityName), \(cityTemperature), \(cityWeatherDiscription)")
-        }
+        self.temperatureValueLabel.text = todayWeather.first?.cityTemperatureString
+        self.weatherIcon.image = UIImage(named: (todayWeather.first?.cityWeatherIcon)!)
+        self.weatherDescriptionLabel.text = todayWeather.first?.cityWeatherDescriptionString
+        self.maxTemperatureLabel.text = todayWeather.first?.cityTemperatureMaxString
+        self.minTemperatureLabel.text = todayWeather.first?.cityTemperatureMinString
+        self.windSpeedLabel.text = todayWeather.first?.cityWindSpeedString
+        self.pressureLabel.text = todayWeather.first?.cityPressureString
+        self.humidityLabel.text = todayWeather.first?.cityHumidityString
         
-        if cityTemperature > 0 {
-            temperatureValueLabel.text = ("+\(cityTemperature)˚")
-        } else {
-            temperatureValueLabel.text = ("\(cityTemperature)˚")
-        }
-        windSpeedLabel.text = ("\(cityWindSpeed) m/s")
-        
-        pressureLabel.text = ("\(cityPressure) mb")
-        humidityLabel.text = ("\(cityHumidity) %")
-        minTemperatureLabel.text = ("\(cityTemperatureMin)˚")
-        maxTemperatureLabel.text = ("\(cityTemperatureMax)˚")
-        weatherDescriptionLabel.text = cityWeatherDiscription
-        weatherIcon.image = UIImage(named: cityWeatherIcon)
     }
+    
+    
 }

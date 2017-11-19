@@ -22,149 +22,49 @@ class WeekWeatherCityViewController: UIViewController {
     var cityName = ""
     var cityCountry = ""
     
-    var firstDayDate = ""
-    var firstDayTemperature = 0
-    var firstDayTemperatureMin = 0
-    var firstDayTemperatureMax = 0
-    var firstDayPressure = 0.0
-    var firstDayHumidity = 0
-    var firstDayWindSpeed = 0.0
-    var firstDayWindDegrees = 0.0
-    var firstDayWeatherDescription = ""
-    var firstDayWeatherIcon = ""
-    
-    
-    var secondDayDate = ""
-    var secondDayTemperature = 0
-    var secondDayTemperatureMin = 0
-    var secondDayTemperatureMax = 0
-    var secondDayPressure = 0.0
-    var secondDayHumidity = 0
-    var secondDayWindSpeed = 0.0
-    var secondDayWindDegrees = 0.0
-    var secondDayWeatherDescription = ""
-    var secondDayWeatherIcon = ""
-    
-    var thirdDayDate = ""
-    var thirdDayTemperature = 0
-    var thirdDayTemperatureMin = 0
-    var thirdDayTemperatureMax = 0
-    var thirdDayPressure = 0.0
-    var thirdDayHumidity = 0
-    var thirdDayWindSpeed = 0.0
-    var thirdDayWindDegrees = 0.0
-    var thirdDayWeatherDescription = ""
-    var thirdDayWeatherIcon = ""
-    
-    var fourthDayDate = ""
-    var fourthDayTemperature = 0
-    var fourthDayTemperatureMin = 0
-    var fourthDayTemperatureMax = 0
-    var fourthDayPressure = 0.0
-    var fourthDayHumidity = 0
-    var fourthDayWindSpeed = 0.0
-    var fourthDayWindDegrees = 0.0
-    var fourthDayWeatherDescription = ""
-    var fourthDayWeatherIcon = ""
-    
-    var fifthDayDate = ""
-    var fifthDayTemperature = 0
-    var fifthDayTemperatureMin = 0
-    var fifthDayTemperatureMax = 0
-    var fifthDayPressure = 0.0
-    var fifthDayHumidity = 0
-    var fifthDayWindSpeed = 0.0
-    var fifthDayWindDegrees = 0.0
-    var fifthDayWeatherDescription = ""
-    var fifthDayWeatherIcon = ""
     
     // outlets collections from UI
     // коллекции оутлетов пользовательского интерфейса
+    
+    @IBOutlet weak var cityNameLabel: UILabel!
+    @IBOutlet var dayOfWeekLabels: [UILabel]!
     @IBOutlet var datesLabels: [UILabel]!
     @IBOutlet var weatherDayIcons: [UIImageView]!
     @IBOutlet var weatherDayDescriptionLabels: [UILabel]!
     @IBOutlet var temperatureMaxLabels: [UILabel]!
     @IBOutlet var temperatureMinLabels: [UILabel]!
+    @IBOutlet var weatherNightIcons: [UIImageView]!
+    @IBOutlet var weatherNightDescriptionLabels: [UILabel]!
+    @IBOutlet var windDirectionLabels: [UILabel]!
+    @IBOutlet var windSpeedLabels: [UILabel]!
     
     
     let city = "Taganrog"
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        changeLabelsAndImages()
+        
+        
         // set default values for labels before load data finished
         // устанавливает значения по умолчанию на время загрузки данных
-        defaultValues()
+        
         // set background color
         // устанавливаем цвет фона
         view.backgroundColor = Colors.skyBlue
         // load data of city
         // загружаем данные по городу
-        manager.loadJSON(loadCity: city)
+        manager.loadJSONWeek(city: city)
+        
         // call func to update user interface
         // вызываем функцию для обновления отображаемых данных
-        updateUI()
+        
     }
     
     deinit {
         notificationToken?.invalidate()
     }
-    // func set default values for labels
-    func defaultValues() {
-        var firstDayDateLabel = datesLabels[0].text
-        var secondDayDateLabel = datesLabels[1].text
-        var thirdDayDateLabel = datesLabels[2].text
-        var fourthDayDateLabel = datesLabels[3].text
-        var fifthDayDateLabel = datesLabels[4].text
-        
-        firstDayDateLabel = "01/01"
-        secondDayDateLabel = "02/02"
-        thirdDayDateLabel = "03/03"
-        fourthDayDateLabel = "04/04"
-        fifthDayDateLabel = "05/05"
-        
-        var firstWeatherDayIcon = weatherDayIcons[0].image
-        var secondWeatherDayIcon = weatherDayIcons[1].image
-        var thirdWeatherDayIcon = weatherDayIcons[2].image
-        var fourthWeatherDayIcon = weatherDayIcons[3].image
-        var fifthWeatherDayIcon = weatherDayIcons[4].image
-        
-        
-        var firstDayWeatherDescriptionLabel = weatherDayDescriptionLabels[0].text
-        var secondDayWeatherDescriptionLabel = weatherDayDescriptionLabels[1].text
-        var thirdDayWeatherDescriptionLabel = weatherDayDescriptionLabels[2].text
-        var fourthDayWeatherDescriptionLabel = weatherDayDescriptionLabels[3].text
-        var fifthDayWeatherDescriptionLabel = weatherDayDescriptionLabels[4].text
-        
-        firstDayWeatherDescriptionLabel = "Shining"
-        secondDayWeatherDescriptionLabel = "Cloudy"
-        thirdDayWeatherDescriptionLabel = "Rain"
-        fourthDayWeatherDescriptionLabel = "Snow"
-        fifthDayWeatherDescriptionLabel = "Cold"
-        
-        var firstDayTemperatureMaxLabel = temperatureMaxLabels[0].text
-        var secondDayTemperatureMaxLabel = temperatureMaxLabels[1].text
-        var thirdDayTemperatureMaxLabel = temperatureMaxLabels[2].text
-        var fourthDayTemperatureMaxLabel = temperatureMaxLabels[3].text
-        var fifthDayTemperatureMaxLabel = temperatureMaxLabels[4].text
-        
-        firstDayTemperatureMaxLabel = "--"
-        secondDayTemperatureMaxLabel = "--"
-        thirdDayTemperatureMaxLabel = "--"
-        fourthDayTemperatureMaxLabel = "--"
-        fifthDayTemperatureMaxLabel = "--"
-        
-        var firstDayTemperatureMinLabel = temperatureMinLabels[0].text
-        var secondDayTemperatureMinLabel = temperatureMinLabels[1].text
-        var thirdDayTemperatureMinLabel = temperatureMinLabels[2].text
-        var fourthDayTemperatureMinLabel = temperatureMinLabels[3].text
-        var fifthDayTemperatureMinLabel = temperatureMinLabels[4].text
-        
-        firstDayTemperatureMinLabel = "--"
-        secondDayTemperatureMinLabel = "--"
-        thirdDayTemperatureMinLabel = "--"
-        fourthDayTemperatureMinLabel = "--"
-        fifthDayTemperatureMinLabel = "--"
-    }
+    
     // func use notificationToken to search changes in DB and display them in UI
     // функция использует нотификацию для обнаружения изменений в БД и отображения их в пользовательском интерфейсе
     func updateUI() {
@@ -178,7 +78,7 @@ class WeekWeatherCityViewController: UIViewController {
                 // Results are now populated and can be accessed without blocking the UI
                 // func to update labels and images values
                 // функция обновления значений ярлыков и картинок
-                self?.updateLabelsAndImages()
+                self?.changeLabelsAndImages()
                 
                 print("new")
             //                tableView.reloadData()
@@ -187,7 +87,7 @@ class WeekWeatherCityViewController: UIViewController {
                 
                 // func to update labels and images values
                 // функция обновления значений ярлыков и картинок
-                self?.updateLabelsAndImages()
+                self?.changeLabelsAndImages()
                 print("update")
                 
             case .error(let error):
@@ -198,106 +98,136 @@ class WeekWeatherCityViewController: UIViewController {
         }
     }
     
+    
+    
+    
     // func takes values from DB and change IBOtlets in UI
     // функция берет значения из БД и устанавливает их в элементы пользовательского интерфейса
-    func updateLabelsAndImages() {
-        // get values from DB
+    func changeLabelsAndImages() {
+        // получаем все данные на неделю
         let weekWeather = manager.getWeekWeatherFromDB()
+        print("-----------------------------")
+        print(weekWeather)
+        print("-----------------------------")
+        // получаем данные по дням только на 12:00 и 21:00
+        guard   let weekWeatherNoon = weekWeather.first?.tempList.filter("date contains '12:00:00'"),
+            let weekWeatherMidnight = weekWeather.first?.tempList.filter("date contains '21:00:00'")
+            else {return}
         
-        for value in weekWeather {
-            cityName = value.cityName
-            cityCountry = value.cityCountry
-            
-            firstDayDate = value.firstDayDate
-            firstDayTemperature = value.firstDayTemperature
-            firstDayTemperatureMin = value.firstDayTemperatureMin
-            firstDayTemperatureMax = value.firstDayTemperatureMax
-            firstDayPressure = value.firstDayPressure
-            firstDayHumidity = value.firstDayHumidity
-            firstDayWindSpeed = value.firstDayWindSpeed
-            firstDayWindDegrees = value.fifthDayWindDegrees
-            firstDayWeatherDescription = value.firstDayWeatherDescription
-            firstDayWeatherIcon = value.firstDayWeatherIcon
-            
-            secondDayDate = value.secondDayDate
-            secondDayTemperature = value.secondDayTemperature
-            secondDayTemperatureMin = value.secondDayTemperatureMin
-            secondDayTemperatureMax = value.secondDayTemperatureMax
-            secondDayPressure = value.secondDayPressure
-            secondDayHumidity = value.secondDayHumidity
-            secondDayWindSpeed = value.secondDayWindSpeed
-            secondDayWindDegrees = value.secondDayWindDegrees
-            secondDayWeatherDescription = value.secondDayWeatherDescription
-            secondDayWeatherIcon = value.secondDayWeatherIcon
-            
-            thirdDayDate = value.thirdDayDate
-            thirdDayTemperature = value.thirdDayTemperature
-            thirdDayTemperatureMin = value.thirdDayTemperatureMin
-            thirdDayTemperatureMax = value.thirdDayTemperatureMax
-            thirdDayPressure = value.thirdDayPressure
-            thirdDayHumidity = value.thirdDayHumidity
-            thirdDayWindSpeed = value.thirdDayWindSpeed
-            thirdDayWindDegrees = value.thirdDayWindDegrees
-            thirdDayWeatherDescription = value.thirdDayWeatherDescription
-            thirdDayWeatherIcon = value.thirdDayWeatherIcon
-            
-            fourthDayDate = value.fourthDayDate
-            fourthDayTemperature = value.fourthDayTemperature
-            fourthDayTemperatureMin = value.fourthDayTemperatureMin
-            fourthDayTemperatureMax = value.fourthDayTemperatureMax
-            fourthDayPressure = value.fourthDayPressure
-            fourthDayHumidity = value.fourthDayHumidity
-            fourthDayWindSpeed = value.fourthDayWindSpeed
-            fourthDayWindDegrees = value.fourthDayWindDegrees
-            fourthDayWeatherDescription = value.fourthDayWeatherDescription
-            fourthDayWeatherIcon = value.fourthDayWeatherIcon
-            
-            fifthDayDate = value.fifthDayDate
-            fifthDayTemperature = value.fifthDayTemperature
-            fifthDayTemperatureMin = value.fifthDayTemperatureMin
-            fifthDayTemperatureMax = value.fifthDayTemperatureMax
-            fifthDayPressure = value.fifthDayPressure
-            fifthDayHumidity = value.fifthDayHumidity
-            fifthDayWindSpeed = value.fifthDayWindSpeed
-            fifthDayWindDegrees = value.fifthDayWindDegrees
-            fifthDayWeatherDescription = value.fifthDayWeatherDescription
-            fifthDayWeatherIcon = value.fifthDayWeatherIcon
-            print("first day date \(firstDayDate)")
+        let dateFormatter = DateFormatter()
+        // преобразуем формат даты дня в строку
+        var weekWeatherNoonDateString: String {
+            let date = Date(timeIntervalSince1970: (weekWeatherNoon.first?.forecastedTime)!)
+            dateFormatter.dateFormat = "dd.MM"
+            return dateFormatter.string(from: date as Date)
         }
-        
-        datesLabels[0].text = firstDayDate
-        datesLabels[1].text = secondDayDate
-        datesLabels[2].text = thirdDayDate
-        datesLabels[3].text = fourthDayDate
-        datesLabels[4].text = fifthDayDate
-        
-        
-        weatherDayIcons[0].image = UIImage(named: firstDayWeatherIcon)
-        weatherDayIcons[1].image = UIImage(named: secondDayWeatherIcon)
-        weatherDayIcons[2].image = UIImage(named: thirdDayWeatherIcon)
-        weatherDayIcons[3].image = UIImage(named: fourthDayWeatherIcon)
-        weatherDayIcons[4].image = UIImage(named: fifthDayWeatherIcon)
-        
-        weatherDayDescriptionLabels[0].text = firstDayWeatherDescription
-        weatherDayDescriptionLabels[1].text = secondDayWeatherDescription
-        weatherDayDescriptionLabels[2].text = thirdDayWeatherDescription
-        weatherDayDescriptionLabels[3].text = fourthDayWeatherDescription
-        weatherDayDescriptionLabels[4].text = fifthDayWeatherDescription
-        
-        temperatureMaxLabels[0].text = ("\(firstDayTemperatureMax)˚")
-        temperatureMaxLabels[1].text = ("\(secondDayTemperatureMax)˚")
-        temperatureMaxLabels[2].text = ("\(thirdDayTemperatureMax)˚")
-        temperatureMaxLabels[3].text = ("\(fourthDayTemperatureMax)˚")
-        temperatureMaxLabels[4].text = ("\(fifthDayTemperatureMax)˚")
-        
-        temperatureMinLabels[0].text = ("\(firstDayTemperatureMin)˚")
-        temperatureMinLabels[1].text = ("\(secondDayTemperatureMin)˚")
-        temperatureMinLabels[2].text = ("\(thirdDayTemperatureMin)˚")
-        temperatureMinLabels[3].text = ("\(fourthDayTemperatureMin)˚")
-        temperatureMinLabels[4].text = ("\(fifthDayTemperatureMin)˚")
-        
+        print(weekWeatherNoonDateString)
+        // преобразуем дату на момент запроса в строку
+        var todayString: String {
+            let today = NSDate()
+            dateFormatter.dateFormat = "dd.MM"
+            return dateFormatter.string(from: today as Date)
+        }
+        /*
+         если дата в 12:00 совпадает с датой запроса, то
+         выводим данные из weekWeatherNoon и weekWeathermidnight
+         в ярлыки и картинки
+         */
+        if weekWeatherNoonDateString == todayString {
+            
+            cityNameLabel.text = weekWeather.first?.cityNameAndCountryString
+            // в цикле по индексу присваиваем значение всем оутлетам
+            for index in 0...4 {
+                dayOfWeekLabels[index].text = weekWeatherNoon[index].dayOfWeek
+                datesLabels[index].text = weekWeatherNoon[index].dateString
+                weatherDayIcons[index].image = UIImage(named: weekWeatherNoon[index].weatherIcon)
+                weatherDayDescriptionLabels[index].text = weekWeatherNoon[index].weatherDescription
+                temperatureMaxLabels[index].text = weekWeatherNoon[index].temperatureMaxString
+                temperatureMinLabels[index].text = weekWeatherMidnight[index].temperatureMinString
+                weatherNightIcons[index].image = UIImage(named: weekWeatherMidnight[index].weatherIcon)
+                weatherNightDescriptionLabels[index].text = weekWeatherMidnight[index].weatherDescription
+                windSpeedLabels[index].text = weekWeatherMidnight[index].windSpeedString
+                windDirectionLabels[index].text = weekWeatherMidnight[index].windDegreesString
+                
+            }
+            
+            /* т.к. сайт предоставляет данные только на 5 дней, то в приложении в эелементах, 
+                которые относятся к 6 и 7 дням, просто отображаем данные за 5 день.
+            */
+            for index in 5...6 {
+                dayOfWeekLabels[index].text = weekWeatherNoon[4].dayOfWeek
+                datesLabels[index].text = weekWeatherNoon[4].dateString
+                weatherDayIcons[index].image = UIImage(named: weekWeatherNoon[4].weatherIcon)
+                weatherDayDescriptionLabels[index].text = weekWeatherNoon[4].weatherDescription
+                temperatureMaxLabels[index].text = weekWeatherNoon[4].temperatureMaxString
+                temperatureMinLabels[index].text = weekWeatherMidnight[4].temperatureMinString
+                weatherNightIcons[index].image = UIImage(named: weekWeatherMidnight[4].weatherIcon)
+                weatherNightDescriptionLabels[index].text = weekWeatherMidnight[4].weatherDescription
+                windSpeedLabels[index].text = weekWeatherMidnight[4].windSpeedString
+                windDirectionLabels[index].text = weekWeatherMidnight[4].windDegreesString
+            }
+        /*
+             может произойти так, что запрос по погоде будет происходить после 15:00
+             и первый элемент с временем 12:00 будет уже следующим днем, тогда
+             для максимальной температуры мы берем значения погоды из первого
+             элемента массива weekWeatherNoon[0]
+         */
+        } else {
+            /* Если даты не совпадают, то тогда для элемнтов первого дня 
+            (макс температура, дата, день недели, описание дневной погоды & иконка погоды) 
+            берем из первого элемента массива Templist в weekWeather.
+            */
+            for value in weekWeather {
+                dayOfWeekLabels[0].text = value.tempList[0].dayOfWeek
+                datesLabels[0].text = value.tempList[0].dateString
+                weatherDayIcons[0].image = UIImage(named: value.tempList[0].weatherIcon)
+                weatherDayDescriptionLabels[0].text = value.tempList[0].weatherDescription
+                temperatureMaxLabels[0].text = value.tempList[0].temperatureMaxString
+            }
+            
+            // со 2 по 5 день отображаем данные в UI
+            for index in 1...4 {
+                dayOfWeekLabels[index].text = weekWeatherNoon[index].dayOfWeek
+                datesLabels[index].text = weekWeatherNoon[index].dateString
+                weatherDayIcons[index].image = UIImage(named: weekWeatherNoon[index].weatherIcon)
+                weatherDayDescriptionLabels[index].text = weekWeatherNoon[index].weatherDescription
+                temperatureMaxLabels[index].text = weekWeatherNoon[index].temperatureMaxString
+            }
+            
+            // в цикле по индексу присваиваем значение всем оставшимся оутлетам
+            for index in 0...4 {
+                // datesLabels[index].text = weekWeatherNoon[index].dateString
+               // weatherDayIcons[index].image = UIImage(named: weekWeatherNoon[index].weatherIcon)
+               // weatherDayDescriptionLabels[index].text = weekWeatherNoon[index].weatherDescription
+                // temperatureMaxLabels[index].text = weekWeatherNoon[index].temperatureMaxString
+                temperatureMinLabels[index].text = weekWeatherMidnight[index].temperatureMinString
+                weatherNightIcons[index].image = UIImage(named: weekWeatherMidnight[index].weatherIcon)
+                weatherNightDescriptionLabels[index].text = weekWeatherMidnight[index].weatherDescription
+                windSpeedLabels[index].text = weekWeatherMidnight[index].windSpeedString
+                windDirectionLabels[index].text = weekWeatherMidnight[index].windDegreesString
+            }
+            
+            /* т.к. сайт предоставляет данные только на 5 дней, то в приложении в эелементах,
+             которые относятся к 6 и 7 дням, просто отображаем данные за 5 день.
+             */
+            for index in 5...6 {
+                dayOfWeekLabels[index].text = weekWeatherNoon[4].dayOfWeek
+                datesLabels[index].text = weekWeatherNoon[4].dateString
+                weatherDayIcons[index].image = UIImage(named: weekWeatherNoon[4].weatherIcon)
+                weatherDayDescriptionLabels[index].text = weekWeatherNoon[4].weatherDescription
+                temperatureMaxLabels[index].text = weekWeatherNoon[4].temperatureMaxString
+                temperatureMinLabels[index].text = weekWeatherMidnight[4].temperatureMinString
+                weatherNightIcons[index].image = UIImage(named: weekWeatherMidnight[4].weatherIcon)
+                weatherNightDescriptionLabels[index].text = weekWeatherMidnight[4].weatherDescription
+                windSpeedLabels[index].text = weekWeatherMidnight[4].windSpeedString
+                windDirectionLabels[index].text = weekWeatherMidnight[4].windDegreesString
+            }
+        }
     }
-    
-    
-    
 }
+
+
+
+
+
+

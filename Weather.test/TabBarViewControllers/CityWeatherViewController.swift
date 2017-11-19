@@ -13,18 +13,9 @@ import RealmSwift
 
 // create variables to work with
 // создаем переменные для дальнейшего использования
-var searchCityName = ""
-var searchCityCountry = ""
-var searchCityTemperature = 0
-var searchCityWindSpeed = 0.0
-var searchCityPressure = 0.0
-var searchCityHumidity = 0
-var searchCityTemperatureMin = 0
-var searchCityTemperatureMax = 0
-var searchCityWeatherDiscription = ""
-var searchCityWeatherIcon = ""
 
-class CityWeatherViewController: UIViewController {
+
+class CityWeatherViewController: UIViewController, UITextFieldDelegate {
     //create object of ManagerData
     // создаем объекс класса ManagerData
     let manager = ManagerData()
@@ -60,11 +51,15 @@ class CityWeatherViewController: UIViewController {
                     // вызываем функцию для обновления отображаемых данных
                     updateUI()
                 }
+        // hide keyboard when button is pressed
+        // скрываем клавиатуру по нажатию на кнопку поиск
+        view.endEditing(true)
     }
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.citySearchTextField.delegate = self
         // change background color
         // меняем цвет фона
         view.backgroundColor = Colors.skyBlue
@@ -81,11 +76,23 @@ class CityWeatherViewController: UIViewController {
         // вызываем функцию для обновления отображаемых данных
         updateUI()
     }
+    deinit {
+        notificationToken?.invalidate()
+    }
+    // прячем клавиатуру по нажатию на экран
+    func touchesBegan(touches: Set<NSObject>,withEvent event: UIEvent) {
+        if let touch = touches.first as? UITouch {
+            view.endEditing(true)
+        }
+        super.touchesBegan(touches as! Set<UITouch>, with: event)
+    }
     // func use notificationToken to search changes in DB and display them in UI
     // функция использует нотификацию для обнаружения изменений в БД и отображения их в пользовательском интерфейсе
     func updateUI() {
-        let realm = try! Realm()
+        
+        guard let realm = try? Realm() else { return }
         let results = realm.objects(SearchCityWeather.self)
+        
         
         // Observe Results Notifications
         notificationToken = results.observe { [weak self] (changes: RealmCollectionChange) in
@@ -95,16 +102,20 @@ class CityWeatherViewController: UIViewController {
                 // Results are now populated and can be accessed without blocking the UI
                 // func to update labels and images values
                 // функция обновления значений ярлыков и картинок
-                self?.updateLabelsAndImages()
+                
+                let searchCityWeather = self?.manager.getSearchCityWeatherFromDB()
+                
+                self?.updateLabelsAndImages(searchCityWeather: searchCityWeather!)
                 
                 print("new")
             //                tableView.reloadData()
-            case .update(_, let deletions, let insertions, let modifications):
+            case .update:
                 // Query results have changed, so apply them to the UITableView
                 
                 // func to update labels and images values
                 // функция обновления значений ярлыков и картинок
-                self?.updateLabelsAndImages()
+                let searchCityWeather = self?.manager.getSearchCityWeatherFromDB()
+                self?.updateLabelsAndImages(searchCityWeather: searchCityWeather!)
                 print("update")
                 
             case .error(let error):
@@ -113,9 +124,6 @@ class CityWeatherViewController: UIViewController {
                 fatalError("\(error)")
             }
         }
-    }
-    deinit {
-        notificationToken?.invalidate()
     }
     
     // func with alert controller to display if citySearchTextField is empty
@@ -129,49 +137,47 @@ class CityWeatherViewController: UIViewController {
     
     // func takes values from DB and change IBOtlets in UI
     // функция берет значения из БД и устанавливает их в элементы пользовательского интерфейса
-    func updateLabelsAndImages() {
+    func updateLabelsAndImages(searchCityWeather: Results<SearchCityWeather>) {
         let searchCityWeather = manager.getSearchCityWeatherFromDB()
         
         for value in searchCityWeather {
-            searchCityName = value.searchCityName
-            searchCityCountry = value.searchCityCountry
-            searchCityTemperature = value.searchCityTemperature
-            searchCityWindSpeed = value.searchCityWindSpeed
-            searchCityPressure = value.searchCityPressure
-            searchCityHumidity = value.searchCityHumidity
-            searchCityTemperatureMin = value.searchCityTemperatureMin
-            searchCityTemperatureMax = value.searchCityTemperatureMax
-            searchCityWeatherDiscription = value.searchCityWeatherDiscription
-            searchCityWeatherIcon = value.searchCityWeatherIcon
             
-            print("for value in: \(searchCityName)")
+            citySearchNameLabel.text = value.searchCityNameAndCountryString
+            cityTemperatureLabel.text = value.searchCityTemperatureString
+            cityWeatherIcon.image = UIImage(named: value.searchCityWeatherIcon)
+            cityWeatherDescriptionLabel.text = value.searchCityWeatherDiscription
+            cityMaxTemperatureLabel.text = value.temperatureMaxString
+            cityMinTemperatureLabel.text = value.temperatureMinString
+            cityWindSpeedLabel.text = value.searchCityWindSpeedString
+            cityPressureLabel.text = value.searchCityPressureString
+            cityHumidityLabel.text = value.searchCityHumidityString
+            
         }
-        
-        citySearchNameLabel.text = "\(searchCityName), \(searchCityCountry)"
-        if searchCityTemperature > 0 {
-            cityTemperatureLabel.text = ("+\(searchCityTemperature)˚")
-        } else {
-            cityTemperatureLabel.text = ("\(searchCityTemperature)˚")
-        }
-        cityWeatherIcon.image = UIImage(named: searchCityWeatherIcon)
-        cityWeatherDescriptionLabel.text = searchCityWeatherDiscription
-        cityMaxTemperatureLabel.text = ("\(searchCityTemperatureMax)˚")
-        cityMinTemperatureLabel.text = ("\(searchCityTemperatureMin)˚")
-        cityWindSpeedLabel.text = ("\(searchCityWindSpeed) m/s")
-        cityPressureLabel.text = ("\(searchCityPressure) mb")
-        cityHumidityLabel.text = ("\(searchCityHumidity) %")
     }
     // func with default values to display while data is loading
     // функция для отображения дефолтных данных пока не прошла загрузка
     func defaultValues() {
         cityTemperatureLabel.text = "--"
-        //        cityWeatherIcon.image = UIImage(named: searchCityWeatherIcon)
         cityWeatherDescriptionLabel.text = "..."
         cityMaxTemperatureLabel.text = "--"
         cityMinTemperatureLabel.text = "--"
         cityWindSpeedLabel.text = "--"
         cityPressureLabel.text = "--"
         cityHumidityLabel.text = "--"
+    }
+    
+
+
+    
+    //--- Вызывается, когда пользователь кликает на view (за пределами textField)--
+    // outlets textField и textField2, UITextFieldDelegate
+    // и textField.delegate = ... не нужны
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if let _ = touches.first {
+            view.endEditing(true)
+        }
+        super.touchesBegan(touches , with:event)
     }
 }
 
