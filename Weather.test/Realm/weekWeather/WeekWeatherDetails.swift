@@ -100,7 +100,38 @@ extension WeekWeatherDetails {
         return direction
     }
     
+    var dayOfWeek: String {
+        var dayOfWeekString = ""
+        if dayOfWeek(forecastedTime: forecastedTime) == 1 {
+            dayOfWeekString = ("Mon")
+        } else if dayOfWeek(forecastedTime: forecastedTime) == 2 {
+            dayOfWeekString = ("Tue")
+        } else if dayOfWeek(forecastedTime: forecastedTime) == 3 {
+            dayOfWeekString = ("Wed")
+        } else if dayOfWeek(forecastedTime: forecastedTime) == 4 {
+            dayOfWeekString = ("Thu")
+        } else if dayOfWeek(forecastedTime: forecastedTime) == 5 {
+            dayOfWeekString = ("Fri")
+        } else if dayOfWeek(forecastedTime: forecastedTime) == 6 {
+            dayOfWeekString = ("Sat")
+        } else if dayOfWeek(forecastedTime: forecastedTime) == 7 {
+            dayOfWeekString = ("Sun")
+        }
+        
+        return dayOfWeekString
+    }
     
     
     
+    func dayOfWeek(forecastedTime: Double) -> Int {
+        
+        let date = Date(timeIntervalSince1970: forecastedTime)
+        
+        let gregorian : NSCalendar = NSCalendar(calendarIdentifier: NSCalendar.Identifier.gregorian)!
+        let weekdayComponent : NSDateComponents = gregorian.components(.weekday, from: date as Date) as NSDateComponents
+        
+        let currentDay = weekdayComponent.weekday - 1 //адаптируем календарь под отечественный
+        return currentDay
+    }
 }
+

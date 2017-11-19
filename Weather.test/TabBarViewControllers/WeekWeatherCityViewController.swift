@@ -178,14 +178,24 @@ class WeekWeatherCityViewController: UIViewController {
         } else {
             /* Если даты не совпадают, то тогда для элемнтов первого дня 
             (макс температура, дата, день недели, описание дневной погоды & иконка погоды) 
-            берем из первого элемента массива Templist в weekWeather. Все остальное без изменений.
+            берем из первого элемента массива Templist в weekWeather.
             */
+            for value in weekWeather {
+                datesLabels[0].text = value.tempList[0].dateString
+                weatherDayIcons[0].image = UIImage(named: value.tempList[0].weatherIcon)
+                weatherDayDescriptionLabels[0].text = value.tempList[0].weatherDescription
+                temperatureMaxLabels[0].text = value.tempList[0].temperatureMaxString
+            }
+            
+            // со 2 по 5 день отображаем данные в UI
             for index in 1...4 {
                datesLabels[index].text = weekWeatherNoon[index].dateString
                weatherDayIcons[index].image = UIImage(named: weekWeatherNoon[index].weatherIcon)
                weatherDayDescriptionLabels[index].text = weekWeatherNoon[index].weatherDescription
                temperatureMaxLabels[index].text = weekWeatherNoon[index].temperatureMaxString
             }
+            
+            // в цикле по индексу присваиваем значение всем оставшимся оутлетам
             for index in 0...4 {
                 // datesLabels[index].text = weekWeatherNoon[index].dateString
                // weatherDayIcons[index].image = UIImage(named: weekWeatherNoon[index].weatherIcon)
@@ -198,6 +208,22 @@ class WeekWeatherCityViewController: UIViewController {
                 windDirectionLabels[index].text = weekWeatherMidnight[index].windDegreesString
             }
             
+            /* т.к. сайт предоставляет данные только на 5 дней, то в приложении в эелементах,
+             которые относятся к 6 и 7 дням, просто отображаем данные за 5 день.
+             */
+            for index in 5...6 {
+                datesLabels[index].text = weekWeatherNoon[4].dateString
+                weatherDayIcons[index].image = UIImage(named: weekWeatherNoon[4].weatherIcon)
+                weatherDayDescriptionLabels[index].text = weekWeatherNoon[4].weatherDescription
+                temperatureMaxLabels[index].text = weekWeatherNoon[4].temperatureMaxString
+                temperatureMinLabels[index].text = weekWeatherMidnight[4].temperatureMinString
+                weatherNightIcons[index].image = UIImage(named: weekWeatherMidnight[4].weatherIcon)
+                weatherNightDescriptionLabels[index].text = weekWeatherMidnight[4].weatherDescription
+                windSpeedLabels[index].text = weekWeatherMidnight[4].windSpeedString
+                windDirectionLabels[index].text = weekWeatherMidnight[4].windDegreesString
+            }
+            
+            
         }
         
         //        let gregorian : NSCalendar = NSCalendar(calendarIdentifier: NSCalendar.Identifier.gregorian)!
@@ -208,8 +234,11 @@ class WeekWeatherCityViewController: UIViewController {
         //        weekWeatherNoon.first?.date
     }
     
-    func dayOfWeek() {
-        
-        
-    }
+
 }
+
+
+
+
+
+
