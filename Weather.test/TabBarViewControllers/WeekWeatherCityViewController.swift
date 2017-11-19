@@ -27,6 +27,7 @@ class WeekWeatherCityViewController: UIViewController {
     // коллекции оутлетов пользовательского интерфейса
     
     @IBOutlet weak var cityNameLabel: UILabel!
+    @IBOutlet var dayOfWeekLabels: [UILabel]!
     @IBOutlet var datesLabels: [UILabel]!
     @IBOutlet var weatherDayIcons: [UIImageView]!
     @IBOutlet var weatherDayDescriptionLabels: [UILabel]!
@@ -77,7 +78,7 @@ class WeekWeatherCityViewController: UIViewController {
                 // Results are now populated and can be accessed without blocking the UI
                 // func to update labels and images values
                 // функция обновления значений ярлыков и картинок
-                
+                self?.changeLabelsAndImages()
                 
                 print("new")
             //                tableView.reloadData()
@@ -86,7 +87,7 @@ class WeekWeatherCityViewController: UIViewController {
                 
                 // func to update labels and images values
                 // функция обновления значений ярлыков и картинок
-                
+                self?.changeLabelsAndImages()
                 print("update")
                 
             case .error(let error):
@@ -137,6 +138,7 @@ class WeekWeatherCityViewController: UIViewController {
             cityNameLabel.text = ("\(weekWeather.first?.cityName), \(weekWeather.first?.cityCountry)")
             // в цикле по индексу присваиваем значение всем оутлетам
             for index in 0...4 {
+                dayOfWeekLabels[index].text = weekWeatherNoon[index].dayOfWeek
                 datesLabels[index].text = weekWeatherNoon[index].dateString
                 weatherDayIcons[index].image = UIImage(named: weekWeatherNoon[index].weatherIcon)
                 weatherDayDescriptionLabels[index].text = weekWeatherNoon[index].weatherDescription
@@ -153,6 +155,7 @@ class WeekWeatherCityViewController: UIViewController {
                 которые относятся к 6 и 7 дням, просто отображаем данные за 5 день.
             */
             for index in 5...6 {
+                dayOfWeekLabels[index].text = weekWeatherNoon[4].dayOfWeek
                 datesLabels[index].text = weekWeatherNoon[4].dateString
                 weatherDayIcons[index].image = UIImage(named: weekWeatherNoon[4].weatherIcon)
                 weatherDayDescriptionLabels[index].text = weekWeatherNoon[4].weatherDescription
@@ -163,12 +166,6 @@ class WeekWeatherCityViewController: UIViewController {
                 windSpeedLabels[index].text = weekWeatherMidnight[4].windSpeedString
                 windDirectionLabels[index].text = weekWeatherMidnight[4].windDegreesString
             }
-            
-//            @IBOutlet var windDirectionLabels: [UILabel]!
-//            @IBOutlet var windSpeedLabels: [UILabel]!
-            
-            
-            
         /*
              может произойти так, что запрос по погоде будет происходить после 15:00
              и первый элемент с временем 12:00 будет уже следующим днем, тогда
@@ -181,6 +178,7 @@ class WeekWeatherCityViewController: UIViewController {
             берем из первого элемента массива Templist в weekWeather.
             */
             for value in weekWeather {
+                dayOfWeekLabels[0].text = value.tempList[0].dayOfWeek
                 datesLabels[0].text = value.tempList[0].dateString
                 weatherDayIcons[0].image = UIImage(named: value.tempList[0].weatherIcon)
                 weatherDayDescriptionLabels[0].text = value.tempList[0].weatherDescription
@@ -189,10 +187,11 @@ class WeekWeatherCityViewController: UIViewController {
             
             // со 2 по 5 день отображаем данные в UI
             for index in 1...4 {
-               datesLabels[index].text = weekWeatherNoon[index].dateString
-               weatherDayIcons[index].image = UIImage(named: weekWeatherNoon[index].weatherIcon)
-               weatherDayDescriptionLabels[index].text = weekWeatherNoon[index].weatherDescription
-               temperatureMaxLabels[index].text = weekWeatherNoon[index].temperatureMaxString
+                dayOfWeekLabels[index].text = weekWeatherNoon[index].dayOfWeek
+                datesLabels[index].text = weekWeatherNoon[index].dateString
+                weatherDayIcons[index].image = UIImage(named: weekWeatherNoon[index].weatherIcon)
+                weatherDayDescriptionLabels[index].text = weekWeatherNoon[index].weatherDescription
+                temperatureMaxLabels[index].text = weekWeatherNoon[index].temperatureMaxString
             }
             
             // в цикле по индексу присваиваем значение всем оставшимся оутлетам
@@ -212,6 +211,7 @@ class WeekWeatherCityViewController: UIViewController {
              которые относятся к 6 и 7 дням, просто отображаем данные за 5 день.
              */
             for index in 5...6 {
+                dayOfWeekLabels[index].text = weekWeatherNoon[4].dayOfWeek
                 datesLabels[index].text = weekWeatherNoon[4].dateString
                 weatherDayIcons[index].image = UIImage(named: weekWeatherNoon[4].weatherIcon)
                 weatherDayDescriptionLabels[index].text = weekWeatherNoon[4].weatherDescription
@@ -222,19 +222,8 @@ class WeekWeatherCityViewController: UIViewController {
                 windSpeedLabels[index].text = weekWeatherMidnight[4].windSpeedString
                 windDirectionLabels[index].text = weekWeatherMidnight[4].windDegreesString
             }
-            
-            
         }
-        
-        //        let gregorian : NSCalendar = NSCalendar(calendarIdentifier: NSCalendar.Identifier.gregorian)!
-        //        let weekdayComponent : NSDateComponents = gregorian.components(.weekday, from: today as Date) as NSDateComponents
-        //        var currentDay = weekdayComponent.weekday - 1
-        
-        //        let weekWeatherNoonDateString = dateFormatter.string(from: weekWeatherNoon.first?.date as Date)
-        //        weekWeatherNoon.first?.date
     }
-    
-
 }
 
 

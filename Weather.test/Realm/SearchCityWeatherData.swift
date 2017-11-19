@@ -30,4 +30,46 @@ class SearchCityWeather: Object {
     }
 }
 
+extension SearchCityWeather {
+    
+    var searchCityNameAndCountryString: String {
+        return("\(searchCityName), \(searchCityCountry)")
+    }
+    
+    var searchCityTemperatureString: String {
+        var temperature = ""
+        if searchCityTemperature > 0 {
+            temperature = ("+\(searchCityTemperature)˚")
+        } else {
+            temperature = ("\(searchCityTemperature)˚")
+        }
+        return temperature
+    }
+    
+    var searchCityWindSpeedString: String {
+        return "\(searchCityWindSpeed)m/s"
+    }
+    
+    var searchCityPressureString: String {
+        return ("\(searchCityPressure)mb")
+    }
+    
+    var searchCityHumidityString: String {
+        return ("\(searchCityHumidity)%")
+    }
+    
+    var temperatureMinString: String {
+        return ("\(searchCityTemperatureMin)˚")
+    }
+    
+    var temperatureMaxString: String {
+        return ("\(searchCityTemperatureMax)˚")
+    }
+    
+    var icon: UIImage {
+        return UIImage(named: searchCityWeatherIcon)!
+    }
+    
+}
+
 

@@ -1040,6 +1040,13 @@
                         <outletCollection property="datesLabels" destination="yb4-qb-I9p" collectionClass="NSMutableArray" id="ixp-fP-XjA"/>
                         <outletCollection property="datesLabels" destination="3lg-cd-OST" collectionClass="NSMutableArray" id="Fxl-3c-pdE"/>
                         <outletCollection property="datesLabels" destination="lkp-9v-9wi" collectionClass="NSMutableArray" id="cQI-ew-7pa"/>
+                        <outletCollection property="dayOfWeekLabels" destination="WK1-VV-HPj" collectionClass="NSMutableArray" id="tZS-7W-ALh"/>
+                        <outletCollection property="dayOfWeekLabels" destination="e81-h2-Nuh" collectionClass="NSMutableArray" id="0wi-qz-Qxv"/>
+                        <outletCollection property="dayOfWeekLabels" destination="fYw-C0-0ne" collectionClass="NSMutableArray" id="x1U-NK-elE"/>
+                        <outletCollection property="dayOfWeekLabels" destination="X8c-Qd-TQX" collectionClass="NSMutableArray" id="rL5-42-ZIf"/>
+                        <outletCollection property="dayOfWeekLabels" destination="OD2-Z0-Xh4" collectionClass="NSMutableArray" id="ezf-6Z-wF3"/>
+                        <outletCollection property="dayOfWeekLabels" destination="uJ8-iO-Q8W" collectionClass="NSMutableArray" id="Hjw-Pq-VPm"/>
+                        <outletCollection property="dayOfWeekLabels" destination="4nR-Qd-rsi" collectionClass="NSMutableArray" id="vOJ-fC-v6W"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mRU-pB-a32" userLabel="First Responder" sceneMemberID="firstResponder"/>
