@@ -56,8 +56,13 @@ class ManagerData {
                 
                 // try to write values to Realm DB
                 // пробуем записать полученные значения в БД
-                try! realm.write {
-                    realm.add(searchCityWeather, update: true)
+                do {
+                    try realm.write {
+                        realm.add(searchCityWeather, update: true)
+                    }
+                    print("Запись")
+                } catch let error as NSError {
+                    fatalError("Error writing realm: \(error)")
                 }
                 print("load JSONS search: \(searchCityWeather.searchCityName), \(searchCityWeather.searchCityCountry)")
                 userDefaults.set( "ok",  forKey:  "loadSearchCity")
@@ -108,11 +113,14 @@ class ManagerData {
                 
                 // try to write values to Realm DB
                 // пробуем записать полученные значения в БД
-                try! realm.write {
-                    realm.add(todayWeather, update: true)
+                do {
+                    try realm.write {
+                        realm.add(todayWeather, update: true)
+                    }
+                    print("Запись")
+                } catch let error as NSError {
+                    fatalError("Error writing realm: \(error)")
                 }
-                // don't use in my app
-                //                        userDefaults.set( "ok",  forKey:  "load")
                 
                 print("""
                     hey city\(todayWeather.cityName).
@@ -179,9 +187,16 @@ class ManagerData {
                 
                 // try to write values to Realm DB
                 // пробуем записать полученные значения в БД
-                try! realm.write {
-                    realm.add(weekWeather, update: true)
+                
+                do {
+                    try realm.write {
+                        realm.add(weekWeather, update: true)
+                    }
+                    print("Запись")
+                } catch let error as NSError {
+                    fatalError("Error writing realm: \(error)")
                 }
+                
             case .failure(let error):
                 print(error)
             }

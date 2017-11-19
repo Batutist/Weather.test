@@ -66,10 +66,15 @@ extension SearchCityWeather {
         return ("\(searchCityTemperatureMax)˚")
     }
     
-    var icon: UIImage {
-        return UIImage(named: searchCityWeatherIcon)!
-    }
-    
+//    var icon: UIImage {
+//        
+//        if let weatherIcon = try? UIImage(named: searchCityWeatherIcon)
+//        {
+//            let weatherIcon = UIImage(named: "01d")
+//            return weatherIcon!
+//        }
+//        return weatherIcon
+//    }
 }
 
 

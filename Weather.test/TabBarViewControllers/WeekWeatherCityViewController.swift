@@ -135,7 +135,7 @@ class WeekWeatherCityViewController: UIViewController {
          */
         if weekWeatherNoonDateString == todayString {
             
-            cityNameLabel.text = ("\(weekWeather.first?.cityName), \(weekWeather.first?.cityCountry)")
+            cityNameLabel.text = weekWeather.first?.cityNameAndCountryString
             // в цикле по индексу присваиваем значение всем оутлетам
             for index in 0...4 {
                 dayOfWeekLabels[index].text = weekWeatherNoon[index].dayOfWeek

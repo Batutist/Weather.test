@@ -89,8 +89,10 @@ class CityWeatherViewController: UIViewController, UITextFieldDelegate {
     // func use notificationToken to search changes in DB and display them in UI
     // функция использует нотификацию для обнаружения изменений в БД и отображения их в пользовательском интерфейсе
     func updateUI() {
-        let realm = try! Realm()
+        
+        guard let realm = try? Realm() else { return }
         let results = realm.objects(SearchCityWeather.self)
+        
         
         // Observe Results Notifications
         notificationToken = results.observe { [weak self] (changes: RealmCollectionChange) in
@@ -107,7 +109,7 @@ class CityWeatherViewController: UIViewController, UITextFieldDelegate {
                 
                 print("new")
             //                tableView.reloadData()
-            case .update(_, let deletions, let insertions, let modifications):
+            case .update:
                 // Query results have changed, so apply them to the UITableView
                 
                 // func to update labels and images values
@@ -136,17 +138,21 @@ class CityWeatherViewController: UIViewController, UITextFieldDelegate {
     // func takes values from DB and change IBOtlets in UI
     // функция берет значения из БД и устанавливает их в элементы пользовательского интерфейса
     func updateLabelsAndImages(searchCityWeather: Results<SearchCityWeather>) {
-        let searchCityWeather = SearchCityWeather()
+        let searchCityWeather = manager.getSearchCityWeatherFromDB()
         
-        citySearchNameLabel.text = searchCityWeather.searchCityNameAndCountryString
-        cityTemperatureLabel.text = searchCityWeather.searchCityTemperatureString
-        cityWeatherIcon.image = searchCityWeather.icon
-        cityWeatherDescriptionLabel.text = searchCityWeather.description
-        cityMaxTemperatureLabel.text = searchCityWeather.temperatureMaxString
-        cityMinTemperatureLabel.text = searchCityWeather.temperatureMinString
-        cityWindSpeedLabel.text = searchCityWeather.searchCityWindSpeedString
-        cityPressureLabel.text = searchCityWeather.searchCityPressureString
-        cityHumidityLabel.text = searchCityWeather.searchCityHumidityString
+        for value in searchCityWeather {
+            
+            citySearchNameLabel.text = value.searchCityNameAndCountryString
+            cityTemperatureLabel.text = value.searchCityTemperatureString
+            cityWeatherIcon.image = UIImage(named: value.searchCityWeatherIcon)
+            cityWeatherDescriptionLabel.text = value.searchCityWeatherDiscription
+            cityMaxTemperatureLabel.text = value.temperatureMaxString
+            cityMinTemperatureLabel.text = value.temperatureMinString
+            cityWindSpeedLabel.text = value.searchCityWindSpeedString
+            cityPressureLabel.text = value.searchCityPressureString
+            cityHumidityLabel.text = value.searchCityHumidityString
+            
+        }
     }
     // func with default values to display while data is loading
     // функция для отображения дефолтных данных пока не прошла загрузка

@@ -22,3 +22,11 @@ class WeekWeather: Object {
         return "cityName"
     }
 }
+
+extension WeekWeather {
+    
+    var cityNameAndCountryString: String {
+        return("\(cityName), \(cityCountry)")
+    }
+    
+}
