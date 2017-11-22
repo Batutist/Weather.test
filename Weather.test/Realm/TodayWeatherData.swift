@@ -63,4 +63,8 @@ extension TodayWeather {
     var cityWeatherDescriptionString: String {
         return "\(cityWeatherDiscription)"
     }
+    
+    var icon: String {
+        return "\(cityWeatherIcon)"
+    }
 }

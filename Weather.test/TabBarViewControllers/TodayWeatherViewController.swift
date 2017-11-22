@@ -24,8 +24,12 @@ class TodayWeatherViewController: UIViewController {
     // токен для отслеживания изменений
     var notificationToken: NotificationToken? = nil
     var city = "Taganrog"
+    var colorsArray: [(color1: UIColor, color2: UIColor)] = []
+    var currentcolorsArrayIndex = -1
     // outlets from UI
     // оутлеты пользовательского интерфейса
+    
+    @IBOutlet var gradientView: GradientView!
     @IBOutlet weak var temperatureValueLabel: UILabel!
     @IBOutlet weak var weatherIcon: UIImageView!
     @IBOutlet weak var weatherDescriptionLabel: UILabel!
@@ -38,9 +42,19 @@ class TodayWeatherViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        colorsArray.append((color1: Color.orange, color2: Color.orangeLight))
+        colorsArray.append((color1: Color.orangeLight, color2: Color.mintGreen))
+        colorsArray.append((color1: Color.mintGreen, color2: Color.malachiteGreen))
+        colorsArray.append((color1: Color.malachiteGreen, color2: Color.pacificBlue))
+        colorsArray.append((color1: Color.pacificBlue, color2: Color.powderBlue))
+        colorsArray.append((color1: Color.powderBlue, color2: Color.violet))
+        colorsArray.append((color1: Color.violet, color2: Color.orchid))
+        colorsArray.append((color1: Color.orchid, color2: Color.orange))
+
+        animatedBackgroundColor()
         // set background color
         // устанавливаем цвет фона
-        view.backgroundColor = Colors.skyBlue
+        view.backgroundColor = Color.skyBlue
         // load data of city
         // загружаем данные по городу
         manager.loadJSON(city: city)
@@ -95,16 +109,32 @@ class TodayWeatherViewController: UIViewController {
     func updateUIWith() {
         let todayWeather = manager.getTodayWeatherFromDB()
         
-        self.temperatureValueLabel.text = todayWeather.first?.cityTemperatureString
-        self.weatherIcon.image = UIImage(named: (todayWeather.first?.cityWeatherIcon)!)
-        self.weatherDescriptionLabel.text = todayWeather.first?.cityWeatherDescriptionString
-        self.maxTemperatureLabel.text = todayWeather.first?.cityTemperatureMaxString
-        self.minTemperatureLabel.text = todayWeather.first?.cityTemperatureMinString
-        self.windSpeedLabel.text = todayWeather.first?.cityWindSpeedString
-        self.pressureLabel.text = todayWeather.first?.cityPressureString
-        self.humidityLabel.text = todayWeather.first?.cityHumidityString
-        
+        for value in todayWeather {
+            self.temperatureValueLabel.text = value.cityTemperatureString
+            self.weatherIcon.image = UIImage(named: value.cityWeatherIcon)
+            self.weatherDescriptionLabel.text = value.cityWeatherDescriptionString
+            self.maxTemperatureLabel.text = value.cityTemperatureMaxString
+            self.minTemperatureLabel.text = value.cityTemperatureMinString
+            self.windSpeedLabel.text = value.cityWindSpeedString
+            self.pressureLabel.text = value.cityPressureString
+            self.humidityLabel.text = value.cityHumidityString
+            
+        }
     }
-    
+    func animatedBackgroundColor() {
+        
+        
+        
+        
+        
+        currentcolorsArrayIndex = currentcolorsArrayIndex == (colorsArray.count - 1) ? 0 : currentcolorsArrayIndex + 1
+        
+        UIView.transition(with: gradientView, duration: 2, options: [.transitionCrossDissolve], animations: {
+            self.gradientView.firstColor = self.colorsArray[self.currentcolorsArrayIndex].color1
+            self.gradientView.secondColor = self.colorsArray[self.currentcolorsArrayIndex].color2
+        }) { (success) in
+            self.animatedBackgroundColor()
+        }
+    }
     
 }

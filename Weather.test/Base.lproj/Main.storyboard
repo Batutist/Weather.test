@@ -23,7 +23,7 @@
         <scene sceneID="dhR-c0-toG">
             <objects>
                 <viewController id="z5Q-Gg-0AH" customClass="TodayWeatherViewController" customModule="Weather_test" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8AR-mo-xu5">
+                    <view key="view" contentMode="scaleToFill" id="8AR-mo-xu5" customClass="GradientView" customModule="Weather_test" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -169,9 +169,19 @@
                             <constraint firstItem="MbS-e4-EdN" firstAttribute="leading" secondItem="Oub-Ze-crG" secondAttribute="leading" constant="16" id="bx8-zl-Jx2"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Oub-Ze-crG"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="horizontalGradient" value="NO"/>
+                            <userDefinedRuntimeAttribute type="color" keyPath="firstColor">
+                                <color key="value" red="0.79080500379999996" green="0.98061922999999995" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="secondColor">
+                                <color key="value" red="0.47450980539999998" green="0.8392156959" blue="0.97647058959999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </view>
                     <tabBarItem key="tabBarItem" title="Today" id="WJd-IO-YPj"/>
                     <connections>
+                        <outlet property="gradientView" destination="8AR-mo-xu5" id="XWn-iz-zx7"/>
                         <outlet property="humidityLabel" destination="2xr-c2-U1T" id="Z6I-0C-JoL"/>
                         <outlet property="maxTemperatureLabel" destination="Fzn-bm-BZO" id="gXO-3v-Yuh"/>
                         <outlet property="minTemperatureLabel" destination="ooG-wW-ZaB" id="60M-BK-6K7"/>

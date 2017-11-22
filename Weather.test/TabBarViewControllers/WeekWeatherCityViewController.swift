@@ -51,7 +51,7 @@ class WeekWeatherCityViewController: UIViewController {
         
         // set background color
         // устанавливаем цвет фона
-        view.backgroundColor = Colors.skyBlue
+        view.backgroundColor = Color.skyBlue
         // load data of city
         // загружаем данные по городу
         manager.loadJSONWeek(city: city)

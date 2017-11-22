@@ -62,7 +62,7 @@ class CityWeatherViewController: UIViewController, UITextFieldDelegate {
         self.citySearchTextField.delegate = self
         // change background color
         // меняем цвет фона
-        view.backgroundColor = Colors.skyBlue
+        view.backgroundColor = Color.skyBlue
         
         // set defaults values for labels while waiting load data
         // устанавливаем дефолтные значения для ярлыков пока идел процесс загрузки данных
