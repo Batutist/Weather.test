@@ -219,7 +219,7 @@
         <scene sceneID="AXe-km-EQk">
             <objects>
                 <viewController id="uxG-QP-6ok" customClass="CityWeatherViewController" customModule="Weather_test" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="qfl-7h-GFP">
+                    <view key="view" contentMode="scaleToFill" id="qfl-7h-GFP" customClass="GradientView" customModule="Weather_test" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -425,6 +425,7 @@
                         <outlet property="cityWeatherDescriptionLabel" destination="MSF-8E-VPa" id="SGu-QI-bhj"/>
                         <outlet property="cityWeatherIcon" destination="0eK-L7-6aT" id="y6H-tL-qrV"/>
                         <outlet property="cityWindSpeedLabel" destination="DV4-Cs-gql" id="za1-wO-qfr"/>
+                        <outlet property="gradientView" destination="qfl-7h-GFP" id="p65-HA-fWo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bC0-O5-ee2" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -435,7 +436,7 @@
         <scene sceneID="B4l-D0-ef4">
             <objects>
                 <viewController id="hAD-39-OFY" customClass="WeekWeatherCityViewController" customModule="Weather_test" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleAspectFit" id="IFb-Tj-kR9">
+                    <view key="view" contentMode="scaleAspectFit" id="IFb-Tj-kR9" customClass="GradientView" customModule="Weather_test" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -987,6 +988,7 @@
                     <tabBarItem key="tabBarItem" title="Week" id="fFE-Pu-Q3j"/>
                     <connections>
                         <outlet property="cityNameLabel" destination="r6b-TF-N02" id="0ri-SP-OrN"/>
+                        <outlet property="gradientView" destination="IFb-Tj-kR9" id="sju-xy-sDl"/>
                         <outletCollection property="weatherDayIcons" destination="UuG-1C-hJ9" collectionClass="NSMutableArray" id="tHM-8m-JjE"/>
                         <outletCollection property="weatherDayIcons" destination="JaI-yL-rij" collectionClass="NSMutableArray" id="xj8-wb-QrA"/>
                         <outletCollection property="weatherDayIcons" destination="0c7-Hz-ecQ" collectionClass="NSMutableArray" id="Hx8-hL-f9T"/>

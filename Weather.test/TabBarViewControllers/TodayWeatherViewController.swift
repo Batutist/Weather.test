@@ -13,6 +13,7 @@ import RealmSwift
 // create realm object
 
 let realm = try! Realm()
+let animate = Animate()
 
 
 
@@ -20,6 +21,7 @@ class TodayWeatherViewController: UIViewController {
     // object of ManagerData class
     // создаем объект класса ManagerData
     let manager = ManagerData()
+    
     // create notification Token to watch for changes
     // токен для отслеживания изменений
     var notificationToken: NotificationToken? = nil
@@ -42,12 +44,13 @@ class TodayWeatherViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-
-        animatedBackgroundColor()
         // set background color
         // устанавливаем цвет фона
         view.backgroundColor = Color.skyBlue
+        
+        animate.backgroundColor(of: gradientView)
+        
+
         // load data of city
         // загружаем данные по городу
         manager.loadJSON(city: city)
@@ -114,25 +117,4 @@ class TodayWeatherViewController: UIViewController {
             
         }
     }
-    
-    func animatedBackgroundColor() {
-        colorsArray.append((color1: Color.orange, color2: Color.orangeLight))
-        colorsArray.append((color1: Color.orangeLight, color2: Color.mintGreen))
-        colorsArray.append((color1: Color.mintGreen, color2: Color.malachiteGreen))
-        colorsArray.append((color1: Color.malachiteGreen, color2: Color.pacificBlue))
-        colorsArray.append((color1: Color.pacificBlue, color2: Color.powderBlue))
-        colorsArray.append((color1: Color.powderBlue, color2: Color.violet))
-        colorsArray.append((color1: Color.violet, color2: Color.orchid))
-        colorsArray.append((color1: Color.orchid, color2: Color.orange))
-        
-        currentcolorsArrayIndex = currentcolorsArrayIndex == (colorsArray.count - 1) ? 0 : currentcolorsArrayIndex + 1
-        
-        UIView.transition(with: gradientView, duration: 2, options: [.transitionCrossDissolve], animations: {
-            self.gradientView.firstColor = self.colorsArray[self.currentcolorsArrayIndex].color1
-            self.gradientView.secondColor = self.colorsArray[self.currentcolorsArrayIndex].color2
-        }) { (success) in
-            self.animatedBackgroundColor()
-        }
-    }
-    
 }

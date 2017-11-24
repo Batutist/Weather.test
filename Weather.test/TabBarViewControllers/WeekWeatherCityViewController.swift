@@ -26,6 +26,7 @@ class WeekWeatherCityViewController: UIViewController
     
     // outlets collections from UI
     // коллекции оутлетов пользовательского интерфейса
+    @IBOutlet var gradientView: GradientView!
     
     @IBOutlet weak var cityNameLabel: UILabel!
     @IBOutlet var dayOfWeekLabels: [UILabel]!
@@ -44,15 +45,19 @@ class WeekWeatherCityViewController: UIViewController
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // set background color
+        // устанавливаем цвет фона
+        view.backgroundColor = Color.skyBlue
+        
+        let animate = Animate()
+        animate.backgroundColor(of: gradientView)
+        
         changeLabelsAndImages()
         
         
         // set default values for labels before load data finished
         // устанавливает значения по умолчанию на время загрузки данных
         
-        // set background color
-        // устанавливаем цвет фона
-        view.backgroundColor = Color.skyBlue
         // load data of city
         // загружаем данные по городу
         manager.loadJSONWeek(city: city)

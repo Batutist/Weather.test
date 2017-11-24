@@ -21,10 +21,15 @@ class CityWeatherViewController: UIViewController, UITextFieldDelegate {
     let manager = ManagerData()
     // create notification token
     // создаем токен нотификации
+    
+    let animate = Animate()
+    
     var notificationToken: NotificationToken? = nil
     let city = "Astana"
     // outlets from interface main.Storyboard
     // ссылки на объекты в UI
+    @IBOutlet var gradientView: GradientView!
+    
     @IBOutlet weak var citySearchTextField: UITextField!
     @IBOutlet weak var citySearchNameLabel: UILabel!
     @IBOutlet weak var cityTemperatureLabel: UILabel!
@@ -63,6 +68,8 @@ class CityWeatherViewController: UIViewController, UITextFieldDelegate {
         // change background color
         // меняем цвет фона
         view.backgroundColor = Color.skyBlue
+        
+        animate.backgroundColor(of: gradientView)
         
         // set defaults values for labels while waiting load data
         // устанавливаем дефолтные значения для ярлыков пока идел процесс загрузки данных
