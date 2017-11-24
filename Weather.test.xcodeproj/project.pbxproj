@@ -12,6 +12,7 @@
 		7D3A645B1FC6277E00893053 /* GradientView — копия.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D3A645A1FC6277E00893053 /* GradientView — копия.swift */; };
 		7D630F601FB98CAE00F19088 /* WeekWeatherData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D630F5F1FB98CAE00F19088 /* WeekWeatherData.swift */; };
 		7D6B33701FB477CA00318A06 /* SearchCityWeatherData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6B336F1FB477CA00318A06 /* SearchCityWeatherData.swift */; };
+		7D6F752D1FC8C28B0095BF3D /* AnimateBackgroudColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6F752C1FC8C28B0095BF3D /* AnimateBackgroudColor.swift */; };
 		7D882D5B1FB38F1A00223675 /* TodayWeatherData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D882D5A1FB38F1A00223675 /* TodayWeatherData.swift */; };
 		7D9828E11FBF77120041F06E /* WeekWeatherDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9828E01FBF77120041F06E /* WeekWeatherDetails.swift */; };
 		7D9E8B321FB2F11000419588 /* CityWeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9E8B311FB2F11000419588 /* CityWeatherViewController.swift */; };
@@ -30,6 +31,7 @@
 		7D3A645A1FC6277E00893053 /* GradientView — копия.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GradientView — копия.swift"; sourceTree = "<group>"; };
 		7D630F5F1FB98CAE00F19088 /* WeekWeatherData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekWeatherData.swift; sourceTree = "<group>"; };
 		7D6B336F1FB477CA00318A06 /* SearchCityWeatherData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCityWeatherData.swift; sourceTree = "<group>"; };
+		7D6F752C1FC8C28B0095BF3D /* AnimateBackgroudColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimateBackgroudColor.swift; sourceTree = "<group>"; };
 		7D882D5A1FB38F1A00223675 /* TodayWeatherData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayWeatherData.swift; sourceTree = "<group>"; };
 		7D882D5C1FB3A72200223675 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7D9828E01FBF77120041F06E /* WeekWeatherDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekWeatherDetails.swift; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 				7DCD7F1C1FB247B200B05E56 /* LaunchScreen.storyboard */,
 				7DCD7F1F1FB247B200B05E56 /* Info.plist */,
 				7D882D5C1FB3A72200223675 /* Assets.xcassets */,
+				7D6F752C1FC8C28B0095BF3D /* AnimateBackgroudColor.swift */,
 			);
 			path = Weather.test;
 			sourceTree = "<group>";
@@ -282,6 +285,7 @@
 				7DCD7F2C1FB24E4D00B05E56 /* ColorsConstants.swift in Sources */,
 				7D9E8B381FB32AEA00419588 /* ManagerData.swift in Sources */,
 				7D9828E11FBF77120041F06E /* WeekWeatherDetails.swift in Sources */,
+				7D6F752D1FC8C28B0095BF3D /* AnimateBackgroudColor.swift in Sources */,
 				7D882D5B1FB38F1A00223675 /* TodayWeatherData.swift in Sources */,
 				7D3A645B1FC6277E00893053 /* GradientView — копия.swift in Sources */,
 				7D6B33701FB477CA00318A06 /* SearchCityWeatherData.swift in Sources */,
