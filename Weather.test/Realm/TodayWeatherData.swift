@@ -64,7 +64,16 @@ extension TodayWeather {
         return "\(cityWeatherDiscription)"
     }
     
-    var icon: String {
+    var iconString: String {
         return "\(cityWeatherIcon)"
     }
+    
+    var icon: UIImage {
+        if let icon = UIImage(named: cityWeatherIcon) {
+            return icon
+        } else {
+            return UIImage(named: "01d")!
+        }
+    }
+    
 }

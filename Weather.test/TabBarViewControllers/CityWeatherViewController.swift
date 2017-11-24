@@ -144,7 +144,7 @@ class CityWeatherViewController: UIViewController, UITextFieldDelegate {
             
             citySearchNameLabel.text = value.searchCityNameAndCountryString
             cityTemperatureLabel.text = value.searchCityTemperatureString
-            cityWeatherIcon.image = UIImage(named: value.searchCityWeatherIcon)
+            cityWeatherIcon.image = value.icon
             cityWeatherDescriptionLabel.text = value.searchCityWeatherDiscription
             cityMaxTemperatureLabel.text = value.temperatureMaxString
             cityMinTemperatureLabel.text = value.temperatureMinString
@@ -165,9 +165,6 @@ class CityWeatherViewController: UIViewController, UITextFieldDelegate {
         cityPressureLabel.text = "--"
         cityHumidityLabel.text = "--"
     }
-    
-
-
     
     //--- Вызывается, когда пользователь кликает на view (за пределами textField)--
     // outlets textField и textField2, UITextFieldDelegate

@@ -42,14 +42,7 @@ class TodayWeatherViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        colorsArray.append((color1: Color.orange, color2: Color.orangeLight))
-        colorsArray.append((color1: Color.orangeLight, color2: Color.mintGreen))
-        colorsArray.append((color1: Color.mintGreen, color2: Color.malachiteGreen))
-        colorsArray.append((color1: Color.malachiteGreen, color2: Color.pacificBlue))
-        colorsArray.append((color1: Color.pacificBlue, color2: Color.powderBlue))
-        colorsArray.append((color1: Color.powderBlue, color2: Color.violet))
-        colorsArray.append((color1: Color.violet, color2: Color.orchid))
-        colorsArray.append((color1: Color.orchid, color2: Color.orange))
+        
 
         animatedBackgroundColor()
         // set background color
@@ -111,7 +104,7 @@ class TodayWeatherViewController: UIViewController {
         
         for value in todayWeather {
             self.temperatureValueLabel.text = value.cityTemperatureString
-            self.weatherIcon.image = UIImage(named: value.cityWeatherIcon)
+            self.weatherIcon.image = value.icon
             self.weatherDescriptionLabel.text = value.cityWeatherDescriptionString
             self.maxTemperatureLabel.text = value.cityTemperatureMaxString
             self.minTemperatureLabel.text = value.cityTemperatureMinString
@@ -121,11 +114,16 @@ class TodayWeatherViewController: UIViewController {
             
         }
     }
+    
     func animatedBackgroundColor() {
-        
-        
-        
-        
+        colorsArray.append((color1: Color.orange, color2: Color.orangeLight))
+        colorsArray.append((color1: Color.orangeLight, color2: Color.mintGreen))
+        colorsArray.append((color1: Color.mintGreen, color2: Color.malachiteGreen))
+        colorsArray.append((color1: Color.malachiteGreen, color2: Color.pacificBlue))
+        colorsArray.append((color1: Color.pacificBlue, color2: Color.powderBlue))
+        colorsArray.append((color1: Color.powderBlue, color2: Color.violet))
+        colorsArray.append((color1: Color.violet, color2: Color.orchid))
+        colorsArray.append((color1: Color.orchid, color2: Color.orange))
         
         currentcolorsArrayIndex = currentcolorsArrayIndex == (colorsArray.count - 1) ? 0 : currentcolorsArrayIndex + 1
         

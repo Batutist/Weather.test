@@ -37,7 +37,6 @@ extension WeekWeatherDetails {
         return dateFormatter.string(from: date as Date)
     }
     
-    
     var humidityString: String {
         return "\(humidity)%"
     }
@@ -55,6 +54,14 @@ extension WeekWeatherDetails {
     }
     var temperatureMinString: String {
         return "\(temperatureMin)˚"
+    }
+    
+    var icon: UIImage {
+        if let icon = UIImage(named: weatherIcon) {
+            return icon
+        } else {
+            return UIImage(named: "01d")!
+        }
     }
     
     var windSpeedString: String {
@@ -102,19 +109,19 @@ extension WeekWeatherDetails {
     
     var dayOfWeek: String {
         var dayOfWeekString = ""
-        if dayOfWeek(forecastedTime: forecastedTime) == 1 {
+        if WeekWeatherDetails.dayOfWeek(forecastedTime: forecastedTime) == 1 {
             dayOfWeekString = ("Mon")
-        } else if dayOfWeek(forecastedTime: forecastedTime) == 2 {
+        } else if WeekWeatherDetails.dayOfWeek(forecastedTime: forecastedTime) == 2 {
             dayOfWeekString = ("Tue")
-        } else if dayOfWeek(forecastedTime: forecastedTime) == 3 {
+        } else if WeekWeatherDetails.dayOfWeek(forecastedTime: forecastedTime) == 3 {
             dayOfWeekString = ("Wed")
-        } else if dayOfWeek(forecastedTime: forecastedTime) == 4 {
+        } else if WeekWeatherDetails.dayOfWeek(forecastedTime: forecastedTime) == 4 {
             dayOfWeekString = ("Thu")
-        } else if dayOfWeek(forecastedTime: forecastedTime) == 5 {
+        } else if WeekWeatherDetails.dayOfWeek(forecastedTime: forecastedTime) == 5 {
             dayOfWeekString = ("Fri")
-        } else if dayOfWeek(forecastedTime: forecastedTime) == 6 {
+        } else if WeekWeatherDetails.dayOfWeek(forecastedTime: forecastedTime) == 6 {
             dayOfWeekString = ("Sat")
-        } else if dayOfWeek(forecastedTime: forecastedTime) == 7 {
+        } else {
             dayOfWeekString = ("Sun")
         }
         
@@ -123,7 +130,7 @@ extension WeekWeatherDetails {
     
     
     
-    func dayOfWeek(forecastedTime: Double) -> Int {
+   static func dayOfWeek(forecastedTime: Double) -> Int {
         
         let date = Date(timeIntervalSince1970: forecastedTime)
         
