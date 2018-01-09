@@ -48,7 +48,7 @@ class TodayWeatherViewController: UIViewController {
         // устанавливаем цвет фона
         view.backgroundColor = Color.skyBlue
         
-        animate.backgroundColor(of: gradientView)
+//        animate.backgroundColor(of: gradientView)
         
 
         // load data of city

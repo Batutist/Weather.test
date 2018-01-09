@@ -64,12 +64,12 @@ class CityWeatherViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.citySearchTextField.delegate = self
+//        self.citySearchTextField.delegate = self
         // change background color
         // меняем цвет фона
         view.backgroundColor = Color.skyBlue
         
-        animate.backgroundColor(of: gradientView)
+//        animate.backgroundColor(of: gradientView)
         
         // set defaults values for labels while waiting load data
         // устанавливаем дефолтные значения для ярлыков пока идел процесс загрузки данных
@@ -87,12 +87,12 @@ class CityWeatherViewController: UIViewController, UITextFieldDelegate {
         notificationToken?.invalidate()
     }
     // прячем клавиатуру по нажатию на экран
-    func touchesBegan(touches: Set<NSObject>,withEvent event: UIEvent) {
-        if let touch = touches.first as? UITouch {
-            view.endEditing(true)
-        }
-        super.touchesBegan(touches as! Set<UITouch>, with: event)
-    }
+//    func touchesBegan(touches: Set<NSObject>,withEvent event: UIEvent) {
+//        if let touch = touches.first as? UITouch {
+//            view.endEditing(true)
+//        }
+//        super.touchesBegan(touches as! Set<UITouch>, with: event)
+//    }
     // func use notificationToken to search changes in DB and display them in UI
     // функция использует нотификацию для обнаружения изменений в БД и отображения их в пользовательском интерфейсе
     func updateUI() {
@@ -177,12 +177,12 @@ class CityWeatherViewController: UIViewController, UITextFieldDelegate {
     // outlets textField и textField2, UITextFieldDelegate
     // и textField.delegate = ... не нужны
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if let _ = touches.first {
-            view.endEditing(true)
-        }
-        super.touchesBegan(touches , with:event)
-    }
+//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+//        if let _ = touches.first {
+//            view.endEditing(true)
+//        }
+//        super.touchesBegan(touches , with:event)
+//    }
 }
 
 
