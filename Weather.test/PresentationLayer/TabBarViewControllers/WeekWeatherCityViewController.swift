@@ -31,6 +31,8 @@ class WeekWeatherCityViewController: UIViewController, UICollectionViewDataSourc
     var windSpeedString = Array<String>()
     var windDegreesString = Array<String>()
     
+    var weekWeatherModel = WeekWeatherModel()
+    
     
     // outlets collections from UI
     // коллекции оутлетов пользовательского интерфейса
@@ -66,7 +68,7 @@ class WeekWeatherCityViewController: UIViewController, UICollectionViewDataSourc
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return daysOfWeek.count
+        return 5
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -81,16 +83,16 @@ class WeekWeatherCityViewController: UIViewController, UICollectionViewDataSourc
     
     func setValuesFor(cell: WeekWeatherCollectionViewCell, indexPath: IndexPath) {
         
-        cell.dayOfTheWeekLabel.text = daysOfWeek[indexPath.row]
-        cell.dateLabel.text = datesString[indexPath.row]
-        cell.dayWeatherIcon.image = UIImage(named: dayWeatherIcon[indexPath.row])
-        cell.dayWeatherDescriptionLabel.text = dayWeatherDescription[indexPath.row]
-//        cell.dayWeatherTemperatureLabel.text = temperatureMaxString[indexPath.row]
-        cell.nightWeatherTemperatureLabel.text = temperatureMinString[indexPath.row]
-        cell.nightWeatherIcon.image = UIImage(named: nightWeatherIcon[indexPath.row])
-        cell.nightWeatherDescriptionLabel.text = nightWeatherDescription[indexPath.row]
-        cell.windDirectionLabel.text = windDegreesString[indexPath.row]
-        cell.windSpeedLabel.text = windSpeedString[indexPath.row]
+//        cell.dayOfTheWeekLabel.text = daysOfWeek[indexPath.row]
+//        cell.dateLabel.text = datesString[indexPath.row]
+//        cell.dayWeatherIcon.image = UIImage(named: dayWeatherIcon[indexPath.row])
+//        cell.dayWeatherDescriptionLabel.text = dayWeatherDescription[indexPath.row]
+////        cell.dayWeatherTemperatureLabel.text = temperatureMaxString[indexPath.row]
+//        cell.nightWeatherTemperatureLabel.text = temperatureMinString[indexPath.row]
+//        cell.nightWeatherIcon.image = UIImage(named: nightWeatherIcon[indexPath.row])
+//        cell.nightWeatherDescriptionLabel.text = nightWeatherDescription[indexPath.row]
+//        cell.windDirectionLabel.text = windDegreesString[indexPath.row]
+//        cell.windSpeedLabel.text = windSpeedString[indexPath.row]
         
     }
     
@@ -124,27 +126,38 @@ class WeekWeatherCityViewController: UIViewController, UICollectionViewDataSourc
             return dateFormatter.string(from: today as Date)
         }
         
-//        if weekWeatherNoonDateString == todayString {
-            guard let cityAndCountryName = weekWeather.first?.cityNameAndCountryString else { return }
-            self.cityAndCountryName = cityAndCountryName
-            cityNameLabel.text = self.cityAndCountryName
-            for value in weekWeatherNoon {
-                 daysOfWeek.append(value.dayOfWeek)
-                 datesString.append(value.dateString)
-                 dayWeatherIcon.append(value.weatherIcon)
-                 dayWeatherDescription.append(value.weatherDescription)
-                 temperatureMaxString.append(value.temperatureString)
-                 windSpeedString.append(value.windSpeedString)
-                 windDegreesString.append(value.windDegreesString)
-                print("day weather temperature from DB is: \(value.temperatureString)")
-                print("day weather temperature is \(temperatureMaxString)")
-            }
-            for value in weekWeatherMidnight {
-                temperatureMinString.append(value.temperatureMinString)
-                nightWeatherIcon.append(value.weatherIcon)
-                nightWeatherDescription.append(value.weatherDescription)
-            }
-//        }
+        guard let cityName = weekWeather.first?.cityName, let country = weekWeather.first?.cityCountry else { return }
+        
+        weekWeatherModel.cityName = cityName
+        weekWeatherModel.countryName = country
+        
+        cityNameLabel.text = weekWeatherModel.cityNameAndCountryString
+        
+        
+        for value in weekWeatherNoon {
+            var tmp = WeekWeatherModelDetails()
+            tmp.forecastedTime = value.forecastedTime
+            tmp.date = value.date
+            tmp.humidity = value.humidity
+            tmp.pressure = value.pressure
+            tmp.temperature = value.temperature
+            tmp.temperatureMax = value.temperatureMax
+            tmp.weatherDescription = value.weatherDescription
+            tmp.weatherIcon = value.weatherIcon
+            tmp.windSpeed = value.windSpeed
+            tmp.windDegrees = value.windDegrees
+            
+            weekWeatherModel.tempList.append(tmp)
+        }
+        for value in weekWeatherMidnight {
+            var tmp = WeekWeatherModelDetails()
+            
+            tmp.nightWeatherDescription = value.weatherDescription
+            tmp.nightWeatherIcon = value.weatherIcon
+            tmp.temperatureMin = value.temperatureMin
+            
+            weekWeatherModel.tempList.append(tmp)
+        }
     }
     
     // func use notificationToken to search changes in DB and display them in UI

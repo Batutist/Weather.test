@@ -4,6 +4,7 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -560,6 +561,7 @@
                                             <outlet property="dayOfTheWeekLabel" destination="Va7-mA-M6a" id="04Y-lL-2Ei"/>
                                             <outlet property="dayWeatherDescriptionLabel" destination="EsF-FH-abm" id="aDr-lQ-fZv"/>
                                             <outlet property="dayWeatherIcon" destination="eCR-La-fHB" id="wSe-ah-1Ee"/>
+                                            <outlet property="dayWeatherTemperatureLabel" destination="A1f-qO-FRL" id="gnF-mc-LYr"/>
                                             <outlet property="nightWeatherDescriptionLabel" destination="4tU-gT-PDk" id="XwB-lG-umH"/>
                                             <outlet property="nightWeatherIcon" destination="NEB-XX-Lf5" id="2bZ-oW-2oO"/>
                                             <outlet property="nightWeatherTemperatureLabel" destination="Wdh-jd-yXS" id="TwR-yk-TT7"/>

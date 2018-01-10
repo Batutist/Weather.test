@@ -24,6 +24,8 @@
 		7DCD7F281FB24C4800B05E56 /* TodayWeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCD7F271FB24C4800B05E56 /* TodayWeatherViewController.swift */; };
 		7DCD7F2C1FB24E4D00B05E56 /* ColorsConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCD7F2B1FB24E4D00B05E56 /* ColorsConstants.swift */; };
 		A55BC90F2004E43D00BD29F8 /* WeekWeatherCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55BC90E2004E43D00BD29F8 /* WeekWeatherCollectionViewCell.swift */; };
+		A5685B582005FB2000EE21D1 /* WeekWeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5685B562005FB1F00EE21D1 /* WeekWeatherModel.swift */; };
+		A5685B592005FB2000EE21D1 /* WeekWeatherModelDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5685B572005FB2000EE21D1 /* WeekWeatherModelDetails.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +50,8 @@
 		7DCD7F2B1FB24E4D00B05E56 /* ColorsConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorsConstants.swift; sourceTree = "<group>"; };
 		A55BC90E2004E43D00BD29F8 /* WeekWeatherCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekWeatherCollectionViewCell.swift; sourceTree = "<group>"; };
 		A55BC9172004FB1800BD29F8 /* Weather.test-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Weather.test-Bridging-Header.h"; sourceTree = "<group>"; };
+		A5685B562005FB1F00EE21D1 /* WeekWeatherModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeekWeatherModel.swift; sourceTree = "<group>"; };
+		A5685B572005FB2000EE21D1 /* WeekWeatherModelDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeekWeatherModelDetails.swift; sourceTree = "<group>"; };
 		E87E7A072C9FBE601F94A07E /* Pods_Weather_test.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Weather_test.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -121,6 +125,8 @@
 		7DCD7F121FB247B200B05E56 /* Weather.test */ = {
 			isa = PBXGroup;
 			children = (
+				A5685B562005FB1F00EE21D1 /* WeekWeatherModel.swift */,
+				A5685B572005FB2000EE21D1 /* WeekWeatherModelDetails.swift */,
 				A55BC9152004F9C400BD29F8 /* Resources */,
 				A55BC9112004F90700BD29F8 /* Application Layer */,
 				A55BC9122004F92B00BD29F8 /* PresentationLayer */,
@@ -344,11 +350,13 @@
 				7D9E8B361FB31BB500419588 /* WeekWeatherCityViewController.swift in Sources */,
 				7DCD7F141FB247B200B05E56 /* AppDelegate.swift in Sources */,
 				A55BC90F2004E43D00BD29F8 /* WeekWeatherCollectionViewCell.swift in Sources */,
+				A5685B592005FB2000EE21D1 /* WeekWeatherModelDetails.swift in Sources */,
 				7DCD7F281FB24C4800B05E56 /* TodayWeatherViewController.swift in Sources */,
 				7DCD7F2C1FB24E4D00B05E56 /* ColorsConstants.swift in Sources */,
 				7D9E8B381FB32AEA00419588 /* ManagerData.swift in Sources */,
 				7D9828E11FBF77120041F06E /* WeekWeatherDetails.swift in Sources */,
 				7D6F752D1FC8C28B0095BF3D /* AnimateBackgroudColor.swift in Sources */,
+				A5685B582005FB2000EE21D1 /* WeekWeatherModel.swift in Sources */,
 				7D882D5B1FB38F1A00223675 /* TodayWeatherData.swift in Sources */,
 				7D3A645B1FC6277E00893053 /* GradientView.swift in Sources */,
 				7D6B33701FB477CA00318A06 /* SearchCityWeatherData.swift in Sources */,
