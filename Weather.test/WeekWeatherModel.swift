@@ -17,7 +17,7 @@ struct WeekWeatherModel {
     extension WeekWeatherModel {
 
         var cityNameAndCountryString: String {
-            return("\(cityName), \(countryName) yes")
+            return("\(cityName), \(countryName)")
         }
     }
 

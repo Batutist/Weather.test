@@ -54,7 +54,6 @@ class TodayWeatherViewController: UIViewController {
         // load data of city
         // загружаем данные по городу
         manager.loadJSON(city: city)
-        manager.getTodayWeatherFromDB()
         // call func to update user interface
         // вызываем функцию для обновления отображаемых данных
         updateUI()
