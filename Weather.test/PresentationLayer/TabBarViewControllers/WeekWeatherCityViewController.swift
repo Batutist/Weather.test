@@ -83,16 +83,18 @@ class WeekWeatherCityViewController: UIViewController, UICollectionViewDataSourc
     
     func setValuesFor(cell: WeekWeatherCollectionViewCell, indexPath: IndexPath) {
         
-//        cell.dayOfTheWeekLabel.text = daysOfWeek[indexPath.row]
-//        cell.dateLabel.text = datesString[indexPath.row]
-//        cell.dayWeatherIcon.image = UIImage(named: dayWeatherIcon[indexPath.row])
-//        cell.dayWeatherDescriptionLabel.text = dayWeatherDescription[indexPath.row]
-////        cell.dayWeatherTemperatureLabel.text = temperatureMaxString[indexPath.row]
-//        cell.nightWeatherTemperatureLabel.text = temperatureMinString[indexPath.row]
-//        cell.nightWeatherIcon.image = UIImage(named: nightWeatherIcon[indexPath.row])
-//        cell.nightWeatherDescriptionLabel.text = nightWeatherDescription[indexPath.row]
-//        cell.windDirectionLabel.text = windDegreesString[indexPath.row]
-//        cell.windSpeedLabel.text = windSpeedString[indexPath.row]
+        cell.dayOfTheWeekLabel.text = weekWeatherModel.tempList[indexPath.row].dayOfWeek
+        cell.dateLabel.text = weekWeatherModel.tempList[indexPath.row].dateString
+        cell.dayWeatherIcon.image = UIImage(named: weekWeatherModel.tempList[indexPath.row].weatherIcon)
+        cell.dayWeatherDescriptionLabel.text = weekWeatherModel.tempList[indexPath.row].weatherDescription
+        cell.dayWeatherTemperatureLabel.text = weekWeatherModel.tempList[indexPath.row].temperatureMaxString + "!!!"
+        cell.nightWeatherTemperatureLabel.text = weekWeatherModel.tempList[indexPath.row].temperatureMinString
+        cell.nightWeatherIcon.image = UIImage(named: weekWeatherModel.tempList[indexPath.row].nightWeatherIcon)
+        cell.nightWeatherDescriptionLabel.text = weekWeatherModel.tempList[indexPath.row].nightWeatherDescription
+        cell.windDirectionLabel.text = weekWeatherModel.tempList[indexPath.row].windDegreesString
+        cell.windSpeedLabel.text = weekWeatherModel.tempList[indexPath.row].windSpeedString
+        
+        
         
     }
     
@@ -156,6 +158,8 @@ class WeekWeatherCityViewController: UIViewController, UICollectionViewDataSourc
             tmp.nightWeatherIcon = value.weatherIcon
             tmp.temperatureMin = value.temperatureMin
             
+            print("value temp is \(value.temperatureMin) & value icon is \(value.temperatureMin)")
+            print("temp is \(tmp.temperatureMin) and icon is \(tmp.nightWeatherIcon)")
             weekWeatherModel.tempList.append(tmp)
         }
     }
