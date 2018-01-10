@@ -130,7 +130,7 @@
 				A55BC9152004F9C400BD29F8 /* Resources */,
 				A55BC9112004F90700BD29F8 /* Application Layer */,
 				A55BC9122004F92B00BD29F8 /* PresentationLayer */,
-				A55BC9132004F93C00BD29F8 /* BuisnessLogicLayer */,
+				A56C8BDC20061C6C00AD728B /* BuisinessLogicLayer */,
 				A55BC9142004F95700BD29F8 /* Models */,
 				7D9E8B371FB32AEA00419588 /* ManagerData.swift */,
 				7DCD7F1F1FB247B200B05E56 /* Info.plist */,
@@ -176,13 +176,6 @@
 			path = PresentationLayer;
 			sourceTree = "<group>";
 		};
-		A55BC9132004F93C00BD29F8 /* BuisnessLogicLayer */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = BuisnessLogicLayer;
-			sourceTree = "<group>";
-		};
 		A55BC9142004F95700BD29F8 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -207,6 +200,13 @@
 				7D882D5C1FB3A72200223675 /* Assets.xcassets */,
 			);
 			path = Images;
+			sourceTree = "<group>";
+		};
+		A56C8BDC20061C6C00AD728B /* BuisinessLogicLayer */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = BuisinessLogicLayer;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
