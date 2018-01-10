@@ -4,6 +4,7 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -409,6 +410,14 @@
                             <constraint firstItem="kw9-l3-omr" firstAttribute="top" secondItem="9pV-zY-Tvd" secondAttribute="top" constant="16" id="ryS-HX-uPa"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="9pV-zY-Tvd"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="firstColor">
+                                <color key="value" red="0.79080500379999996" green="0.98061922999999995" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="secondColor">
+                                <color key="value" red="0.47450980539999998" green="0.8392156959" blue="0.97647058959999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </view>
                     <tabBarItem key="tabBarItem" title="City" id="aYq-T9-jBK"/>
                     <connections>
@@ -433,7 +442,7 @@
         <scene sceneID="B4l-D0-ef4">
             <objects>
                 <viewController id="hAD-39-OFY" customClass="WeekWeatherCityViewController" customModule="Weather_test" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleAspectFit" id="IFb-Tj-kR9">
+                    <view key="view" contentMode="scaleAspectFit" id="IFb-Tj-kR9" customClass="GradientView" customModule="Weather_test" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -560,6 +569,7 @@
                                             <outlet property="dayOfTheWeekLabel" destination="Va7-mA-M6a" id="04Y-lL-2Ei"/>
                                             <outlet property="dayWeatherDescriptionLabel" destination="EsF-FH-abm" id="aDr-lQ-fZv"/>
                                             <outlet property="dayWeatherIcon" destination="eCR-La-fHB" id="wSe-ah-1Ee"/>
+                                            <outlet property="dayWeatherTemperatureLabel" destination="A1f-qO-FRL" id="gnF-mc-LYr"/>
                                             <outlet property="nightWeatherDescriptionLabel" destination="4tU-gT-PDk" id="XwB-lG-umH"/>
                                             <outlet property="nightWeatherIcon" destination="NEB-XX-Lf5" id="2bZ-oW-2oO"/>
                                             <outlet property="nightWeatherTemperatureLabel" destination="Wdh-jd-yXS" id="TwR-yk-TT7"/>
@@ -584,6 +594,14 @@
                             <constraint firstItem="rnG-Dd-HZA" firstAttribute="trailing" secondItem="KZi-9f-upA" secondAttribute="trailing" id="wId-KM-fdY"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="rnG-Dd-HZA"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="firstColor">
+                                <color key="value" red="0.79080500379999996" green="0.98061922999999995" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="secondColor">
+                                <color key="value" red="0.47450980539999998" green="0.8392156959" blue="0.97647058959999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </view>
                     <tabBarItem key="tabBarItem" title="Week" id="fFE-Pu-Q3j"/>
                     <connections>

@@ -7,3 +7,17 @@
 //
 
 import Foundation
+
+struct WeekWeatherModel {
+    var cityName = ""
+    var countryName = ""
+    var tempList = [WeekWeatherModelDetails]()
+    
+}
+    extension WeekWeatherModel {
+
+        var cityNameAndCountryString: String {
+            return("\(cityName), \(countryName) yes")
+        }
+    }
+
