@@ -11,6 +11,9 @@ import UIKit
 import RealmSwift
 
 class WeekWeatherCityViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+    
+    let reuseCellIdentifire = "Cell"
+    
     // object of ManagerData class
     // создаем объект класса ManagerData
     let manager = ManagerData()
@@ -34,12 +37,10 @@ class WeekWeatherCityViewController: UIViewController, UICollectionViewDataSourc
         // устанавливаем цвет фона
         view.backgroundColor = Color.skyBlue
         
-        //        changeLabelsAndImages()
-        
-        
         // load data of city
         // загружаем данные по городу
         manager.loadJSONWeek(city: city)
+//        getDataFromDB()
         updateUI()
         
         // call func to update user interface
@@ -48,12 +49,13 @@ class WeekWeatherCityViewController: UIViewController, UICollectionViewDataSourc
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return weekWeatherModel.tempList.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let defaultCell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as? WeekWeatherCollectionViewCell else { return defaultCell }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseCellIdentifire, for: indexPath) as? WeekWeatherCollectionViewCell else { return defaultCell }
+        
         
         setValuesFor(cell: cell, indexPath: indexPath)
         
@@ -63,23 +65,16 @@ class WeekWeatherCityViewController: UIViewController, UICollectionViewDataSourc
     
     func setValuesFor(cell: WeekWeatherCollectionViewCell, indexPath: IndexPath) {
         
-
-            getDataFromDB()
-
-
-//        cell.dayOfTheWeekLabel.text = weekWeatherModel.tempList[indexPath.row].dayOfWeek
-//        cell.dateLabel.text = weekWeatherModel.tempList[indexPath.row].dateString
-//        cell.dayWeatherIcon.image = UIImage(named: weekWeatherModel.tempList[indexPath.row].weatherIcon)
-//        cell.dayWeatherDescriptionLabel.text = weekWeatherModel.tempList[indexPath.row].weatherDescription
-//        cell.dayWeatherTemperatureLabel.text = weekWeatherModel.tempList[indexPath.row].temperatureMaxString
-//        cell.nightWeatherTemperatureLabel.text = weekWeatherModel.tempList[indexPath.row].temperatureMinString
-//        cell.nightWeatherIcon.image = UIImage(named: weekWeatherModel.tempList[indexPath.row].nightWeatherIcon)
-//        cell.nightWeatherDescriptionLabel.text = weekWeatherModel.tempList[indexPath.row].nightWeatherDescription
-//        cell.windDirectionLabel.text = weekWeatherModel.tempList[indexPath.row].windDegreesString
-//        cell.windSpeedLabel.text = weekWeatherModel.tempList[indexPath.row].windSpeedString
-        
-        
-
+        cell.dayOfTheWeekLabel.text = weekWeatherModel.tempList[indexPath.row].dayOfWeek
+        cell.dateLabel.text = weekWeatherModel.tempList[indexPath.row].dateString
+        cell.dayWeatherIcon.image = UIImage(named: weekWeatherModel.tempList[indexPath.row].weatherIcon)
+        cell.dayWeatherDescriptionLabel.text = weekWeatherModel.tempList[indexPath.row].weatherDescription
+        cell.dayWeatherTemperatureLabel.text = weekWeatherModel.tempList[indexPath.row].temperatureMaxString
+        cell.nightWeatherTemperatureLabel.text = weekWeatherModel.tempList[indexPath.row].temperatureMinString
+        cell.nightWeatherIcon.image = UIImage(named: weekWeatherModel.tempList[indexPath.row].nightWeatherIcon)
+        cell.nightWeatherDescriptionLabel.text = weekWeatherModel.tempList[indexPath.row].nightWeatherDescription
+        cell.windDirectionLabel.text = weekWeatherModel.tempList[indexPath.row].windDegreesString
+        cell.windSpeedLabel.text = weekWeatherModel.tempList[indexPath.row].windSpeedString
         
     }
     
@@ -120,27 +115,28 @@ class WeekWeatherCityViewController: UIViewController, UICollectionViewDataSourc
 
         guard let forecastedTime = weekWeatherNoon.first?.forecastedTime else { return }
 
-        if checkOutDates(timeIntervalSince1970: forecastedTime) {
-            
+        print("week weather noon : \(weekWeatherNoon)")
+
+        for value in weekWeatherNoon {
             var tmp = WeekWeatherModelDetails()
-            for value in weekWeatherNoon {
-                tmp.forecastedTime = value.forecastedTime
-                tmp.date = value.date
-                tmp.humidity = value.humidity
-                tmp.pressure = value.pressure
-                tmp.temperature = value.temperature
-                tmp.temperatureMax = value.temperatureMax
-                tmp.weatherDescription = value.weatherDescription
-                tmp.weatherIcon = value.weatherIcon
-                tmp.windSpeed = value.windSpeed
-                tmp.windDegrees = value.windDegrees
-                
-                weekWeatherModel.tempList.append(tmp)
-                print("day weather: \(weekWeatherModel.tempList.count)")
-            }
-            
-            print("Count \(weekWeatherModel.tempList.count)")
-            
+            tmp.forecastedTime = value.forecastedTime
+            tmp.date = value.date
+            tmp.humidity = value.humidity
+            tmp.pressure = value.pressure
+            tmp.temperature = value.temperature
+            tmp.temperatureMax = value.temperatureMax
+            tmp.weatherDescription = value.weatherDescription
+            tmp.weatherIcon = value.weatherIcon
+            tmp.windSpeed = value.windSpeed
+            tmp.windDegrees = value.windDegrees
+
+            weekWeatherModel.tempList.append(tmp)
+            print("day weather: \(weekWeatherModel.tempList.count)")
+        }
+
+        print("week weather model is: \(weekWeatherModel)")
+        if checkOutDates(timeIntervalSince1970: forecastedTime) {
+
         } else {
             // weekWeatherNoonDateString != todayString
             guard let currentDayWeather = weekWeather.first?.tempList.first else { return }
@@ -161,7 +157,7 @@ class WeekWeatherCityViewController: UIViewController, UICollectionViewDataSourc
             weekWeatherModel.tempList = [tmp]
             print("After append \(weekWeatherModel.tempList.count)")
 //            guard weekWeatherNoon.count == 5 else { return }
-            for value in weekWeatherNoon[0...3] {
+            for value in weekWeatherNoon[weekWeatherNoon.startIndex...(weekWeatherNoon.endIndex - 1)] {
                 tmp.forecastedTime = value.forecastedTime
                 tmp.date = value.date
                 tmp.humidity = value.humidity
@@ -175,7 +171,7 @@ class WeekWeatherCityViewController: UIViewController, UICollectionViewDataSourc
 
                 weekWeatherModel.tempList.append(tmp)
             }
-            
+
             print("Количество \(weekWeatherModel.tempList.count)")
             print(weekWeatherModel.tempList)
             print("Numbers \(weekWeatherNoon.count)")
@@ -186,7 +182,6 @@ class WeekWeatherCityViewController: UIViewController, UICollectionViewDataSourc
             weekWeatherModel.tempList[index].nightWeatherDescription = weekWeatherMidnight[index].weatherDescription
             weekWeatherModel.tempList[index].nightWeatherIcon = weekWeatherMidnight[index].weatherIcon
         }
-        
     }
     
     // func use notificationToken to search changes in DB and display them in UI
@@ -198,25 +193,29 @@ class WeekWeatherCityViewController: UIViewController, UICollectionViewDataSourc
         // Observe Results Notifications
         notificationToken = results.observe {[weak self] (changes: RealmCollectionChange) in
             guard let collectionView = self?.collectionView else { return }
+            let indexPath = IndexPath()
             switch changes {
             case .initial:
                 // Results are now populated and can be accessed without blocking the UI
                 // func to update labels and images values
                 // функция обновления значений ярлыков и картинок
-                self?.getDataFromDB()
+//                self?.getDataFromDB()
+                
+//                self?.setValuesFor(cell: cell, indexPath: indexPath)
                 collectionView.reloadData()
                 
                 
-                print("new")
-            //                tableView.reloadData()
+                print("new weekweather")
             case .update(_, let deletions, let insertions, let modifications):
                 // Query results have changed, so apply them to the UITableView
                 
                 // func to update labels and images values
                 // функция обновления значений ярлыков и картинок
                 self?.getDataFromDB()
+//                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: (self?.reuseCellIdentifire)!, for: indexPath) as? WeekWeatherCollectionViewCell else { return }
+//                self?.setValuesFor(cell: cell, indexPath: indexPath)
                 collectionView.reloadData()
-                print("update")
+                print("update weekweather")
                 
             case .error(let error):
                 print("error")

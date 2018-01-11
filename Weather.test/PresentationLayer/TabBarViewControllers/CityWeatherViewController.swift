@@ -115,7 +115,6 @@ class CityWeatherViewController: UIViewController, UITextFieldDelegate {
                 self?.updateLabelsAndImages(searchCityWeather: searchCityWeather!)
                 
                 print("new")
-            //                tableView.reloadData()
             case .update:
                 // Query results have changed, so apply them to the UITableView
                 
@@ -172,17 +171,7 @@ class CityWeatherViewController: UIViewController, UITextFieldDelegate {
         cityPressureLabel.text = "--"
         cityHumidityLabel.text = "--"
     }
-    
-    //--- Вызывается, когда пользователь кликает на view (за пределами textField)--
-    // outlets textField и textField2, UITextFieldDelegate
-    // и textField.delegate = ... не нужны
-    
-//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        if let _ = touches.first {
-//            view.endEditing(true)
-//        }
-//        super.touchesBegan(touches , with:event)
-//    }
+
 }
 
 
